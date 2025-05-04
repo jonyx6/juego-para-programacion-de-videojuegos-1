@@ -1,0 +1,1330 @@
+{
+  "frames": {
+    "knight/deLadoAtk/42.png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 66,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 16,
+        "w": 66,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/deLadoMov/17.png": {
+      "frame": {
+        "x": 66,
+        "y": 0,
+        "w": 64,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 8,
+        "y": 20,
+        "w": 64,
+        "h": 41
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/arribaMov/05.png": {
+      "frame": {
+        "x": 130,
+        "y": 0,
+        "w": 37,
+        "h": 64
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 21,
+        "y": 9,
+        "w": 37,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/arribaMov/00.png": {
+      "frame": {
+        "x": 194,
+        "y": 0,
+        "w": 34,
+        "h": 64
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 24,
+        "y": 9,
+        "w": 34,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/arribaMov/20.png": {
+      "frame": {
+        "x": 258,
+        "y": 0,
+        "w": 34,
+        "h": 64
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 24,
+        "y": 9,
+        "w": 34,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/abajoAtk/29.png": {
+      "frame": {
+        "x": 322,
+        "y": 0,
+        "w": 32,
+        "h": 64
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 23,
+        "y": 0,
+        "w": 32,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/arribaAtk/40.png": {
+      "frame": {
+        "x": 386,
+        "y": 0,
+        "w": 29,
+        "h": 64
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 25,
+        "y": 9,
+        "w": 29,
+        "h": 64
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/deLadoMov/12.png": {
+      "frame": {
+        "x": 450,
+        "y": 0,
+        "w": 63,
+        "h": 39
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 8,
+        "y": 20,
+        "w": 63,
+        "h": 39
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/deLadoMov/22.png": {
+      "frame": {
+        "x": 386,
+        "y": 29,
+        "w": 62,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 10,
+        "y": 19,
+        "w": 62,
+        "h": 41
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/arribaMov/10.png": {
+      "frame": {
+        "x": 322,
+        "y": 32,
+        "w": 40,
+        "h": 62
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 18,
+        "y": 9,
+        "w": 40,
+        "h": 62
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/arribaMov/15.png": {
+      "frame": {
+        "x": 194,
+        "y": 34,
+        "w": 37,
+        "h": 62
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 21,
+        "y": 11,
+        "w": 37,
+        "h": 62
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/deLadoAtk/27.png": {
+      "frame": {
+        "x": 130,
+        "y": 39,
+        "w": 61,
+        "h": 52
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 10,
+        "y": 9,
+        "w": 61,
+        "h": 52
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/deLadoAtk/37.png": {
+      "frame": {
+        "x": 66,
+        "y": 41,
+        "w": 61,
+        "h": 52
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 7,
+        "y": 9,
+        "w": 61,
+        "h": 52
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/arribaAtk/35.png": {
+      "frame": {
+        "x": 0,
+        "y": 45,
+        "w": 45,
+        "h": 61
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 12,
+        "y": 12,
+        "w": 45,
+        "h": 61
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/deLadoMov/02.png": {
+      "frame": {
+        "x": 0,
+        "y": 90,
+        "w": 61,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 12,
+        "y": 19,
+        "w": 61,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/arribaAtk/30.png": {
+      "frame": {
+        "x": 256,
+        "y": 34,
+        "w": 39,
+        "h": 61
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 20,
+        "y": 12,
+        "w": 39,
+        "h": 61
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/deLadoAtk/32.png": {
+      "frame": {
+        "x": 191,
+        "y": 71,
+        "w": 60,
+        "h": 52
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 9,
+        "y": 9,
+        "w": 60,
+        "h": 52
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digArribaMov/21.png": {
+      "frame": {
+        "x": 127,
+        "y": 91,
+        "w": 50,
+        "h": 60
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 17,
+        "y": 9,
+        "w": 50,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digAbajoMuerte/46.png": {
+      "frame": {
+        "x": 127,
+        "y": 141,
+        "w": 47,
+        "h": 60
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 21,
+        "y": 11,
+        "w": 47,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/arribaAtk/25.png": {
+      "frame": {
+        "x": 127,
+        "y": 188,
+        "w": 43,
+        "h": 60
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 14,
+        "y": 13,
+        "w": 43,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digArribaMuerte/47.png": {
+      "frame": {
+        "x": 61,
+        "y": 93,
+        "w": 59,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 7,
+        "y": 13,
+        "w": 59,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digArribaAtk/41.png": {
+      "frame": {
+        "x": 0,
+        "y": 132,
+        "w": 49,
+        "h": 59
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 21,
+        "y": 9,
+        "w": 49,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digArribaAtk/26.png": {
+      "frame": {
+        "x": 59,
+        "y": 149,
+        "w": 46,
+        "h": 59
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 17,
+        "y": 9,
+        "w": 46,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digArribaAtk/36.png": {
+      "frame": {
+        "x": 0,
+        "y": 181,
+        "w": 43,
+        "h": 59
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 20,
+        "y": 9,
+        "w": 43,
+        "h": 59
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/deLadoMov/07.png": {
+      "frame": {
+        "x": 59,
+        "y": 195,
+        "w": 59,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 12,
+        "y": 19,
+        "w": 59,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digAbajoMuerte/48.png": {
+      "frame": {
+        "x": 0,
+        "y": 224,
+        "w": 58,
+        "h": 53
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 15,
+        "y": 12,
+        "w": 58,
+        "h": 53
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digArribaMov/01.png": {
+      "frame": {
+        "x": 513,
+        "y": 0,
+        "w": 47,
+        "h": 58
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 20,
+        "y": 9,
+        "w": 47,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/abajoMov/24.png": {
+      "frame": {
+        "x": 448,
+        "y": 39,
+        "w": 35,
+        "h": 58
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 21,
+        "y": 16,
+        "w": 35,
+        "h": 58
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digAbajoMuerte/50.png": {
+      "frame": {
+        "x": 384,
+        "y": 70,
+        "w": 57,
+        "h": 39
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 11,
+        "y": 12,
+        "w": 57,
+        "h": 39
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/abajoMov/19.png": {
+      "frame": {
+        "x": 384,
+        "y": 109,
+        "w": 35,
+        "h": 57
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 21,
+        "y": 16,
+        "w": 35,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/abajoAtk/44.png": {
+      "frame": {
+        "x": 384,
+        "y": 144,
+        "w": 33,
+        "h": 57
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 24,
+        "y": 16,
+        "w": 33,
+        "h": 57
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digArribaMov/16.png": {
+      "frame": {
+        "x": 317,
+        "y": 72,
+        "w": 49,
+        "h": 56
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 16,
+        "y": 11,
+        "w": 49,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digAbajoAtk/43.png": {
+      "frame": {
+        "x": 251,
+        "y": 73,
+        "w": 56,
+        "h": 47
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 14,
+        "y": 16,
+        "w": 56,
+        "h": 47
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digArribaMuerte/45.png": {
+      "frame": {
+        "x": 251,
+        "y": 120,
+        "w": 54,
+        "h": 55
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 11,
+        "y": 16,
+        "w": 54,
+        "h": 55
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digArribaMov/06.png": {
+      "frame": {
+        "x": 187,
+        "y": 123,
+        "w": 49,
+        "h": 54
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 17,
+        "y": 9,
+        "w": 49,
+        "h": 54
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/abajoAtk/39.png": {
+      "frame": {
+        "x": 187,
+        "y": 172,
+        "w": 37,
+        "h": 54
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 24,
+        "y": 11,
+        "w": 37,
+        "h": 54
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digAbajoMov/18.png": {
+      "frame": {
+        "x": 306,
+        "y": 121,
+        "w": 48,
+        "h": 53
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 14,
+        "y": 18,
+        "w": 48,
+        "h": 53
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/abajoAtk/34.png": {
+      "frame": {
+        "x": 306,
+        "y": 169,
+        "w": 29,
+        "h": 53
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 24,
+        "y": 11,
+        "w": 29,
+        "h": 53
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digAbajoAtk/33.png": {
+      "frame": {
+        "x": 241,
+        "y": 174,
+        "w": 52,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 9,
+        "w": 52,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digArribaAtk/31.png": {
+      "frame": {
+        "x": 187,
+        "y": 209,
+        "w": 44,
+        "h": 52
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 16,
+        "y": 16,
+        "w": 44,
+        "h": 52
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digArribaMov/11.png": {
+      "frame": {
+        "x": 118,
+        "y": 231,
+        "w": 50,
+        "h": 50
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 15,
+        "y": 11,
+        "w": 50,
+        "h": 50
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digArribaMuerte/49.png": {
+      "frame": {
+        "x": 58,
+        "y": 235,
+        "w": 50,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 13,
+        "y": 20,
+        "w": 50,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/abajoMov/04.png": {
+      "frame": {
+        "x": 0,
+        "y": 277,
+        "w": 34,
+        "h": 49
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 22,
+        "y": 18,
+        "w": 34,
+        "h": 49
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/abajoMov/14.png": {
+      "frame": {
+        "x": 49,
+        "y": 278,
+        "w": 34,
+        "h": 49
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 22,
+        "y": 16,
+        "w": 34,
+        "h": 49
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digAbajoAtk/28.png": {
+      "frame": {
+        "x": 0,
+        "y": 311,
+        "w": 48,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 10,
+        "y": 9,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digAbajoAtk/38.png": {
+      "frame": {
+        "x": 571,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 11,
+        "y": 9,
+        "w": 48,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digAbajoMov/08.png": {
+      "frame": {
+        "x": 506,
+        "y": 47,
+        "w": 48,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 18,
+        "y": 19,
+        "w": 48,
+        "h": 41
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/abajoMov/09.png": {
+      "frame": {
+        "x": 506,
+        "y": 88,
+        "w": 34,
+        "h": 48
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 22,
+        "y": 18,
+        "w": 34,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digAbajoMov/23.png": {
+      "frame": {
+        "x": 506,
+        "y": 122,
+        "w": 47,
+        "h": 47
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 17,
+        "y": 19,
+        "w": 47,
+        "h": 47
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digAbajoMov/03.png": {
+      "frame": {
+        "x": 441,
+        "y": 74,
+        "w": 47,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 19,
+        "y": 21,
+        "w": 47,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "knight/digAbajoMov/13.png": {
+      "frame": {
+        "x": 441,
+        "y": 114,
+        "w": 46,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 18,
+        "y": 19,
+        "w": 46,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 74
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "animations": {
+    
+    "abajoAtk": [
+      "knight/abajoAtk/29.png",
+      "knight/abajoAtk/34.png",
+      "knight/abajoAtk/39.png",
+      "knight/abajoAtk/44.png"
+    ],
+    "abajoMov": [
+      "knight/abajoMov/04.png",
+      "knight/abajoMov/09.png",
+      "knight/abajoMov/14.png",
+      "knight/abajoMov/19.png",
+      "knight/abajoMov/24.png"
+    ],
+
+
+    "arribaAtk": [
+      "knight/arribaAtk/25.png",
+      "knight/arribaAtk/30.png",
+      "knight/arribaAtk/35.png",
+      "knight/arribaAtk/40.png"
+    ],
+    "arribaMov": [
+      "knight/arribaMov/00.png",
+      "knight/arribaMov/05.png",
+      "knight/arribaMov/10.png",
+      "knight/arribaMov/15.png",
+      "knight/arribaMov/20.png"
+    ],
+
+
+    "deLadoAtk": [
+      "knight/deLadoAtk/27.png",
+      "knight/deLadoAtk/32.png",
+      "knight/deLadoAtk/37.png",
+      "knight/deLadoAtk/42.png"
+    ],
+    "deLadoMov": [
+      "knight/deLadoMov/02.png",
+      "knight/deLadoMov/07.png",
+      "knight/deLadoMov/12.png",
+      "knight/deLadoMov/17.png",
+      "knight/deLadoMov/22.png"
+    ],
+
+
+    "digAbajoAtk": [
+      "knight/digAbajoAtk/28.png",
+      "knight/digAbajoAtk/33.png",
+      "knight/digAbajoAtk/38.png",
+      "knight/digAbajoAtk/43.png"
+    ],
+    "digAbajoMov": [
+      "knight/digAbajoMov/03.png",
+      "knight/digAbajoMov/08.png",
+      "knight/digAbajoMov/13.png",
+      "knight/digAbajoMov/18.png",
+      "knight/digAbajoMov/23.png"
+    ],
+    "digAbajoMuerte": [
+      "knight/digAbajoMuerte/46.png",
+      "knight/digAbajoMuerte/48.png",
+      "knight/digAbajoMuerte/50.png"
+    ],
+
+
+    "digArribaAtk": [
+      "knight/digArribaAtk/26.png",
+      "knight/digArribaAtk/31.png",
+      "knight/digArribaAtk/36.png",
+      "knight/digArribaAtk/41.png"
+    ],
+    "digArribaMov": [
+      "knight/digArribaMov/01.png",
+      "knight/digArribaMov/06.png",
+      "knight/digArribaMov/11.png",
+      "knight/digArribaMov/16.png",
+      "knight/digArribaMov/21.png"
+    ],
+    "digArribaMuerte": [
+      "knight/digArribaMuerte/45.png",
+      "knight/digArribaMuerte/47.png",
+      "knight/digArribaMuerte/49.png"
+    ],
+    
+    "idle": [
+      "knight/deLadoMov/22.png"
+    ]
+
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "textureKnight.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 619,
+      "h": 359
+    },
+    "scale": 1
+  }
+}
