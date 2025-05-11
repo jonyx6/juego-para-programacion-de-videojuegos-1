@@ -8,6 +8,7 @@ class Juego {
 
         this.caballerosRojos = []
         this.caballerosAzules = []
+        this.trabajador = [];
 
         this.app = new PIXI.Application(); //reemplaza la palabra PIXI.Application()
         //define el canvas y establece el contador a 0
@@ -35,8 +36,7 @@ class Juego {
 
         let promesa = this.app.init({ width: this.ancho, height: this.alto })  //init pertenece a PIXI assets. es para iniciar primero antes que todo
 
-        promesa.then(e => {
-            document.body.appendChild(this.app.canvas); /*Se agrega el lienzo (canvas) generado por PixiJS al cuerpo del documento HTML. 
+        promesa.then(e => { document.body.appendChild(this.app.canvas); /*Se agrega el lienzo (canvas) generado por PixiJS al cuerpo del documento HTML. 
             Esto hace que el juego se muestre en la página web.*/
             window.__PIXI_APP__ = this.app; /*Asocia la instancia de la aplicación a la variable global window.__PIXI_APP__, lo que puede 
             ser útil para acceder a la aplicación desde otros lugares en el código.*/ 
@@ -47,12 +47,14 @@ class Juego {
             this.app.stage.addChild(this.containerPrincipal);
             
             //this.containerPrincipal.addChild(this.chaboncitos);
-
-            this.ponerFondo();//--agrega imagen de fondo
-
+            //this.cargarPuntero()******
+            //this.ponerFondo();//--agrega imagen de fondo
+            this.ponerObrero(1)
             this.app.ticker.add(() => {
                 this.gameLoop()//funcion
             })
+
+            
             /*Se agrega una función de actualización (gameLoop) al "ticker" de PixiJS. 
             El ticker es el mecanismo de PixiJS que realiza actualizaciones en cada frame (fotograma). Cada vez que se dibuja un nuevo fotograma, 
             se ejecuta el método gameLoop(), que es donde se incluiría la lógica del juego, como el movimiento de objetos o la detección de colisiones.*/
@@ -169,10 +171,24 @@ class Juego {
             //"push()"carga en el array los personajes 10 veces
         }
     }
+
     ponerDeathKnight() {
         let i = 0
         this.deathKnights =new CaballeroRojo(500,500, this.app, i, this)
     }
+
+    ponerObrero(cantidad){
+      for(let i =0 ; i< cantidad ;i++){
+        const obrero = new Trabajador(200,200, this.app, i, this)
+        this.trabajador.push(obrero)
+      }
+
+    }
+
+
+  /*  cargarPuntero(){// debe inicializarse en la escena
+        this.puntero = new Puntero(this.app, this); 
+    }*/
 
     configurarControles() {
         // Event listener para cuando una tecla es presionada

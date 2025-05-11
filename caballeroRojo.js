@@ -3,7 +3,7 @@ class CaballeroRojo extends Personaje{
     constructor(x, y, app, i, juego) {
         super(x, y, app, i, juego);
 
-        this.velocidad = 4;
+        this.velocidad = 3;
         
         this.listo = false;
 
