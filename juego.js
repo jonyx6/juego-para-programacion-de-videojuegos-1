@@ -10,6 +10,8 @@ class Juego {
         this.caballerosAzules = []
         this.trabajador = [];
 
+        this.personajes = []; // Para que el puntero los pueda ver
+
         this.app = new PIXI.Application(); //reemplaza la palabra PIXI.Application()
         //define el canvas y establece el contador a 0
         this.contadorDeFrame = 0
@@ -17,7 +19,7 @@ class Juego {
         this.ancho = 1280
         this.alto = 720
 
-        
+
         //this.ancho = window.innerWidth;
         //this.alto = window.innerHeight;
 
@@ -47,9 +49,10 @@ class Juego {
             this.app.stage.addChild(this.containerPrincipal);
             
             //this.containerPrincipal.addChild(this.chaboncitos);
+            
             //this.cargarPuntero()******
-            //this.ponerFondo();//--agrega imagen de fondo
-            this.ponerObrero(1)
+            this.ponerFondo();//--agrega imagen de fondo
+            
             this.app.ticker.add(() => {
                 this.gameLoop()//funcion
             })
@@ -73,6 +76,15 @@ class Juego {
               };
             this.velocidadCamara = 15;
             this.configurarControles();
+            
+            //obrero
+            this.ponerObrero(1)
+            this.cargarPuntero();
+            
+            // Bloquear menú contextual del botón derecho SOLO en el canvas
+            this.app.view.addEventListener('contextmenu', (e) => {
+              e.preventDefault();
+            });
 
         })
     }
@@ -94,7 +106,7 @@ class Juego {
         */
 
       }
-      moverCamara() {
+    moverCamara() {
         if (!this.fondo) return;
         // this.containerPrincipal.x = this.protagonista.x;
         // this.containerPrincipal.y = this.protagonista.y;
@@ -146,9 +158,13 @@ class Juego {
                     // Remover del array
                     this.chaboncitos.splice(j, 1);
                 }
-            }
-                */
+            }*/
+                
         }
+
+      for (let i = 0; i < this.trabajador.length; i++) {
+          this.trabajador[i].update(time);
+      }
         //this.moverCamara();
         this.moverCamara2();
         this.deathKnights.update(time);
@@ -186,9 +202,9 @@ class Juego {
     }
 
 
-  /*  cargarPuntero(){// debe inicializarse en la escena
+    cargarPuntero(){// debe inicializarse en la escena
         this.puntero = new Puntero(this.app, this); 
-    }*/
+    }
 
     configurarControles() {
         // Event listener para cuando una tecla es presionada
@@ -226,9 +242,9 @@ class Juego {
               break;
           }
         });
-      }
+    }
 
-      moverCamara2() {
+    moverCamara2() {
         if (!this.fondo) return;
       
         const borde = 30; // margen en px desde el borde donde empieza a moverse
@@ -260,7 +276,7 @@ class Juego {
         if (this.containerPrincipal.y < -this.fondo.height + this.alto) {
           this.containerPrincipal.y = -this.fondo.height + this.alto;
         }
-      }
+    }
 
 }
 

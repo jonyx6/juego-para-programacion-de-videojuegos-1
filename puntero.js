@@ -1,4 +1,4 @@
-/*class Puntero {
+class Puntero {
     constructor(app, juego) {
         this.app = app;
         this.juego = juego;
@@ -19,7 +19,7 @@
     detectarClicEnPersonaje(evento) {
         const posicion = evento.global;
     
-        if (this.juego && this.juego.personajes) {
+        if (this.juego && this.juego.personajes) {//?
 
             this.deseleccionarPersonajes()
             const personajeClickeado = this.juego.personajes.find(p => {
@@ -50,17 +50,23 @@
         );
     }
 
-
-
     deseleccionarPersonajes() {
         if (this.personajesSeleccionados && this.personajesSeleccionados.length > 0) {
             this.personajesSeleccionados.forEach(p => p.deseleccionar());
         }
     }
     
-    ordenarMover(posicion) {
+    ordenarMover2(posicion) {
         for (let p of this.personajesSeleccionados) {
             p.moverA(posicion.x, posicion.y); // Método que deberás definir
+        }
+    }
+    
+    ordenarMover(posicion) {
+        for (let p of this.personajesSeleccionados) {
+            if (typeof p.moverA === "function") {
+                p.moverA(posicion.x, posicion.y);
+            }
         }
     }
 
@@ -72,7 +78,4 @@
             this.ordenarMover(posicion);
         }
     }
-
-
-
-}*/
+}

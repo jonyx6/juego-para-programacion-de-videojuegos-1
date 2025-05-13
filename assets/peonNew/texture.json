@@ -635,11 +635,12 @@
     "peonNew/22.png"
   ],
     "walk_right_down":[
-    "peonNew/01.png",
-    "peonNew/06.png",
-    "peonNew/11.png",
-    "peonNew/16.png",
-    "peonNew/21.png"
+    "peonNew/03.png",
+    "peonNew/08.png",
+    "peonNew/13.png",
+    "peonNew/03.png",
+    "peonNew/18.png",
+    "peonNew/23.png"
   ]
 
 },
