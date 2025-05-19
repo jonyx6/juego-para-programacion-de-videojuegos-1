@@ -609,6 +609,7 @@
     "peonNew/00.png",
     "peonNew/05.png",
     "peonNew/10.png",
+    "peonNew/00.png",
     "peonNew/15.png",
     "peonNew/20.png"
   ],
@@ -616,6 +617,7 @@
     "peonNew/04.png",
     "peonNew/09.png",
     "peonNew/14.png",
+    "peonNew/04.png",
     "peonNew/19.png",
     "peonNew/24.png"
 
@@ -624,6 +626,7 @@
     "peonNew/01.png",
     "peonNew/06.png",
     "peonNew/11.png",
+    "peonNew/01.png",
     "peonNew/16.png",
     "peonNew/21.png"
   ],
@@ -631,15 +634,17 @@
     "peonNew/02.png",
     "peonNew/07.png",
     "peonNew/12.png",
+    "peonNew/02.png",
     "peonNew/17.png",
     "peonNew/22.png"
   ],
     "walk_right_down":[
-    "peonNew/01.png",
-    "peonNew/06.png",
-    "peonNew/11.png",
-    "peonNew/16.png",
-    "peonNew/21.png"
+    "peonNew/03.png",
+    "peonNew/08.png",
+    "peonNew/13.png",
+    "peonNew/03.png",
+    "peonNew/18.png",
+    "peonNew/23.png"
   ]
 
 },

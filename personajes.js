@@ -6,8 +6,16 @@ class Personaje {
         this.x = x;
         this.y = y;
         this.vida = 5;
+
+        //18-05
+        //FUERA 19/05
+        //this.vx = 0;
+        //this.vy = 0;
+        this.vectorFieldInfluence = 1.0;
+        this.cell = null;
+        //--
         
-        this.velocidad = 3;
+        this.velocidad = 5;
         this.listo = false;
 
         this.teclas = {}; // ← Nuevo: para controlar múltiples teclas a la vez
@@ -34,6 +42,15 @@ class Personaje {
         this.cambiarOrdenEnZ();
         this.detenerEnBorde();
         //this.manejarDireccionDelSprite(vx);
+
+        //18/05
+        //this.x += this.vx;
+        //this.y += this.vy;
+
+        // Fricción
+        //this.vx *= 0.9;
+        //this.vy *= 0.9;
+        //--
     }
 
     cambiarOrdenEnZ() {
@@ -60,6 +77,7 @@ class Personaje {
           this.velY = 0;
         }
     }
+    
     /*
     manejarDireccionDelSprite(vx) {
         if (vx > 0) {
@@ -68,5 +86,16 @@ class Personaje {
             this.sprite.scale.x = -1;
         }
     }  */  
-   
+   //18-05
+    //aplicarFuerza(x, y) {
+    //  this.vx += x;
+    //  this.vy += y;
+    //}
+    //
+    //19/05
+    setSeleccionado(seleccionado) {
+        if (this.sprite) {
+            this.sprite.tint = seleccionado ? 0xff0000 : 0xFFFFFF;
+        }
+    }
 }

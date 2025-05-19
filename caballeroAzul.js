@@ -4,24 +4,22 @@ class CaballeroAzul extends Personaje {
         super(x, y, app, i, juego);
         
         this.velocidad = 3;
-
         this.listo = false;
-        
-        this.destino = null; // ← Punto al que se va a mover
-
         this.animaciones = {};
-        
         this.estadoActual = 'idle';
-
         this.cargarSpriteAnimado();
-        this.setupMouseControls();
-        //textos
+
+        //textos////////////////////
         this.velocidadTexto = new PIXI.Text('', {//guarda en velocidadTexto el pixitext vacio y agrega estilos
             fontSize: 16,
             fill: '#ffffff',
         });
         this.velocidadTexto.anchor.set(0, 1); // ??
         this.app.stage.addChild(this.velocidadTexto);//agrega el texto a la pantalla
+        ///////////////////////////
+        //18-05
+        this.camino = []; // lista de puntos/celdas a seguir
+        //--
     }
 
     async cargarSpriteAnimado() {
@@ -45,12 +43,7 @@ class CaballeroAzul extends Personaje {
         this.sprite.loop = true;
         this.sprite.play();
 
-        if (this.container) {
-            this.container.addChild(this.sprite);
-        } else {
-            console.error("El contenedor no existe");
-            this.app.stage.addChild(this.sprite); // Fallback
-        }
+        this.container.addChild(this.sprite);
 
         this.sprite.x = this.x;
         this.sprite.y = this.y;
@@ -66,15 +59,6 @@ class CaballeroAzul extends Personaje {
         this.sprite.play();
     }
 
-    setupMouseControls() {
-        this.app.view.addEventListener('click', (event) => {
-            const rect = this.app.view.getBoundingClientRect();
-            const mouseX = event.clientX - rect.left;
-            const mouseY = event.clientY - rect.top;
-            this.destino = { x: mouseX, y: mouseY };
-        });
-    }
-
     update(time) {
         super.update();
         if (!this.listo) return;
@@ -82,35 +66,36 @@ class CaballeroAzul extends Personaje {
         let dx = 0;
         let dy = 0;
 
-        if (this.destino) {
-            dx = this.destino.x - this.x;
-            dy = this.destino.y - this.y;
-            const distancia = Math.hypot(dx, dy);
+        if (this.camino.length > 0) {
+            const objetivo = this.camino[0]; // siguiente celda objetivo
 
-            if (distancia > 2) {
-                // Normalizar dirección
-                const dirX = dx / distancia;
-                const dirY = dy / distancia;
+            const dx = objetivo.centerX - this.x;
+            const dy = objetivo.centerY - this.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < this.velocidad) {
+                // Llegó a la celda objetivo
+                this.x = objetivo.centerX;
+                this.y = objetivo.centerY;
+                this.camino.shift(); // eliminar el punto actual
+            } else {
+                const dirX = dx / dist;
+                const dirY = dy / dist;
 
                 this.x += dirX * this.velocidad;
                 this.y += dirY * this.velocidad;
-
+                
                 this.manejarAnimacionSegunDireccion(dirX, dirY);
                 this.manejarDireccionDelSprite(dirX);
-            } else {
-                this.destino = null;
-                this.cambiarEstado('idle');
             }
-        } else {
-            this.cambiarEstado('idle');
+        }else {
+            this.cambiarEstado('idle'); // ✅ cuando no hay camino
         }
 
         this.sprite.x = this.x;
         this.sprite.y = this.y;
 
         morir2(this,this.juego.chaboncitos)
-
-
         
         // Mostrar texto
         this.velocidadTexto.text = `caballeroAzul\nVida: ${this.vida}`;
@@ -140,5 +125,14 @@ class CaballeroAzul extends Personaje {
         } else if (vx !== 0 && vy < 0) {
             this.cambiarEstado('digArribaMov');
         }
+    }
+
+    irA(x, y) {
+        const origen = this.juego.grid.getCellAt(this.x, this.y);
+        const destino = this.juego.grid.getCellAt(x, y);
+        if (!origen || !destino) return;
+
+        this.camino = this.juego.grid.calcularCaminoDesdeHasta(origen, destino); // nuevo método
+        
     }
 }
