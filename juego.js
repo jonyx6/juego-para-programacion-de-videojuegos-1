@@ -11,18 +11,25 @@ class Juego {
         this.caballerosAzules = [];
         this.trabajador = [];
 
+        this.personajes = []; // Para que el puntero los pueda ver
+
         this.app = new PIXI.Application(); //reemplaza la palabra PIXI.Application()
         //define el canvas y establece el contador a 0
         this.contadorDeFrame = 0;
         
         this.ancho = 1280
         this.alto = 720
+<<<<<<< HEAD
         
         this.mouse = { x: 0, y: 0 };
         this.selectedEntities = [];
         this.selectionBox = null;
         this.isSelecting = false;
                
+=======
+
+
+>>>>>>> e9d9b62525aef4f8166d43d71dca00ef40284de8
         //this.ancho = window.innerWidth;
         //this.alto = window.innerHeight;
 
@@ -50,6 +57,7 @@ class Juego {
             this.containerPrincipal = new PIXI.Container();
             this.containerPrincipal.name = "el container principal";
             this.app.stage.addChild(this.containerPrincipal);
+<<<<<<< HEAD
             //18-05
             this.grid = new Grid(this); // debe instanciar Grid
             this.vectorFieldManager = new VectorFieldManager(this); // si usás campo vectorial
@@ -58,6 +66,14 @@ class Juego {
             this.ponerFondo();//--agrega imagen de fondo
             //this.ponerObrero(1)
             this.ponerObreroRojo(1)
+=======
+            
+            //this.containerPrincipal.addChild(this.chaboncitos);
+            
+            //this.cargarPuntero()******
+            this.ponerFondo();//--agrega imagen de fondo
+            
+>>>>>>> e9d9b62525aef4f8166d43d71dca00ef40284de8
             this.app.ticker.add(() => {
                 this.gameLoop()//funcion
             })
@@ -74,6 +90,15 @@ class Juego {
               };
             this.velocidadCamara = 15;
             this.configurarControles();
+            
+            //obrero
+            this.ponerObrero(1)
+            this.cargarPuntero();
+            
+            // Bloquear menú contextual del botón derecho SOLO en el canvas
+            this.app.view.addEventListener('contextmenu', (e) => {
+              e.preventDefault();
+            });
 
         })
     }
@@ -95,8 +120,41 @@ class Juego {
         2 addChild (agrega)
         */
 
+<<<<<<< HEAD
     }
 
+=======
+      }
+    moverCamara() {
+        if (!this.fondo) return;
+        // this.containerPrincipal.x = this.protagonista.x;
+        // this.containerPrincipal.y = this.protagonista.y;
+    
+        const cuanto = 0.033333;//Es la cantidad de interpolación o suavizado. Cuanto más chico este valor, más lenta y suave será la transición al nuevo valor de cámara.
+        
+        //Calcula hacia dónde debería moverse la cámara para que el protagonista quede centrado en la pantalla.
+        const valorFinalX = -this.deathKnights.x + this.ancho / 2;//posision del protagonista + ancho total /2
+        const valorFinalY = -this.deathKnights.y + this.alto / 2;
+        
+        //Interpolación lineal (Lerp): mueve suavemente la cámara hacia la posición deseada.
+        //No se salta directamente a valorFinalX sino que se va acercando poco a poco, creando un movimiento suave.
+        this.containerPrincipal.x -=(this.containerPrincipal.x - valorFinalX) * cuanto;
+        this.containerPrincipal.y -=(this.containerPrincipal.y - valorFinalY) * cuanto;
+    
+        //limites izquierdos X e Y
+        if (this.containerPrincipal.x > 0) this.containerPrincipal.x = 0;
+        if (this.containerPrincipal.y > 0) this.containerPrincipal.y = 0;
+    
+        // limite derecho X
+        if (this.containerPrincipal.x < -this.fondo.width + this.ancho) {
+          this.containerPrincipal.x = -this.fondo.width + this.ancho;
+        }
+        // limite derecho Y
+        if (this.containerPrincipal.y < -this.fondo.height + this.alto) {
+          this.containerPrincipal.y = -this.fondo.height + this.alto;
+        }
+      }
+>>>>>>> e9d9b62525aef4f8166d43d71dca00ef40284de8
     //////////////////////////////////////////////////////////////////////////////////////////////////////--gameloop
     gameLoop(time) {
         this.time = time;
@@ -124,11 +182,20 @@ class Juego {
                     // Remover del array
                     this.chaboncitos.splice(j, 1);
                 }
-            }
-                */
+            }*/
+                
         }
+<<<<<<< HEAD
         this.moverCamara();
 
+=======
+
+      for (let i = 0; i < this.trabajador.length; i++) {
+          this.trabajador[i].update(time);
+      }
+        //this.moverCamara();
+        this.moverCamara2();
+>>>>>>> e9d9b62525aef4f8166d43d71dca00ef40284de8
         this.deathKnights.update(time);
 
     }
@@ -176,6 +243,12 @@ class Juego {
         this.entidades.push(obrero)
       }
 
+<<<<<<< HEAD
+=======
+
+    cargarPuntero(){// debe inicializarse en la escena
+        this.puntero = new Puntero(this.app, this); 
+>>>>>>> e9d9b62525aef4f8166d43d71dca00ef40284de8
     }
 
     configurarControles() {
@@ -216,7 +289,11 @@ class Juego {
         });
     }
 
+<<<<<<< HEAD
     moverCamara() {
+=======
+    moverCamara2() {
+>>>>>>> e9d9b62525aef4f8166d43d71dca00ef40284de8
         if (!this.fondo) return;
       
         const borde = 30; // margen en px desde el borde donde empieza a moverse
