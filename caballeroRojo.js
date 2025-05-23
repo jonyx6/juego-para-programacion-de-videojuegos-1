@@ -1,4 +1,5 @@
 //---------------------------------------------------------------------------------------------------------------con parametros de vel y dir
+/*
 class CaballeroRojo extends Personaje{
     constructor(x, y, app, i, juego) {
         super(x, y, app, i, juego);
@@ -145,11 +146,7 @@ class CaballeroRojo extends Personaje{
         this.verificarColisionConChaboncitos();
 
     }
-    /*
-    cuandoLlegaAlMArgenAparecePorElOtroLado() {
-        this.x = (this.x + this.juego.ancho) % this.juego.ancho;
-        this.y = (this.y + this.juego.alto) % this.juego.alto;
-    }*/
+
 
     manejarDireccionDelSprite(vx) {
         if (vx > 0) {
@@ -162,7 +159,7 @@ class CaballeroRojo extends Personaje{
     verificarColisionConChaboncitos() {
         if (this.atacando) return;
     
-        for (let chaboncito of this.juego.chaboncitos) {
+        for (let chaboncito of this.juego.caballerosRojos) {
             const dx = chaboncito.x - this.x;
             const dy = chaboncito.y - this.y;
             const distancia = Math.hypot(dx, dy);
@@ -205,4 +202,61 @@ class CaballeroRojo extends Personaje{
             }
         }
     }
+}*/
+
+class CaballeroRojo extends Personaje {
+  constructor(x, y, app, i, juego) {
+    super(x, y, app, i, juego);
+    this.cargarSpriteAnimado();
+    this.vida = 10;
+  }
+
+  async cargarSpriteAnimado() {
+    //const json = await PIXI.Assets.load('assets/knight/textureKnight.json');
+    let json = await PIXI.Assets.load('assets/e_Knight/texture.json');
+
+    this.animaciones = {
+      abajoMov: json.animations["abajoMov"],
+      arribaMov: json.animations["arribaMov"],
+      deLadoMov: json.animations["deLadoMov"],
+      digAbajoMov: json.animations["digAbajoMov"],
+      digArribaMov: json.animations["digArribaMov"],
+      
+      abajoAtk: json.animations["abajoAtk"],
+      arribaAtk: json.animations["arribaAtk"],
+      ladoAtk: json.animations["ladoAtk"],
+      digAbajoAtk: json.animations["digAbajoAtk"],
+      digArribaAtk: json.animations["digArribaAtk"],
+
+      digAbajoMuerte: json.animations["digAbajoMuerte"],
+      digArribaMuerte: json.animations["digArribaMuerte"],
+      idle: json.animations["idle"],
+
+
+    };
+
+    this.sprite = new PIXI.AnimatedSprite(this.animaciones['idle']);
+    this.sprite.anchor.set(0.5, 1);
+    this.sprite.animationSpeed = 0.1;
+    this.sprite.loop = true;
+    this.sprite.play();
+
+    this.container.addChild(this.sprite);
+    this.sprite.x = this.x;
+    this.sprite.y = this.y;
+
+    this.listo = true;
+  }
+  obtenerAnimacionDeAtaque(dx, dy) {
+    const umbral = 0.1;
+
+    if (Math.abs(dx) < umbral && dy > 0) return 'abajoAtk';
+    if (Math.abs(dx) < umbral && dy < 0) return 'arribaAtk';
+    if (Math.abs(dy) < umbral && dx !== 0) return 'ladoAtk';
+    if (dx !== 0 && dy > 0) return 'digAbajoAtk';
+    if (dx !== 0 && dy < 0) return 'digArribaAtk';
+
+    return 'ladoAtk';
+  }
+
 }

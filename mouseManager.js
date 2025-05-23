@@ -32,7 +32,7 @@ class MouseManager {
       e.preventDefault();
       if (this.juego.grid) {
         //this.juego.updateVectorFieldBasedOnPoint(e.x, e.y);
-        //this.juego.vectorFieldManager.updateVectorFieldBasedOnPoint(e.x, e.y);//sa cambia debido a la nueva clase
+        //this.juego.vectorFieldManager.updateVectorFieldBasedOnPoint(e.x, e.y);// ---------------no lo usa A*
         e.preventDefault();
         this.juego.selectedEntities.forEach(ent => ent.irA?.(e.x, e.y));
         

@@ -1,3 +1,5 @@
+
+//no sirve en A*
 class VectorFieldManager {
   constructor(juego) {
     this.juego = juego;
