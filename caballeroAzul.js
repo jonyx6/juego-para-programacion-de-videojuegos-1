@@ -22,13 +22,17 @@ class CaballeroAzul extends Personaje {
 
       digAbajoMuerte: json.animations["digAbajoMuerte"],
       digArribaMuerte: json.animations["digArribaMuerte"],
-      idle: json.animations["idle"],
-
+      
+      idleArri: json.animations["idleArri"],
+      idleDiaArri: json.animations["idleDiaArri"],
+      idleLado: json.animations["idleLado"],
+      idleDiaAbaj: json.animations["idleDiaAbaj"],
+      idleAbaj: json.animations["idleAbaj"],
 
     };
 
-    this.sprite = new PIXI.AnimatedSprite(this.animaciones['idle']);
-    this.sprite.anchor.set(0.5, 1);
+    this.sprite = new PIXI.AnimatedSprite(this.animaciones['idleAbaj']);
+    this.sprite.anchor.set(0.5, 0.5);
     this.sprite.animationSpeed = 0.1;
     this.sprite.loop = true;
     this.sprite.play();

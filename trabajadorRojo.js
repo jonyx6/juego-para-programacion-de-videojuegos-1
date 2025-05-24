@@ -18,7 +18,7 @@ class TrabajadorRojo extends Personaje {
     };
 
     this.sprite = new PIXI.AnimatedSprite(this.animaciones['idle']);
-    this.sprite.anchor.set(0.5, 1);
+    this.sprite.anchor.set(0.5, 0.5);
     this.sprite.animationSpeed = 0.125;
     this.sprite.loop = true;
     this.sprite.play();

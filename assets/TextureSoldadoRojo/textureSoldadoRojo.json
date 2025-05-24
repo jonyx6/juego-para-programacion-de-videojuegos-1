@@ -1225,6 +1225,118 @@
       }
     }
   },
+
+    "animations": {
+
+    "arribaAtk": [
+      "soldadoRojo/25.png",
+      "soldadoRojo/30.png",
+      "soldadoRojo/35.png",
+      "soldadoRojo/40.png"
+    ],
+    "arribaMov": [
+      "soldadoRojo/00.png",
+      "soldadoRojo/05.png",
+      "soldadoRojo/10.png",
+      "soldadoRojo/00.png",
+      "soldadoRojo/15.png",
+      "soldadoRojo/20.png"
+    ],
+
+
+    "digArribaAtk": [
+      "soldadoRojo/26.png",
+      "soldadoRojo/31.png",
+      "soldadoRojo/36.png",
+      "soldadoRojo/41.png"
+    ],
+    "digArribaMov": [
+      "soldadoRojo/01.png",
+      "soldadoRojo/06.png",
+      "soldadoRojo/11.png",
+      "soldadoRojo/01.png",
+      "soldadoRojo/16.png",
+      "soldadoRojo/21.png"
+
+    ],
+    "digArribaMuerte": [
+      "soldadoRojo/45.png",
+      "soldadoRojo/47.png",
+      "soldadoRojo/49.png"
+    ],
+
+
+    "ladoAtk": [
+      "soldadoRojo/27.png",
+      "soldadoRojo/32.png",
+      "soldadoRojo/37.png",
+      "soldadoRojo/42.png"
+    ],
+    "ladoMov": [
+      "soldadoRojo/02.png",
+      "soldadoRojo/07.png",
+      "soldadoRojo/12.png",
+      "soldadoRojo/02.png",
+      "soldadoRojo/17.png",
+      "soldadoRojo/22.png"
+    ],
+
+
+    "digAbajoAtk": [
+      "soldadoRojo/28.png",
+      "soldadoRojo/33.png",
+      "soldadoRojo/38.png",
+      "soldadoRojo/43.png"
+    ],
+    "digAbajoMov": [
+      "soldadoRojo/03.png",
+      "soldadoRojo/08.png",
+      "soldadoRojo/13.png",
+      "soldadoRojo/03.png",
+      "soldadoRojo/18.png",
+      "soldadoRojo/23.png"
+    ],
+    "digAbajoMuerte": [
+      "soldadoRojo/46.png",
+      "soldadoRojo/48.png",
+      "soldadoRojo/50.png"
+    ],
+
+
+    "abajoAtk": [
+      "soldadoRojo/29.png",
+      "soldadoRojo/34.png",
+      "soldadoRojo/39.png",
+      "soldadoRojo/44.png"
+    ],
+    "abajoMov": [
+      "soldadoRojo/04.png",
+      "soldadoRojo/09.png",
+      "soldadoRojo/14.png",
+      "soldadoRojo/04.png",
+      "soldadoRojo/19.png",
+      "soldadoRojo/24.png"
+    ],
+
+
+    "idleArri": [
+      "soldadoRojo/00.png"
+    ],
+    "idleDiaArri": [
+      "soldadoRojo/01.png"
+    ],
+    "idleLado": [
+      "soldadoRojo/02.png"
+    ],
+    "idleDiaAbaj": [
+      "soldadoRojo/03.png"
+    ],
+    "idleAbaj": [
+      "soldadoRojo/04.png"
+    ]
+
+  },
+
   "meta": {
     "app": "http://free-tex-packer.com",
     "version": "0.6.7",

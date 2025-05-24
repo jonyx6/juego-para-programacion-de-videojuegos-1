@@ -6,6 +6,7 @@ class Personaje {
 
     this.x = x;
     this.y = y;
+    //this.juego.grid.addEntity(this);//no funciona
     this.vida = 5;
     this.velocidad = 3;
     this.listo = false;
@@ -20,7 +21,7 @@ class Personaje {
     this.objetivoAtaque = null;
     //this.destinoFijado = null; // { x, y }
 
-    this.distanciaMinima = 25;
+    this.distanciaMinima = 20;
 
   }
 
@@ -44,6 +45,7 @@ class Personaje {
     if (!this.listo) return;
 
     this.actualizarMovimiento();
+    //this.aplicarSeparacionBoids();//no funciona
     this.evitarSuperposicion();
     this.actualizarSprite();
     //this.actualizarTextoVida();
@@ -63,13 +65,15 @@ class Personaje {
   // === Movimiento ===
   actualizarMovimiento() {
     if (this.camino.length === 0) {
-      this.cambiarEstado('idle');
+      this.cambiarEstadoIdlePorDireccion();
       return;
     }
 
+    
     const objetivo = this.camino[0];
     const dx = objetivo.centerX - this.x;
     const dy = objetivo.centerY - this.y;
+    
     const dist = Math.hypot(dx, dy);
 
     if (dist < this.velocidad) {
@@ -79,8 +83,10 @@ class Personaje {
     } else {
       const dirX = dx / dist;
       const dirY = dy / dist;
+      this.ultimaDireccion = { x: dirX, y: dirY }; // guardar última dirección
       this.x += dirX * this.velocidad;
       this.y += dirY * this.velocidad;
+
       this.manejarAnimacion(dirX, dirY);
       this.orientarSprite(dirX);
     }
@@ -341,6 +347,104 @@ class Personaje {
       }
     }
   }
+
+  //separador boids
+  /**
+ * Aplica una fuerza de separación para evitar que el personaje se solape con otros cercanos.
+ * Inspirado en la regla de separación del algoritmo Boids.
+ */
+aplicarSeparacionBoids() {
+  const RANGO_DETECCION = 40;
+  const FUERZA_SEPARACION = 0.5;
+
+  const col = Math.floor(this.x / this.juego.grid.cellSize);
+  const row = Math.floor(this.y / this.juego.grid.cellSize);
+  const vecinos = this.juego.grid.getEntitiesInNeighborhood(col, row);
+
+  let steerX = 0;
+  let steerY = 0;
+  let cantidad = 0;
+
+  for (const otro of vecinos) {
+    if (otro === this) continue;
+
+    const dx = this.x - otro.x;
+    const dy = this.y - otro.y;
+    const dist = Math.hypot(dx, dy);
+
+    if (dist > 0 && dist < RANGO_DETECCION) {
+      steerX += dx / dist;
+      steerY += dy / dist;
+      cantidad++;
+    }
+  }
+
+  if (cantidad > 0) {
+    steerX /= cantidad;
+    steerY /= cantidad;
+
+    // Aplicar suavemente la fuerza de separación
+    this.x += steerX * FUERZA_SEPARACION;
+    this.y += steerY * FUERZA_SEPARACION;
+  }
+}
+
+/**
+ * Cambia al estado de animación idle correspondiente según la última dirección.
+ */
+cambiarEstadoIdlePorDireccion() {
+  if (!this.ultimaDireccion) {
+    this.cambiarEstado('idle');
+    return;
+  }
+
+  const { x, y } = this.ultimaDireccion;
+  const umbral = 0.4;
+
+  // Prioridad horizontal
+  const esHorizontal = Math.abs(x) > Math.abs(y);
+
+  if (esHorizontal && Math.abs(x) > umbral) {
+    this.orientarSprite(x);
+    this.cambiarEstado('idleLado');
+  } else if (y > umbral) {
+    this.cambiarEstado('idleAbaj');
+  } else if (y < -umbral) {
+    this.cambiarEstado('idleArri');
+  } else if (x > 0 && y > 0) {
+    this.cambiarEstado('idleDiaAbaj');
+  } else if (x > 0 && y < 0) {
+    this.cambiarEstado('idleDiaArri');
+  } else if (x < 0 && y > 0) {
+    this.orientarSprite(x);
+    this.cambiarEstado('idleDiaAbaj');
+  } else if (x < 0 && y < 0) {
+    this.orientarSprite(x);
+    this.cambiarEstado('idleDiaArri');
+  } else {
+    this._cambiarEstadoIdleDisponible();
+  }
+}
+/**
+ * Si no se pudo determinar la dirección, elegir la primera animación idle disponible.
+ */
+_cambiarEstadoIdleDisponible() {
+  const posibles = [
+    'idleAbaj', 'idleArri',
+    'idleLado', 'idleDiaAbaj', 'idleDiaArri'
+  ];
+
+  for (const estado of posibles) {
+    if (this.animaciones[estado]) {
+      this.cambiarEstado(estado);
+      return;
+    }
+  }
+
+  // Si no hay ninguna idle disponible, no hace nada
+  console.warn(`[${this.constructor.name}] No hay animaciones idle disponibles.`);
+}
+
 
 
 }

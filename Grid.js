@@ -1,6 +1,6 @@
 // v2
 class Grid {
-  constructor(juego, cellSize = 32) {
+  constructor(juego, cellSize = 64) {
     this.juego = juego;
     this.cellSize = cellSize;
 

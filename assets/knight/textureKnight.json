@@ -1316,8 +1316,20 @@
       "knight/digArribaMuerte/49.png"
     ],
     
-    "idle": [
-      "knight/deLadoMov/22.png"
+    "idleArri": [
+      "knight/arribaMov/00.png"
+    ],
+    "idleDiaArri": [
+      "knight/digArribaMov/01.png"
+    ],
+    "idleLado": [
+      "knight/deLadoMov/02.png"
+    ],
+    "idleDiaAbaj": [
+      "knight/digAbajoMov/03.png"
+    ],
+    "idleAbaj": [
+      "knight/abajoMov/04.png"
     ]
 
   },

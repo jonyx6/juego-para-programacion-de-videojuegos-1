@@ -1225,6 +1225,116 @@
       }
     }
   },
+    "animations": {
+
+    "arribaAtk": [
+      "soldado/25.png",
+      "soldado/30.png",
+      "soldado/35.png",
+      "soldado/40.png"
+    ],
+    "arribaMov": [
+      "soldado/00.png",
+      "soldado/05.png",
+      "soldado/10.png",
+      "soldado/00.png",
+      "soldado/15.png",
+      "soldado/20.png"
+    ],
+
+
+    "digArribaAtk": [
+      "soldado/26.png",
+      "soldado/31.png",
+      "soldado/36.png",
+      "soldado/41.png"
+    ],
+    "digArribaMov": [
+      "soldado/01.png",
+      "soldado/06.png",
+      "soldado/11.png",
+      "soldado/01.png",
+      "soldado/16.png",
+      "soldado/21.png"
+
+    ],
+    "digArribaMuerte": [
+      "soldado/45.png",
+      "soldado/47.png",
+      "soldado/49.png"
+    ],
+
+
+    "ladoAtk": [
+      "soldado/27.png",
+      "soldado/32.png",
+      "soldado/37.png",
+      "soldado/42.png"
+    ],
+    "ladoMov": [
+      "soldado/02.png",
+      "soldado/07.png",
+      "soldado/12.png",
+      "soldado/02.png",
+      "soldado/17.png",
+      "soldado/22.png"
+    ],
+
+
+    "digAbajoAtk": [
+      "soldado/28.png",
+      "soldado/33.png",
+      "soldado/38.png",
+      "soldado/43.png"
+    ],
+    "digAbajoMov": [
+      "soldado/03.png",
+      "soldado/08.png",
+      "soldado/13.png",
+      "soldado/03.png",
+      "soldado/18.png",
+      "soldado/23.png"
+    ],
+    "digAbajoMuerte": [
+      "soldado/46.png",
+      "soldado/48.png",
+      "soldado/50.png"
+    ],
+
+
+    "abajoAtk": [
+      "soldado/29.png",
+      "soldado/34.png",
+      "soldado/39.png",
+      "soldado/44.png"
+    ],
+    "abajoMov": [
+      "soldado/04.png",
+      "soldado/09.png",
+      "soldado/14.png",
+      "soldado/04.png",
+      "soldado/19.png",
+      "soldado/24.png"
+    ],
+
+
+    "idleArri": [
+      "soldado/00.png"
+    ],
+    "idleDiaArri": [
+      "soldado/01.png"
+    ],
+    "idleLado": [
+      "soldado/02.png"
+    ],
+    "idleDiaAbaj": [
+      "soldado/03.png"
+    ],
+    "idleAbaj": [
+      "soldado/04.png"
+    ]
+
+  },
   "meta": {
     "app": "http://free-tex-packer.com",
     "version": "0.6.7",

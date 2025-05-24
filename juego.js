@@ -18,8 +18,10 @@ class Juego {
     // Arreglos de personajes
     this.entidades = [];              // Todos los personajes
     this.caballerosAzules = [];       // Solo los caballeros azules
+    this.soldadosAzules = [];       
     this.caballerosRojos = [];        // Solo los caballeros rojos
     this.trabajadoresRojos = [];      // Solo los trabajadores
+    this.soldadosRojos = []; 
 
     // Datos de selección con mouse
     this.selectedEntities = [];
@@ -54,8 +56,8 @@ class Juego {
     //paredes de grid
     //const generador = new GeneradorParedesAleatorias(this.grid);
     //generador.aplicar(previous, targetCellIndex);
-    //this.generadorParedes = new GeneradorParedesAleatorias(this.grid);//v3 que no funciona
-    //this.generadorParedes.generarParedesAleatorias(0.2); 
+    this.generadorParedes = new GeneradorParedesAleatorias(this.grid);//v3 que no funciona
+    this.generadorParedes.generarParedesAleatorias(0.2); 
 
     this.crearEntidades();
 
@@ -95,9 +97,11 @@ class Juego {
 
   // Crea los personajes iniciales del juego
   crearEntidades() {
-    this.crearTrabajadoresRojos(1);
-    this.crearCaballerosAzules(10);
-    this.crearCaballerosRojos(10);
+    //this.crearTrabajadoresRojos(1);
+    this.crearCaballerosAzules(3);
+    //this.crearCaballerosRojos(5);
+    this.crearSoldadosAzules(3)
+    this.crearSoldadosRojos(3)
   }
 
   // Ciclo principal del juego (se ejecuta en cada frame)
@@ -138,6 +142,18 @@ class Juego {
     }
   }
 
+  crearSoldadosAzules(cantidad) {
+    for (let i = 0; i < cantidad; i++) {
+      const soldado = this.crearEntidad(SoldadoAzul, i);
+      soldado.enemigos = () => [
+        ...this.caballerosRojos,
+        ...this.soldadosRojos,
+        ...this.trabajadoresRojos
+      ];
+      this.soldadosAzules.push(soldado);
+    }
+  }
+
   // Crea caballeros rojos
   crearCaballerosRojosV1(cantidad) {
     for (let i = 0; i < cantidad; i++) {
@@ -151,6 +167,16 @@ class Juego {
       const caballero = this.crearEntidad(CaballeroRojo, i);
       caballero.enemigos = () => this.caballerosAzules;
       this.caballerosRojos.push(caballero);
+    }
+  }
+  crearSoldadosRojos(cantidad) {
+    for (let i = 0; i < cantidad; i++) {
+      const soldado = this.crearEntidad(SoldadoRojo, i);
+      soldado.enemigos = () => [
+        ...this.caballerosAzules,
+        ...this.soldadosAzules
+      ];
+      this.soldadosRojos.push(soldado);
     }
   }
 

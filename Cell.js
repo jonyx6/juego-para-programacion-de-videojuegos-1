@@ -17,8 +17,8 @@ class Cell {
     // Center point of the cell
     this.centerX = this.x + this.width / 2;
     this.centerY = this.y + this.height / 2;
-    this.blocked = Math.random() > 0.7;// bloquea de forma aleatoria-----------------------------------------------
-    //this.blocked = false
+    //this.blocked = Math.random() > 0.85;// bloquea de forma aleatoria-----------------------------------------------
+    this.blocked = false
   }
 
   // Add an entity to this cell
