@@ -8,7 +8,7 @@ class Personaje {
     this.y = y;
     //this.juego.grid.addEntity(this);//no funciona
     this.vida = 5;
-    this.velocidad = 3;
+    this.velocidad = 1;
     this.listo = false;
 
     this.estadoActual = 'idle';
@@ -23,6 +23,10 @@ class Personaje {
 
     this.distanciaMinima = 20;
 
+  }
+
+  updateZIndex() {
+        this.container.zIndex = this.container.y;
   }
 
   // === Inicialización ===

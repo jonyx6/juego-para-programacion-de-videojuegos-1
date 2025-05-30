@@ -22,6 +22,7 @@ class Juego {
     this.caballerosRojos = [];        // Solo los caballeros rojos
     this.trabajadoresRojos = [];      // Solo los trabajadores
     this.soldadosRojos = []; 
+    this.objetosDeEscenario =[];
 
     // Datos de selección con mouse
     this.selectedEntities = [];
@@ -53,6 +54,7 @@ class Juego {
     this.ponerFondo();// mas al fondo. es importante el orden--
     this.crearContainerPrincipal();
     this.instanciarComponentes();
+    
     //paredes de grid
     //const generador = new GeneradorParedesAleatorias(this.grid);
     //generador.aplicar(previous, targetCellIndex);
@@ -89,7 +91,7 @@ class Juego {
 
   // Carga y agrega el fondo del mapa
   async ponerFondo() {
-    const textura = await PIXI.Assets.load("map1.png");
+    const textura = await PIXI.Assets.load("bg.png");
     this.fondo = new PIXI.TilingSprite(textura, this.ancho * 2, this.alto * 2);
     this.fondo.zIndex = 0;
     this.containerPrincipal.addChild(this.fondo);
@@ -100,12 +102,19 @@ class Juego {
     //this.crearTrabajadoresRojos(1);
     this.crearCaballerosAzules(3);
     //this.crearCaballerosRojos(5);
+    this.cargarArbol(50);
     this.crearSoldadosAzules(3)
     this.crearSoldadosRojos(3)
   }
 
   // Ciclo principal del juego (se ejecuta en cada frame)
   gameLoop(time) {
+    this.caballerosAzules.forEach(p => p.updateZIndex());
+    this.caballerosRojos.forEach(p => p.updateZIndex());
+    this.objetosDeEscenario.forEach(o => o.updateZIndex());
+    
+
+
     this.time = time;
     this.contadorDeFrame++;
 
@@ -169,6 +178,21 @@ class Juego {
       this.caballerosRojos.push(caballero);
     }
   }
+
+  //crea arboles con posiciones al azar
+  async cargarArbol(cantidad) {
+    const promesas = [];
+      for(let i = 0; i < cantidad; i++) {
+        const arbol = new Arbol(Math.random()*(this.ancho -100), Math.random()*(this.alto-100),this);
+        promesas.push(arbol.cargarSpritesAnimados().then(() => {
+          this.containerPrincipal.addChild(arbol.container);
+          this.objetosDeEscenario.push(arbol);
+          }));
+      }
+      await Promise.all(promesas);
+  }
+
+
   crearSoldadosRojos(cantidad) {
     for (let i = 0; i < cantidad; i++) {
       const soldado = this.crearEntidad(SoldadoRojo, i);

@@ -209,6 +209,7 @@ class CaballeroRojo extends Personaje {
     super(x, y, app, i, juego);
     this.cargarSpriteAnimado();
     this.vida = 10;
+    this.velocidad = 3;
   }
 
   async cargarSpriteAnimado() {

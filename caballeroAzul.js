@@ -2,6 +2,7 @@ class CaballeroAzul extends Personaje {
   constructor(x, y, app, i, juego) {
     super(x, y, app, i, juego);
     this.cargarSpriteAnimado();
+    this.velocidad = 3;
   }
 
   async cargarSpriteAnimado() {
