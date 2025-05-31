@@ -54,6 +54,8 @@ class Juego {
     this.ponerFondo();// mas al fondo. es importante el orden--
     this.crearContainerPrincipal();
     this.instanciarComponentes();
+    //inicializar musica del juego
+    this.iniciarMusica();
     
     //paredes de grid
     //const generador = new GeneradorParedesAleatorias(this.grid);
@@ -72,6 +74,15 @@ class Juego {
     this.debugGraphics.zIndex = 10;
     this.containerPrincipal.addChild(this.debugGraphics);
 
+  }
+
+  iniciarMusica(){
+    const musicaFondo = new Howl({
+    src: ['Elwynn Forest - Music & Ambience - World of Warcraft.mp3'],
+    loop: true,
+    volume: 0.5 // de 0.0 a 1.0
+    });
+    musicaFondo.play();
   }
 
   // Crea el contenedor principal donde se agregan todos los elementos del juego
