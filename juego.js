@@ -95,7 +95,7 @@ class Juego {
 
   // Instancia los módulos necesarios para el juego (grilla, mouse, campo vectorial)
   instanciarComponentes() {
-    this.grid = new Grid(this);
+    this.grid = new Grid(this,32);
     //this.vectorFieldManager = new VectorFieldManager(this);// --------------------------------------------------no lo usa A*
     this.mouseManager = new MouseManager(this);
   }
