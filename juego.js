@@ -113,9 +113,11 @@ class Juego {
     //this.crearTrabajadoresRojos(1);
     this.crearCaballerosAzules(3);
     //this.crearCaballerosRojos(5);
-    this.cargarArbol(50);
+    this.cargarArbolesEnCeldasBloqueadas();
+    
     this.crearSoldadosAzules(3)
     this.crearSoldadosRojos(3)
+    this.cargarCasaOrca(1)
     
   }
 
@@ -192,16 +194,34 @@ class Juego {
   }
 
   //crea arboles con posiciones al azar
-  async cargarArbol(cantidad) {
+async cargarArbolesEnCeldasBloqueadas() {
+  const promesas = [];
+
+  for (const celda of this.grid.cells) {
+    if (celda.blocked) {
+      const arbol = new Arbol(celda.centerX, celda.y + celda.height, this); // Posición basada en la celda
+      promesas.push(arbol.cargarSpritesAnimados().then(() => {
+        celda.addEntity(arbol); // Lo agregás también como entidad si lo necesitás
+        this.containerPrincipal.addChild(arbol.container);
+        this.objetosDeEscenario.push(arbol);
+      }));
+    }
+  }
+
+  await Promise.all(promesas);
+}
+
+
+  async cargarCasaOrca(cantidad){
     const promesas = [];
       for(let i = 0; i < cantidad; i++) {
-        const arbol = new Arbol(Math.random()*(this.ancho -100), Math.random()*(this.alto-100),this);
-        promesas.push(arbol.cargarSpritesAnimados().then(() => {
-          this.containerPrincipal.addChild(arbol.container);
-          this.objetosDeEscenario.push(arbol);
+        const casa = new Gendarmeria(this.grid.cells.x,this.grid.cells.y,this);
+        promesas.push(casa.cargarSpritesAnimados().then(() => {
+          this.containerPrincipal.addChild(casa.container);
+          this.objetosDeEscenario.push(casa);
           }));
       }
-      await Promise.all(promesas);
+    await Promise.all(promesas);
   }
 
   async cargarCursor() {

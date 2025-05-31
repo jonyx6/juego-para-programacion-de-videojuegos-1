@@ -1,12 +1,13 @@
-class Arbol extends ObjetosEscenario{
+class Gendarmeria extends ObjetosEscenario{
     constructor(x, y, juego){
         super(x, y, juego)
+        
     };
 
     async cargarSpritesAnimados() {
-        let json = await PIXI.Assets.load('assets/arbol/texture.json');
-        this.animaciones['idle'] = json.animations["idle"];
-        this.sprite = new PIXI.AnimatedSprite(this.animaciones['idle']); //cargo la animacion
+        let json = await PIXI.Assets.load('assets/casasOrcas/texture.json');
+        this.animaciones['idle1'] = json.animations["idle1"];
+        this.sprite = new PIXI.AnimatedSprite(this.animaciones['idle1']); //cargo la animacion
         this.sprite.anchor.set(0.5, 1);
         this.sprite.animationSpeed = 0.1;
         this.sprite.loop = true;
@@ -16,7 +17,5 @@ class Arbol extends ObjetosEscenario{
         this.listo = true;
         this.container.addChild(this.sprite)
     }
-
-    
 
 }

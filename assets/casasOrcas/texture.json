@@ -1,0 +1,163 @@
+{
+  "frames": {
+    "CASAS ORCAS/CASAS ORCAS - copia.png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 596,
+        "h": 653
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 10,
+        "y": 14,
+        "w": 596,
+        "h": 653
+      },
+      "sourceSize": {
+        "w": 635,
+        "h": 684
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "CASAS ORCAS/CASAS ORCAS.png": {
+      "frame": {
+        "x": 0,
+        "y": 653,
+        "w": 501,
+        "h": 125
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 13,
+        "y": 0,
+        "w": 501,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 522,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "CASAS ORCAS/2.png": {
+      "frame": {
+        "x": 0,
+        "y": 1154,
+        "w": 129,
+        "h": 123
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 1,
+        "w": 129,
+        "h": 123
+      },
+      "sourceSize": {
+        "w": 129,
+        "h": 124
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "CASAS ORCAS/3.png": {
+      "frame": {
+        "x": 0,
+        "y": 1283,
+        "w": 127,
+        "h": 124
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 127,
+        "h": 124
+      },
+      "sourceSize": {
+        "w": 129,
+        "h": 124
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "CASAS ORCAS/0.png": {
+      "frame": {
+        "x": 123,
+        "y": 1154,
+        "w": 107,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 13,
+        "y": 3,
+        "w": 107,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 129,
+        "h": 124
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "CASAS ORCAS/1.png": {
+      "frame": {
+        "x": 125,
+        "y": 653,
+        "w": 118,
+        "h": 118
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 1,
+        "y": 3,
+        "w": 118,
+        "h": 118
+      },
+      "sourceSize": {
+        "w": 129,
+        "h": 124
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+"animations": {
+  "idle1": ["CASAS ORCAS/1.png"]
+},
+
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "texture.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 596,
+      "h": 1410
+    },
+    "scale": 1
+  }
+}

@@ -135,34 +135,27 @@ class Cell {
   }
 
   // Render the cell for debugging (optional)
-  render(graphics, highlight = false) {
-    // Draw blocked cells as white squares
-    if (this.blocked) {
-      graphics.beginFill(0xffffff, 0.8);
-      graphics.drawRect(this.x, this.y, this.width, this.height);
-      graphics.endFill();
-      return;
-    }
+  async cargarSpriteAnimado() {
+    const json = await PIXI.Assets.load('assets/arbol/texture.json');
 
-    // Only draw the border without filling for non-blocked cells
-    if (highlight) {
-      graphics.lineStyle(2, 0xff0000, 0.8);
-    } else if (this.entities.length > 0) {
-      // Brighter border for cells with entities
-      graphics.lineStyle(
-        1,
-        0x00ff00,
-        0.5 + Math.min(this.entities.length * 0.1, 0.5)
-      );
-    } else {
-      graphics.lineStyle(1, 0x666666, 0.3);
-    }
+    this.animaciones = {};
+    this.animaciones['idle'] = json.animations["idle"];
 
-    graphics.drawRect(this.x, this.y, this.width, this.height);
+    this.sprite = new PIXI.AnimatedSprite(this.animaciones['idle']);
+    this.sprite.anchor.set(0.5, 1);
+    this.sprite.animationSpeed = 0.1;
+    this.sprite.loop = true;
+    this.sprite.play();
 
-    // No fill needed
-    // No endFill needed since we're not filling
+    // Posicionamiento del sprite en el centro inferior de la celda
+    this.sprite.x = this.x + this.width / 2;
+    this.sprite.y = this.y + this.height;
+
+    this.container.addChild(this.sprite);
+    this.listo = true;
   }
+
+
 }
 
 //v3

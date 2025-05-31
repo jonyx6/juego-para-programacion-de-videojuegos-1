@@ -4,7 +4,6 @@ class ObjetosEscenario {
     this.x = x ;
     this.y = y ;
     this.app = app ;
-    this.name = name; 
     this.sprite = null;
     this.listo = false;
     this.animaciones = {};  

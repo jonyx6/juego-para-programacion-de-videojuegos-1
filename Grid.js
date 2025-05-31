@@ -103,9 +103,9 @@ class Grid {
         const cell = this.cells[row * this.cols + col];
 
         if (cell?.blocked) {
-          graphics.beginFill(0xffffff, 0.8);
+          /*graphics.beginFill(0xffffff, 0.8);
           graphics.drawRect(col * this.cellSize, row * this.cellSize, this.cellSize, this.cellSize);
-          graphics.endFill();
+          graphics.endFill();*/
           continue;
         }
 
