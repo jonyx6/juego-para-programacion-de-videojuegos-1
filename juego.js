@@ -105,6 +105,7 @@ class Juego {
     this.cargarArbol(50);
     this.crearSoldadosAzules(3)
     this.crearSoldadosRojos(3)
+    
   }
 
   // Ciclo principal del juego (se ejecuta en cada frame)
@@ -192,6 +193,11 @@ class Juego {
       await Promise.all(promesas);
   }
 
+  async cargarCursor() {
+    this.cursor = new Puntero(this.app, this);
+    this.cursor.crearContainer();
+    await this.cursor.cargarSpritesAnimados(); // Asegurás que cargue bien antes de seguir
+  }
 
   crearSoldadosRojos(cantidad) {
     for (let i = 0; i < cantidad; i++) {
