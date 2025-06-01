@@ -99,6 +99,63 @@ class Grid {
     graphics.lineStyle(1, 0xffffff, 0.7);
 
     for (let row = 0; row < this.rows; row++) {
+      const yPixel = row * this.cellSize;
+      for (let col = 0; col < this.cols; col++) {
+        const cell = this.cells[row * this.cols + col];
+
+        if (cell?.blocked) {
+          if (yPixel >= 700) {
+            // Saltar esta celda, no dibujar nada si está bloqueada y Y >= 700
+            continue;
+          }
+          graphics.beginFill(0xffffff, 0.8);
+          graphics.drawRect(col * this.cellSize, yPixel, this.cellSize, this.cellSize);
+          graphics.endFill();
+          continue;
+        }
+
+        // El resto del render para vectores (si usas)...
+        const vector = this.vectorField[row][col];
+        const mag = Math.hypot(vector.x, vector.y);
+        if (mag < 0.01) continue;
+
+        const centerX = col * this.cellSize + this.cellSize / 2;
+        const centerY = yPixel + this.cellSize / 2;
+
+        const normX = vector.x / mag;
+        const normY = vector.y / mag;
+
+        const endX = centerX + normX * arrowLength;
+        const endY = centerY + normY * arrowLength;
+
+        graphics.moveTo(centerX, centerY);
+        graphics.lineTo(endX, endY);
+
+        const headLength = arrowLength * 0.3;
+        const angle = Math.atan2(normY, normX);
+
+        graphics.lineTo(
+          endX - headLength * Math.cos(angle - Math.PI / 6),
+          endY - headLength * Math.sin(angle - Math.PI / 6)
+        );
+
+        graphics.moveTo(endX, endY);
+
+        graphics.lineTo(
+          endX - headLength * Math.cos(angle + Math.PI / 6),
+          endY - headLength * Math.sin(angle + Math.PI / 6)
+        );
+      }
+    }
+
+    graphics.stroke({ width: 1, color: 0xffd900 });
+  }
+
+  /*renderVectorField(graphics) {
+    const arrowLength = this.cellSize * 0.4;
+    graphics.lineStyle(1, 0xffffff, 0.7);
+
+    for (let row = 0; row < this.rows; row++) {
       for (let col = 0; col < this.cols; col++) {
         const cell = this.cells[row * this.cols + col];
 
@@ -143,7 +200,7 @@ class Grid {
     }
 
     graphics.stroke({ width: 1, color: 0xffd900 });
-  }
+  }*/
 
   // === Pathfinding ===
   // --- Dijkstra --- original
@@ -281,6 +338,44 @@ class Grid {
       this.cells[index].blocked = true;
     }
   }
+
+
+
+ //////////////////////
+  getCeldasOcupadasPorSprite(x, y, width, height) {
+    const celdas = [];
+    const celdaSize = this.cellSize;
+
+    const colInicio = Math.floor(x / celdaSize);
+    const rowInicio = Math.floor(y / celdaSize);
+    const colFin = Math.ceil((x + width) / celdaSize) - 1;
+    const rowFin = Math.ceil((y + height) / celdaSize) - 1;
+
+    for (let col = colInicio; col <= colFin; col++) {
+      for (let row = rowInicio; row <= rowFin; row++) {
+        const celda = this.getCell(col, row);
+        if (celda) celdas.push(celda);
+      }
+    }
+    return celdas;
+  }
+
+  bloquearCeldasPorAltura(maxY) {
+    for (let row = 0; row < this.rows; row++) {
+      const yPixel = row * this.cellSize;
+      if (yPixel <= maxY) {
+        for (let col = 0; col < this.cols; col++) {
+          this.bloquearCelda(col, row);
+        }
+      }
+    }
+  }
+
+
+  
+
+
+
 
 
 }

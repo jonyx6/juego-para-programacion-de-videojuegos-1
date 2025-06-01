@@ -1,11 +1,14 @@
 class Juego {
   constructor() {
     // Dimensiones del canvas
-    this.ancho = 1280;
-    this.alto = 720;
+    this.ancho = window.innerWidth;
+    this.alto = window.innerHeight;
 
     // App principal de PIXI
-    this.app = new PIXI.Application();
+    this.app = new PIXI.Application({
+      width :this.ancho,
+      height : this.alto
+    });
 
     // Posición del mouse (absoluta y relativa al canvas)
     this.mousePos = { x: 0, y: 0 };
@@ -23,6 +26,8 @@ class Juego {
     this.trabajadoresRojos = [];      // Solo los trabajadores
     this.soldadosRojos = []; 
     this.objetosDeEscenario =[];
+    this.enemigos = [];
+
 
     // Datos de selección con mouse
     this.selectedEntities = [];
@@ -90,22 +95,26 @@ class Juego {
     this.containerPrincipal = new PIXI.Container();
     this.containerPrincipal.name = "containerPrincipal";
     this.containerPrincipal.sortableChildren = true; // Permite ordenar por zIndex
+
     this.app.stage.addChild(this.containerPrincipal);
   }
 
   // Instancia los módulos necesarios para el juego (grilla, mouse, campo vectorial)
   instanciarComponentes() {
     this.grid = new Grid(this,32);
-    //this.vectorFieldManager = new VectorFieldManager(this);// --------------------------------------------------no lo usa A*
+    
     this.mouseManager = new MouseManager(this);
   }
 
   // Carga y agrega el fondo del mapa
   async ponerFondo() {
     const textura = await PIXI.Assets.load("bg.png");
-    this.fondo = new PIXI.TilingSprite(textura, this.ancho * 2, this.alto * 2);
-    this.fondo.zIndex = 0;
-    this.containerPrincipal.addChild(this.fondo);
+    this.fondo = new PIXI.Sprite(textura);
+    this.fondo.width = this.ancho;
+    this.fondo.height = this.alto;
+    this.fondo.zIndex = -1;
+    //this.containerPrincipal.addChild(this.fondo,0);
+    this.app.stage.addChild(this.fondo);
   }
 
   // Crea los personajes iniciales del juego
@@ -123,9 +132,11 @@ class Juego {
 
   // Ciclo principal del juego (se ejecuta en cada frame)
   gameLoop(time) {
+    this.containerPrincipal.children.sort((a, b) => a.y - b.y);
     this.caballerosAzules.forEach(p => p.updateZIndex());
     this.caballerosRojos.forEach(p => p.updateZIndex());
     this.objetosDeEscenario.forEach(o => o.updateZIndex());
+    
     
 
 
@@ -194,33 +205,23 @@ class Juego {
   }
 
   //crea arboles con posiciones al azar
-async cargarArbolesEnCeldasBloqueadas() {
-  const promesas = [];
-
-  for (const celda of this.grid.cells) {
-    if (celda.blocked) {
-      const arbol = new Arbol(celda.centerX, celda.y + celda.height, this); // Posición basada en la celda
-      promesas.push(arbol.cargarSpritesAnimados().then(() => {
-        celda.addEntity(arbol); // Lo agregás también como entidad si lo necesitás
-        this.containerPrincipal.addChild(arbol.container);
-        this.objetosDeEscenario.push(arbol);
-      }));
-    }
-  }
-
-  await Promise.all(promesas);
-}
-
-
-  async cargarCasaOrca(cantidad){
+  async cargarArbolesEnCeldasBloqueadas() {
     const promesas = [];
-      for(let i = 0; i < cantidad; i++) {
-        const casa = new Gendarmeria(this.grid.cells.x,this.grid.cells.y,this);
-        promesas.push(casa.cargarSpritesAnimados().then(() => {
-          this.containerPrincipal.addChild(casa.container);
-          this.objetosDeEscenario.push(casa);
+
+    for (const celda of this.grid.cells) {
+      if (celda.blocked) {
+        // Filtro para que no aparezcan árboles con Y >= 700
+        if (celda.y < 700) {
+          const arbol = new Arbol(celda.centerX, celda.y + celda.height, this);
+          promesas.push(arbol.cargarSpritesAnimados().then(() => {
+            celda.addEntity(arbol);
+            this.containerPrincipal.addChild(arbol.container);
+            this.objetosDeEscenario.push(arbol);
           }));
+        }
       }
+    }
+
     await Promise.all(promesas);
   }
 
@@ -291,4 +292,48 @@ async cargarArbolesEnCeldasBloqueadas() {
     this.containerPrincipal.x = Math.min(0, Math.max(minX, this.containerPrincipal.x));
     this.containerPrincipal.y = Math.min(0, Math.max(minY, this.containerPrincipal.y));
   }
+
+
+  async cargarCasaOrca(cantidad) {
+    if (!this.grid) {
+      console.error("Grid no inicializada al llamar a cargarCasaOrca");
+      return;
+    }
+
+    const promesas = [];
+
+    for (let i = 0; i < cantidad; i++) {
+      const casa = new Gendarmeria(200, 200, this); // o las coordenadas que uses
+
+      promesas.push(
+        casa.cargarSpritesAnimados().then(() => {
+          this.containerPrincipal.addChild(casa.container);
+          this.objetosDeEscenario.push(casa);
+
+          // Ajustar posición si el anclaje está en el centro (0.5, 0.5)
+          const xAjustado = casa.container.x - casa.ancho / 2;
+          const yAjustado = casa.container.y - casa.alto / 2;
+
+          const celdas = this.grid.getCeldasOcupadasPorSprite(
+            xAjustado,
+            yAjustado,
+            casa.ancho,
+            casa.alto
+          );
+
+          for (const celda of celdas) {
+            celda.blocked = true;
+          }
+        })
+      );
+    }
+
+    await Promise.all(promesas);
+  }
+
+
+
+
+
+
 }

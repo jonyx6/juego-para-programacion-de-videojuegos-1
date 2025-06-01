@@ -17,6 +17,10 @@ class Arbol extends ObjetosEscenario{
         this.container.addChild(this.sprite)
     }
 
+    updateZIndex() {
+        this.container.zIndex = this.container.y;
+    }
+
     
 
 }

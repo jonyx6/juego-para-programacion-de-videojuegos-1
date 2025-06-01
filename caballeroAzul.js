@@ -1,4 +1,4 @@
-class CaballeroAzul extends Personaje {
+class CaballeroAzul extends Personaje{
   constructor(x, y, app, i, juego) {
     super(x, y, app, i, juego);
     this.cargarSpriteAnimado();
