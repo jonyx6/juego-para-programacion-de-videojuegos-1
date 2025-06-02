@@ -1,8 +1,54 @@
 class TrabajadorRojo extends Personaje {
   constructor(x, y, app, i, juego) {
     super(x, y, app, i, juego);
-    this.velocidad = 1.75; // Cada clase puede definir su propia velocidad
+    this.velocidad = 1.75; // velocidad propia
+
+    this.sonidos = [];
+
+    this.listoSonidos = false;  // flag para saber si cargó sonidos
+
     this.cargarSpriteAnimado();
+
+    // Llamamos async pero no podemos esperar aquí, así que mejor hacerlo fuera
+    this.cargarSonidosAleatorios().then(() => {
+      this.listoSonidos = true;
+      console.log("Sonidos cargados correctamente");
+    });
+  }
+
+  async cargarSonidosAleatorios() {
+    this.sonidos = [];
+    const rutas = [
+      'assets/sonidoObrero/me vas a hacer negrear no.mp3',
+      'assets/sonidoObrero/que negrero.mp3',
+      'assets/sonidoObrero/que queres.mp3',
+      'assets/sonidoObrero/vamo a chambear.mp3'
+    ];
+
+    for (const ruta of rutas) {
+      const sound = new Howl({ src: [ruta] ,volume: 5 });
+      this.sonidos.push(sound);
+    }
+  }
+
+  emitirSonidoAleatorio() {
+    if (!this.listoSonidos) {
+      console.warn("Sonidos no están listos aún");
+      return;
+    }
+    if (!this.sonidos || this.sonidos.length === 0) {
+      console.warn("No hay sonidos cargados");
+      return;
+    }
+    const randomIndex = Math.floor(Math.random() * this.sonidos.length);
+    this.sonidos[randomIndex].play();
+  }
+
+  setSeleccionado(estado) {
+    if (this.sprite) {
+      this.sprite.tint = estado ? 0xff0000 : 0xFFFFFF;
+      if (estado) this.emitirSonidoAleatorio();
+    }
   }
 
   async cargarSpriteAnimado() {
@@ -30,3 +76,4 @@ class TrabajadorRojo extends Personaje {
     this.listo = true;
   }
 }
+

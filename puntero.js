@@ -1,4 +1,4 @@
-class Puntero {
+/*class Puntero {
     constructor(app, juego) {
         this.app = app;
         this.juego = juego;
@@ -31,6 +31,7 @@ class Puntero {
     iniciarEventos() {
         this.app.stage.eventMode = 'static';
         this.app.stage.on('pointerdown', this.detectarClicEnPersonaje.bind(this));
+        
         this.app.stage.on('pointerdown', this.detectarClicDerecho.bind(this));
 
         this.app.stage.on("pointermove", (evento) => {
@@ -54,6 +55,8 @@ class Puntero {
             if (personajeClickeado) {
                 this.personajesSeleccionados = [personajeClickeado];
                 personajeClickeado.seleccionar();
+                personajeClickeado.emitirSonidoAleatorio();
+                
             }
         } else {
             console.error("No se encontraron personajes en juego.");
@@ -89,4 +92,4 @@ class Puntero {
             this.ordenarMover(posicion);
         }
     }
-}
+}*/

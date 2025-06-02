@@ -119,7 +119,7 @@ class Juego {
 
   // Crea los personajes iniciales del juego
   crearEntidades() {
-    //this.crearTrabajadoresRojos(1);
+    this.crearTrabajadoresRojos(6);
     this.crearCaballerosAzules(3);
     //this.crearCaballerosRojos(5);
     this.cargarArbolesEnCeldasBloqueadas();
@@ -135,6 +135,7 @@ class Juego {
     this.containerPrincipal.children.sort((a, b) => a.y - b.y);
     this.caballerosAzules.forEach(p => p.updateZIndex());
     this.caballerosRojos.forEach(p => p.updateZIndex());
+    this.caballerosRojos.forEach(p => p.cargarSonidosAleatorios());
     this.objetosDeEscenario.forEach(o => o.updateZIndex());
     
     
@@ -244,18 +245,21 @@ class Juego {
 
 
   // Crea trabajadores rojos
-  crearTrabajadoresRojosV1(cantidad) {
+  async crearTrabajadoresRojosV1(cantidad) {
     for (let i = 0; i < cantidad; i++) {
       const trabajador = this.crearEntidad(TrabajadorRojo, i);
+      await trabajador.cargarSonidosAleatorios(); // Esperar a que cargue sonidos
       this.trabajadoresRojos.push(trabajador);
     }
   }
 
-  crearTrabajadoresRojos(cantidad) {
+ async crearTrabajadoresRojos(cantidad) {
     for (let i = 0; i < cantidad; i++) {
-      const trabajador = this.crearEntidad(TrabajadorRojo, i);
+      //const trabajador = this.crearEntidad(TrabajadorRojo, i);
+      const trabajador = new TrabajadorRojo(100, 100, this.app, i,this)
       trabajador.enemigos = () => this.caballerosAzules; // ejemplo
-      this.trabajadoresRojos.push(trabajador);
+      await trabajador.cargarSonidosAleatorios(); // Esperar a que cargue sonidos
+      this.entidades.push(trabajador);
     }
   }
 

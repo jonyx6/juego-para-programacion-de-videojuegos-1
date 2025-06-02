@@ -6,7 +6,7 @@ class Personaje {
 
     this.x = x;
     this.y = y;
-    //this.juego.grid.addEntity(this);//no funciona
+    
     this.vida = 5;
     this.velocidad = 1;
     this.listo = false;
@@ -14,7 +14,9 @@ class Personaje {
     this.estadoActual = 'idle';
     this.animaciones = {};
     this.camino = [];
-
+    //
+    this.sonidos = [];
+    this.listoSonidos = false;
     this.crearContainer();
     //this.crearTextoVida();
     this.atacando = false;
@@ -23,6 +25,41 @@ class Personaje {
 
     this.distanciaMinima = 20;
 
+    this.cargarSonidosAleatorios().then(() => {
+      this.listoSonidos = true;
+      console.log("Sonidos cargados correctamente");
+    });
+
+  }
+
+
+  async cargarSonidosAleatorios() {
+    this.sonidos = [];
+    const rutas = [
+      'assets/sonidoObrero/me vas a hacer negrear no.mp3',
+      'assets/sonidoObrero/que negrero.mp3',
+      'assets/sonidoObrero/que queres.mp3',
+      'assets/sonidoObrero/vamo a chambear.mp3'
+    ];
+
+    for (const ruta of rutas) {
+      const sound = new Howl({ src: [ruta] ,volume: 5 });
+      this.sonidos.push(sound);
+    }
+  }
+
+
+  emitirSonidoAleatorio() {
+    if (!this.listoSonidos) {
+      console.warn("Sonidos no están listos aún");
+      return;
+    }
+    if (!this.sonidos || this.sonidos.length === 0) {
+      console.warn("No hay sonidos cargados");
+      return;
+    }
+    const randomIndex = Math.floor(Math.random() * this.sonidos.length);
+    this.sonidos[randomIndex].play();
   }
 
   updateZIndex() {
@@ -153,6 +190,7 @@ class Personaje {
   setSeleccionado(estado) {
     if (this.sprite) {
       this.sprite.tint = estado ? 0xff0000 : 0xFFFFFF;
+      if (estado) this.emitirSonidoAleatorio();
     }
   }
 

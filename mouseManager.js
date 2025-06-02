@@ -685,6 +685,7 @@ class MouseManager {
     const entity = this._findEntityAtPosition(position);
     if (entity) {
       this._selectSingleEntity(entity);
+      
     }
   }
 
@@ -775,17 +776,21 @@ class MouseManager {
         this.personajesSeleccionados = [entity];
         this._callMethod(entity, 'setSeleccionado', true);
         break;
+
       case 'personaje':
         this.personajesSeleccionados = [entity];
         this.juego.selectedEntities = [entity];
         this._callMethod(entity, 'seleccionar');
+        //this._callMethod(entity, 'emitirSonidoAleatorio');
         break;
+
       case 'objeto':
         this.objetosSeleccionados = [entity];
         this._callMethod(entity, 'seleccionar');
         break;
     }
   }
+
 
   /**
    * Limpia todas las selecciones

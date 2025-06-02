@@ -1,8 +1,38 @@
 class Trabajador extends Personaje {
     constructor(x, y, app, i, juego) {
         super(x, y, app, i, juego);
+        this.sonidos = [];
         this.cargarSpriteAnimado()
 
+    }
+
+    async cargarSonidosAleatorios() {
+      
+        const rutas = [
+            'assets/sonidoObrero/me vas a hacer negrear no.mp3',
+            'assets/sonidoObrero/que negrero.mp3',
+            'assets/sonidoObrero/que queres.mp3',
+            'assets/sonidoObrero/vamo a chambear.mp3'
+        ];
+
+        for (let ruta of rutas) {
+            await PIXI.Assets.load(ruta);
+            this.sonidos.push(ruta);
+        }
+    }
+
+
+    emitirSonidoAleatorio() {
+        if (this.sonidos.length === 0) {
+        console.warn("No hay sonidos cargados");
+        return;
+        }
+
+      if (this.sonidos?.length > 0) {
+          const randomIndex = Math.floor(Math.random() * this.sonidos.length);
+          const ruta = this.sonidos[randomIndex];
+          PIXI.sound.play(ruta);
+      }
     }
 
 
