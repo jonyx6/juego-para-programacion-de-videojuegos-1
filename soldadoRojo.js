@@ -3,6 +3,47 @@ class SoldadoRojo extends Personaje {
     super(x, y, app, i, juego);
     this.velocidad = 1.75;
     this.cargarSpriteAnimado();
+    this.sonidos = [];
+    this.listoSonidos = false;
+    this.cargarSonidosAleatorios().then(() => {
+      this.listoSonidos = true;
+      console.log("Sonidos cargados correctamente");
+    });
+  }
+
+    async cargarSonidosAleatorios() {
+    this.sonidos = [];
+    const rutas = [
+      'assets/sonidoOrcoRojo/aplastarlos sin piedad.mp3',
+      'assets/sonidoOrcoRojo/Furia de orco desatada.mp3',
+      'assets/sonidoOrcoRojo/Grrrr... os voy a destruir.mp3',
+      'assets/sonidoOrcoRojo/por la orda.mp3'
+    ];
+
+    for (const ruta of rutas) {
+      const sound = new Howl({ src: [ruta] ,volume: 3 });
+      this.sonidos.push(sound);
+    }
+  }
+
+  emitirSonidoAleatorio() {
+    if (!this.listoSonidos) {
+      console.warn("Sonidos no están listos aún");
+      return;
+    }
+    if (!this.sonidos || this.sonidos.length === 0) {
+      console.warn("No hay sonidos cargados");
+      return;
+    }
+    const randomIndex = Math.floor(Math.random() * this.sonidos.length);
+    this.sonidos[randomIndex].play();
+  }
+
+  setSeleccionado(estado) {
+    if (this.sprite) {
+      this.sprite.tint = estado ? 0xff0000 : 0xFFFFFF;
+      if (estado) this.emitirSonidoAleatorio();
+    }
   }
 
   async cargarSpriteAnimado() {

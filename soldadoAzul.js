@@ -2,7 +2,48 @@ class SoldadoAzul extends Personaje {
   constructor(x, y, app, i, juego) {
     super(x, y, app, i, juego);
     this.velocidad = 1.75;
+    this.sonidos = [];
+    this.listoSonidos = false;
     this.cargarSpriteAnimado();
+    this.cargarSonidosAleatorios().then(() => {
+      this.listoSonidos = true;
+      console.log("Sonidos cargados correctamente");
+    });
+  }
+
+    async cargarSonidosAleatorios() {
+    this.sonidos = [];
+    const rutas = [
+      'assets/sonidoSoldadosAzules/a sus ordenes capitan.mp3',
+      'assets/sonidoSoldadosAzules/ahhhh.mp3',
+      'assets/sonidoSoldadosAzules/allá la.mp3',
+      'assets/sonidoSoldadosAzules/viva la libertad carajo.mp3'
+    ];
+
+    for (const ruta of rutas) {
+      const sound = new Howl({ src: [ruta] ,volume: 3 });
+      this.sonidos.push(sound);
+    }
+  }
+
+  emitirSonidoAleatorio() {
+    if (!this.listoSonidos) {
+      console.warn("Sonidos no están listos aún");
+      return;
+    }
+    if (!this.sonidos || this.sonidos.length === 0) {
+      console.warn("No hay sonidos cargados");
+      return;
+    }
+    const randomIndex = Math.floor(Math.random() * this.sonidos.length);
+    this.sonidos[randomIndex].play();
+  }
+
+  setSeleccionado(estado) {
+    if (this.sprite) {
+      this.sprite.tint = estado ? 0xff0000 : 0xFFFFFF;
+      if (estado) this.emitirSonidoAleatorio();
+    }
   }
 
   async cargarSpriteAnimado() {

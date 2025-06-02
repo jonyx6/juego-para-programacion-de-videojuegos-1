@@ -119,13 +119,13 @@ class Juego {
 
   // Crea los personajes iniciales del juego
   crearEntidades() {
-    this.crearTrabajadoresRojos(6);
-    this.crearCaballerosAzules(3);
+    this.crearTrabajadoresRojos(1);
+    this.crearCaballerosAzules(1);
     //this.crearCaballerosRojos(5);
     this.cargarArbolesEnCeldasBloqueadas();
     
-    this.crearSoldadosAzules(3)
-    this.crearSoldadosRojos(3)
+    this.crearSoldadosAzules(6)
+    this.crearSoldadosRojos(1)
     this.cargarCasaOrca(1)
     
   }
@@ -179,13 +179,13 @@ class Juego {
 
   crearSoldadosAzules(cantidad) {
     for (let i = 0; i < cantidad; i++) {
-      const soldado = this.crearEntidad(SoldadoAzul, i);
+      const soldado = new SoldadoAzul(Math.random() * 500, Math.random() * 500, this.app, i, this);
       soldado.enemigos = () => [
         ...this.caballerosRojos,
         ...this.soldadosRojos,
         ...this.trabajadoresRojos
       ];
-      this.soldadosAzules.push(soldado);
+      this.entidades.push(soldado);
     }
   }
 
@@ -255,7 +255,6 @@ class Juego {
 
  async crearTrabajadoresRojos(cantidad) {
     for (let i = 0; i < cantidad; i++) {
-      //const trabajador = this.crearEntidad(TrabajadorRojo, i);
       const trabajador = new TrabajadorRojo(100, 100, this.app, i,this)
       trabajador.enemigos = () => this.caballerosAzules; // ejemplo
       await trabajador.cargarSonidosAleatorios(); // Esperar a que cargue sonidos
