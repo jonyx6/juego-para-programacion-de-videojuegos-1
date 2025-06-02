@@ -63,7 +63,8 @@ class Personaje {
   }
 
   updateZIndex() {
-        this.container.zIndex = this.y;
+
+      this.container.zIndex = this.container.y;
   }
 
   // === Inicialización ===

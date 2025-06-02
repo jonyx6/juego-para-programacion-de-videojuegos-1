@@ -36,6 +36,7 @@ class Juego {
 
     // Iniciar escucha de movimiento del mouse
     this.escucharMovimientoMouse();
+    this.iniciarMusica();
 
     // Iniciar la app de PIXI y luego cargar el juego
     this.app.init({ width: this.ancho, height: this.alto }).then(() => {
@@ -95,7 +96,7 @@ class Juego {
     this.containerPrincipal = new PIXI.Container();
     this.containerPrincipal.name = "containerPrincipal";
     this.containerPrincipal.sortableChildren = true; // Permite ordenar por zIndex
-
+    this.containerPrincipal.sortableChildren = true;
     this.app.stage.addChild(this.containerPrincipal);
   }
 
@@ -123,10 +124,15 @@ class Juego {
     this.crearCaballerosAzules(1);
     //this.crearCaballerosRojos(5);
     this.cargarArbolesEnCeldasBloqueadas();
+    // MINAS DE ORO
+    this.crearMinaDeOro(1 , 500, 200);
+    this.crearMinaDeOro(1 , 1600, 800);
     
     this.crearSoldadosAzules(6)
-    this.crearSoldadosRojos(1)
+    this.crearSoldadosRojos(6)
     this.cargarCasaOrca(1)
+    this.app.stage.sortableChildren = true;
+    this.containerPrincipal.sortableChildren = true;
     
   }
 
@@ -137,6 +143,7 @@ class Juego {
     this.caballerosRojos.forEach(p => p.updateZIndex());
     this.caballerosRojos.forEach(p => p.cargarSonidosAleatorios());
     this.objetosDeEscenario.forEach(o => o.updateZIndex());
+    
     
     
 
@@ -225,6 +232,16 @@ class Juego {
 
     await Promise.all(promesas);
   }
+
+
+ async crearMinaDeOro(cantidad,unX,unY){
+    for(let i = 0; i < cantidad; i++){
+      const mina = new MinaDeOro(unX + i * 100, unY, this);
+      await mina.cargarSpritesAnimados();
+      this.containerPrincipal.addChild(mina.container);
+      this.objetosDeEscenario.push(mina);
+    }
+  };
 
   async cargarCursor() {
     this.cursor = new Puntero(this.app, this);

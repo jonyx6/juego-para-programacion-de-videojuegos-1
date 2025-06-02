@@ -471,10 +471,12 @@ class MouseManager {
   static SELECTION_COLOR = 0x00ff00;
   static SELECTION_ALPHA = 0.1;
   static SELECTION_LINE_WIDTH = 2;
+  
 
   constructor(juego) {
     this._validateGameObject(juego);
     this.juego = juego;
+  
     
     // Estado de selección
     this.personajesSeleccionados = [];

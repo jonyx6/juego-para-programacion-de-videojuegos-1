@@ -21,6 +21,7 @@ class Cell {
     this.blocked = false
   }
 
+
   // Add an entity to this cell
   addEntity(entity) {
     if (!this.entities.includes(entity)) {

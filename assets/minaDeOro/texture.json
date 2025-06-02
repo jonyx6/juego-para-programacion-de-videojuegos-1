@@ -1,0 +1,215 @@
+{
+  "frames": {
+    "mina/mina de oro.png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 635,
+        "h": 329
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 13,
+        "y": 9,
+        "w": 635,
+        "h": 329
+      },
+      "sourceSize": {
+        "w": 654,
+        "h": 343
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "mina/mina de oro - copia.png": {
+      "frame": {
+        "x": 635,
+        "y": 0,
+        "w": 295,
+        "h": 190
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 2,
+        "y": 9,
+        "w": 295,
+        "h": 190
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 202
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "mina/4.png": {
+      "frame": {
+        "x": 930,
+        "y": 0,
+        "w": 96,
+        "h": 98
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 1,
+        "y": 0,
+        "w": 96,
+        "h": 98
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 101
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "mina/1.png": {
+      "frame": {
+        "x": 1028,
+        "y": 0,
+        "w": 96,
+        "h": 92
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 1,
+        "y": 9,
+        "w": 96,
+        "h": 92
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 101
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "mina/0.png": {
+      "frame": {
+        "x": 1124,
+        "y": 0,
+        "w": 96,
+        "h": 89
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 2,
+        "y": 12,
+        "w": 96,
+        "h": 89
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 101
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "mina/3.png": {
+      "frame": {
+        "x": 1220,
+        "y": 0,
+        "w": 96,
+        "h": 89
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 2,
+        "y": 7,
+        "w": 96,
+        "h": 89
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 101
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "mina/2.png": {
+      "frame": {
+        "x": 1316,
+        "y": 0,
+        "w": 96,
+        "h": 88
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 1,
+        "y": 13,
+        "w": 96,
+        "h": 88
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 101
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "mina/5.png": {
+      "frame": {
+        "x": 1412,
+        "y": 0,
+        "w": 96,
+        "h": 88
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 1,
+        "y": 8,
+        "w": 96,
+        "h": 88
+      },
+      "sourceSize": {
+        "w": 100,
+        "h": 101
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },  
+  "animations":{
+    "minaVacia":[
+      "mina/0.png"
+    ],
+    "minaOcupada":[
+      "mina/3.png"
+    ]
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "texture.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1508,
+      "h": 329
+    },
+    "scale": 1
+  }
+}
