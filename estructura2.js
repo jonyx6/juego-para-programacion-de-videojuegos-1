@@ -5,7 +5,7 @@ class GendarmeriaHumana extends ObjetosEscenario{
     };
 
     async cargarSpritesAnimados() {
-        let json = await PIXI.Assets.load('assets/casasOrcas/texture.json');
+        let json = await PIXI.Assets.load('assets/casasHumana/texture.json');
         this.animaciones['idle1'] = json.animations["idle1"];
         this.sprite = new PIXI.AnimatedSprite(this.animaciones['idle1']); //cargo la animacion
         this.sprite.anchor.set(0.5, 1);
@@ -16,6 +16,8 @@ class GendarmeriaHumana extends ObjetosEscenario{
         this.sprite.play();
         this.listo = true;
         this.container.addChild(this.sprite)
+        this.ancho = this.sprite.width;
+        this.alto = this.sprite.height;
     }
 
 }

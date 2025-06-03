@@ -11,7 +11,7 @@ class SoldadoAzul extends Personaje {
     });
   }
 
-    async cargarSonidosAleatorios() {
+  async cargarSonidosAleatorios() {
     this.sonidos = [];
     const rutas = [
       'assets/sonidoSoldadosAzules/a sus ordenes capitan.mp3',

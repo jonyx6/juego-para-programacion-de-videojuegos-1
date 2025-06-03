@@ -21,6 +21,10 @@ class ObjetosEscenario {
         this.container.zIndex = this.y;
     }
 
+    cambiarOrdenEnZ() {
+    this.container.zIndex = this.y + 100;
+    }
+
     async cargarSpritesAnimados() {
         let json = await PIXI.Assets.load('arbol/texture.json');
         this.animaciones['idle'] = json.animations["idle"];

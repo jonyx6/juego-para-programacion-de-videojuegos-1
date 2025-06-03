@@ -16,6 +16,8 @@ class Gendarmeria extends ObjetosEscenario{
         this.sprite.play();
         this.listo = true;
         this.container.addChild(this.sprite)
+        this.ancho = this.sprite.width;
+        this.alto = this.sprite.height;
     }
 
 }

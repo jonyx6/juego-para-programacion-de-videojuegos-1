@@ -12,20 +12,13 @@ class MinaDeOro extends ObjetosEscenario {
         this.sprite.anchor.set(0.8, 1);
         this.sprite.animationSpeed = 0.1;
         this.sprite.loop = true;
-        this.sprite.x = 0;  
+        this.sprite.x = 40;  
         this.sprite.y = 0;
         this.sprite.play();
         this.listo = true;
         this.container.addChild(this.sprite)
+        this.ancho = this.sprite.width;
+        this.alto = this.sprite.height;
     }
-
-    updateZIndex() {
-
-        this.container.zIndex = this.container.y;
-    }
-
-
-
-
 
 }

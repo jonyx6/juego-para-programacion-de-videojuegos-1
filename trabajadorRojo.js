@@ -75,5 +75,12 @@ class TrabajadorRojo extends Personaje {
 
     this.listo = true;
   }
+  // implemento funciones para que el trabajador tale
+
+  distanciaA(otro) {
+    const dx = this.x - otro.x;
+    const dy = this.y - otro.y;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
 }
 

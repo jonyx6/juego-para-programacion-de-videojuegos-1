@@ -6,7 +6,7 @@ class SoldadoRojo extends Personaje {
     this.sonidos = [];
     this.listoSonidos = false;
     this.cargarSonidosAleatorios().then(() => {
-      this.listoSonidos = true;
+    this.listoSonidos = true;
       console.log("Sonidos cargados correctamente");
     });
   }

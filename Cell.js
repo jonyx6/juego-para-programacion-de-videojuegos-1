@@ -21,6 +21,10 @@ class Cell {
     this.blocked = false
   }
 
+  getCantidadEnCelda(){
+    return this.entities;
+  } 
+
 
   // Add an entity to this cell
   addEntity(entity) {

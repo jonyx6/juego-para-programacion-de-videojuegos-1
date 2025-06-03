@@ -1,8 +1,8 @@
 class Juego {
   constructor() {
     // Dimensiones del canvas
-    this.ancho = window.innerWidth;
-    this.alto = window.innerHeight;
+    this.ancho = 1920;
+    this.alto = 1080;
 
     // App principal de PIXI
     this.app = new PIXI.Application({
@@ -37,6 +37,7 @@ class Juego {
     // Iniciar escucha de movimiento del mouse
     this.escucharMovimientoMouse();
     this.iniciarMusica();
+    
 
     // Iniciar la app de PIXI y luego cargar el juego
     this.app.init({ width: this.ancho, height: this.alto }).then(() => {
@@ -114,7 +115,6 @@ class Juego {
     this.fondo.width = this.ancho;
     this.fondo.height = this.alto;
     this.fondo.zIndex = -1;
-    //this.containerPrincipal.addChild(this.fondo,0);
     this.app.stage.addChild(this.fondo);
   }
 
@@ -127,6 +127,7 @@ class Juego {
     // MINAS DE ORO
     this.crearMinaDeOro(1 , 500, 200);
     this.crearMinaDeOro(1 , 1600, 800);
+    this.casaHumana(1 , 1500,700)
     
     this.crearSoldadosAzules(6)
     this.crearSoldadosRojos(6)
@@ -139,10 +140,10 @@ class Juego {
   // Ciclo principal del juego (se ejecuta en cada frame)
   gameLoop(time) {
     this.containerPrincipal.children.sort((a, b) => a.y - b.y);
-    this.caballerosAzules.forEach(p => p.updateZIndex());
-    this.caballerosRojos.forEach(p => p.updateZIndex());
+    this.caballerosAzules.forEach(p => p.cambiarOrdenEnZ());
+    this.caballerosRojos.forEach(p => p.cambiarOrdenEnZ());
     this.caballerosRojos.forEach(p => p.cargarSonidosAleatorios());
-    this.objetosDeEscenario.forEach(o => o.updateZIndex());
+    this.objetosDeEscenario.forEach(o => o.cambiarOrdenEnZ());
     
     
     
@@ -213,34 +214,80 @@ class Juego {
   }
 
   //crea arboles con posiciones al azar
+  
   async cargarArbolesEnCeldasBloqueadas() {
     const promesas = [];
 
     for (const celda of this.grid.cells) {
-      if (celda.blocked) {
-        // Filtro para que no aparezcan árboles con Y >= 700
-        if (celda.y < 700) {
-          const arbol = new Arbol(celda.centerX, celda.y + celda.height, this);
-          promesas.push(arbol.cargarSpritesAnimados().then(() => {
-            celda.addEntity(arbol);
-            this.containerPrincipal.addChild(arbol.container);
-            this.objetosDeEscenario.push(arbol);
-          }));
-        }
+      if (
+        celda.blocked &&               // La celda está bloqueada
+        celda.y < 700 &&              // No queremos árboles con Y >= 700
+        celda.entities.length === 0   // No hay ya una entidad ocupando la celda
+      ) {
+        const arbol = new Arbol(celda.centerX, celda.y + celda.height, this);
+
+        promesas.push(
+          arbol.cargarSpritesAnimados().then(() => {
+            celda.addEntity(arbol);                     // Registrar en la celda
+            this.containerPrincipal.addChild(arbol.container); // Agregar al escenario
+            this.objetosDeEscenario.push(arbol);        // Registrar en la lista general
+          })
+        );
       }
     }
 
     await Promise.all(promesas);
   }
 
+  
 
- async crearMinaDeOro(cantidad,unX,unY){
-    for(let i = 0; i < cantidad; i++){
-      const mina = new MinaDeOro(unX + i * 100, unY, this);
-      await mina.cargarSpritesAnimados();
-      this.containerPrincipal.addChild(mina.container);
-      this.objetosDeEscenario.push(mina);
+    
+  
+
+
+  async crearMinaDeOro(cantidad,unX,unY){
+
+    if (!this.grid) {
+      console.error("Grid no inicializada al llamar a cargarCasaOrca");
+      return;
     }
+
+    const promesas = [];
+
+    for (let i = 0; i < cantidad; i++) {
+      const casa = new MinaDeOro(0, 0, this); // coordenadas temporales
+
+      promesas.push(
+        casa.cargarSpritesAnimados().then(() => {
+          // ASIGNAR posición diferente para cada casa, ejemplo en grilla simple:
+          const separacion = 100; // separación entre casas
+          casa.container.x = unX + i * 100 * separacion;
+          casa.container.y = unY ; // fijo en Y o podes variar también
+
+          this.containerPrincipal.addChild(casa.container);
+          this.objetosDeEscenario.push(casa);
+
+          // Ajustar posición tomando en cuenta anclaje (0.5, 1)
+          const xAjustado = casa.container.x - casa.ancho / 2;
+          const yAjustado = casa.container.y - casa.alto;
+
+          const celdas = this.grid.getCeldasOcupadasPorSprite(
+            xAjustado,
+            yAjustado,
+            casa.ancho,
+            casa.alto
+          );
+
+          for (const celda of celdas) {
+            celda.blocked = true;
+            this.grid.bloquearCelda(celda.col, celda.row);
+            celda.addEntity(casa)
+          }
+        })
+      );
+    }
+
+    await Promise.all(promesas);
   };
 
   async cargarCursor() {
@@ -323,16 +370,22 @@ class Juego {
     const promesas = [];
 
     for (let i = 0; i < cantidad; i++) {
-      const casa = new Gendarmeria(200, 200, this); // o las coordenadas que uses
+      const casa = new Gendarmeria(0, 0, this); // coordenadas temporales
 
       promesas.push(
         casa.cargarSpritesAnimados().then(() => {
+          // ASIGNAR posición diferente para cada casa, ejemplo en grilla simple:
+          const separacion = 100; // separación entre casas
+          casa.container.x = 200 + i * separacion;
+          casa.container.y = 200; // fijo en Y o podes variar también
+
           this.containerPrincipal.addChild(casa.container);
           this.objetosDeEscenario.push(casa);
+          
 
-          // Ajustar posición si el anclaje está en el centro (0.5, 0.5)
+          // Ajustar posición tomando en cuenta anclaje (0.5, 1)
           const xAjustado = casa.container.x - casa.ancho / 2;
-          const yAjustado = casa.container.y - casa.alto / 2;
+          const yAjustado = casa.container.y - casa.alto;
 
           const celdas = this.grid.getCeldasOcupadasPorSprite(
             xAjustado,
@@ -343,6 +396,8 @@ class Juego {
 
           for (const celda of celdas) {
             celda.blocked = true;
+            this.grid.bloquearCelda(celda.col, celda.row);
+            celda.addEntity(casa)
           }
         })
       );
@@ -352,8 +407,49 @@ class Juego {
   }
 
 
+  async casaHumana(cantidad) {
+        if (!this.grid) {
+      console.error("Grid no inicializada al llamar a cargarCasaOrca");
+      return;
+    }
 
+    const promesas = [];
 
+    for (let i = 0; i < cantidad; i++) {
+      const casa = new Gendarmeria(0, 0, this); // coordenadas temporales
 
+      promesas.push(
+        casa.cargarSpritesAnimados().then(() => {
+          // ASIGNAR posición diferente para cada casa, ejemplo en grilla simple:
+          const separacion = 100; // separación entre casas
+          casa.container.x = 1800 + i * separacion;
+          casa.container.y = 700; // fijo en Y o podes variar también
+
+          this.containerPrincipal.addChild(casa.container);
+          this.objetosDeEscenario.push(casa);
+
+          // Ajustar posición tomando en cuenta anclaje (0.5, 1)
+          const xAjustado = casa.container.x - casa.ancho / 2;
+          const yAjustado = casa.container.y - casa.alto;
+
+          const celdas = this.grid.getCeldasOcupadasPorSprite(
+            xAjustado,
+            yAjustado,
+            casa.ancho,
+            casa.alto
+          );
+
+          for (const celda of celdas) {
+            celda.blocked = true;
+            this.grid.bloquearCelda(celda.col, celda.row);
+            celda.addEntity(casa)
+          }
+        })
+      );
+    }
+
+    await Promise.all(promesas);
+
+  }
 
 }

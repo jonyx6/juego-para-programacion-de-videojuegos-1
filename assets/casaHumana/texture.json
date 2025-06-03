@@ -1,0 +1,522 @@
+{
+  "frames": {
+    "casaHumana/casaHumana.png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 622,
+        "h": 646
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 4,
+        "w": 622,
+        "h": 646
+      },
+      "sourceSize": {
+        "w": 633,
+        "h": 657
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/13.png": {
+      "frame": {
+        "x": 0,
+        "y": 646,
+        "w": 132,
+        "h": 131
+      },
+      "rotated": true,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 132,
+        "h": 131
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/14.png": {
+      "frame": {
+        "x": 0,
+        "y": 778,
+        "w": 132,
+        "h": 131
+      },
+      "rotated": true,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 132,
+        "h": 131
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/15.png": {
+      "frame": {
+        "x": 0,
+        "y": 910,
+        "w": 132,
+        "h": 131
+      },
+      "rotated": true,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 132,
+        "h": 131
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/09.png": {
+      "frame": {
+        "x": 0,
+        "y": 1042,
+        "w": 132,
+        "h": 129
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 2,
+        "w": 132,
+        "h": 129
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/10.png": {
+      "frame": {
+        "x": 0,
+        "y": 1174,
+        "w": 132,
+        "h": 129
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 2,
+        "w": 132,
+        "h": 129
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/11.png": {
+      "frame": {
+        "x": 0,
+        "y": 1306,
+        "w": 132,
+        "h": 129
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 2,
+        "w": 132,
+        "h": 129
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/18.png": {
+      "frame": {
+        "x": 0,
+        "y": 1438,
+        "w": 132,
+        "h": 126
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 132,
+        "h": 126
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/17.png": {
+      "frame": {
+        "x": 0,
+        "y": 1570,
+        "w": 132,
+        "h": 124
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 132,
+        "h": 124
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/12.png": {
+      "frame": {
+        "x": 0,
+        "y": 1702,
+        "w": 128,
+        "h": 131
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 0,
+        "w": 128,
+        "h": 131
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/07.png": {
+      "frame": {
+        "x": 124,
+        "y": 1570,
+        "w": 127,
+        "h": 131
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 0,
+        "w": 127,
+        "h": 131
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/08.png": {
+      "frame": {
+        "x": 126,
+        "y": 1438,
+        "w": 128,
+        "h": 129
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 2,
+        "w": 128,
+        "h": 129
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/05.png": {
+      "frame": {
+        "x": 0,
+        "y": 1833,
+        "w": 121,
+        "h": 129
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 3,
+        "y": 0,
+        "w": 121,
+        "h": 129
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/01.png": {
+      "frame": {
+        "x": 121,
+        "y": 1833,
+        "w": 128,
+        "h": 127
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 3,
+        "y": 4,
+        "w": 128,
+        "h": 127
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/03.png": {
+      "frame": {
+        "x": 128,
+        "y": 1701,
+        "w": 128,
+        "h": 127
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 2,
+        "y": 4,
+        "w": 128,
+        "h": 127
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/16.png": {
+      "frame": {
+        "x": 251,
+        "y": 1567,
+        "w": 128,
+        "h": 126
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 0,
+        "w": 128,
+        "h": 126
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/19.png": {
+      "frame": {
+        "x": 248,
+        "y": 1829,
+        "w": 107,
+        "h": 126
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 107,
+        "h": 126
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/00.png": {
+      "frame": {
+        "x": 255,
+        "y": 1695,
+        "w": 122,
+        "h": 118
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 5,
+        "w": 122,
+        "h": 118
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/04.png": {
+      "frame": {
+        "x": 355,
+        "y": 1817,
+        "w": 119,
+        "h": 106
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 8,
+        "y": 14,
+        "w": 119,
+        "h": 106
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/06.png": {
+      "frame": {
+        "x": 373,
+        "y": 1936,
+        "w": 111,
+        "h": 95
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 23,
+        "w": 111,
+        "h": 95
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "casaHumana/02.png": {
+      "frame": {
+        "x": 373,
+        "y": 1695,
+        "w": 119,
+        "h": 104
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 17,
+        "w": 119,
+        "h": 104
+      },
+      "sourceSize": {
+        "w": 132,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "animations": {
+  "idle1": ["casaHumana/02.png"]
+},
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "texture.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 622,
+      "h": 2047
+    },
+    "scale": 1
+  }
+}
