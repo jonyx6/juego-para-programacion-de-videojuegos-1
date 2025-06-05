@@ -60,6 +60,13 @@ class ObjetosEscenario {
         console.log("objeto seleccionado");
         this.sprite.tint = 0x00ff00; // Lo tiñe de verde al seleccionarlo
     }
+
+    setSeleccionado(estado) {
+    if (this.sprite) {
+      this.sprite.tint = estado ? 0xff0000 : 0xFFFFFF;
+      if (estado) this.emitirSonidoAleatorio();
+    }
+  }
     
     deseleccionar() {
         this.sprite.tint = 0xFFFFFF; // Color original (sin tinte)

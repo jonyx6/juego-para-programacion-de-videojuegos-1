@@ -22,7 +22,7 @@ class Cell {
   }
 
   getCantidadEnCelda(){
-    return this.entities;
+    return this.entities.length ;
   } 
 
 

@@ -11,6 +11,15 @@ class SoldadoAzul extends Personaje {
     });
   }
 
+  atributos(){
+    return (
+      "ID: " + this.iD + "\n" +
+      "VIDA: " + this.vida + "\n" +
+      "Vel: " + this.velocidad + "\n"+
+      "Estado: " + this.estadoActual
+    );
+  }
+
   async cargarSonidosAleatorios() {
     this.sonidos = [];
     const rutas = [

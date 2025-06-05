@@ -114,9 +114,9 @@ class Grid {
             // Saltar esta celda, no dibujar nada si está bloqueada y Y >= 700
             continue;
           }
-          graphics.beginFill(0xffffff, 0.8);
+          /*graphics.beginFill(0xffffff, 0.8);
           graphics.drawRect(col * this.cellSize, yPixel, this.cellSize, this.cellSize);
-          graphics.endFill();
+          graphics.endFill();*/
           continue;
         }
 
@@ -157,109 +157,66 @@ class Grid {
     graphics.stroke({ width: 1, color: 0xffd900 });
   }
 
-  /*renderVectorField(graphics) {
-    const arrowLength = this.cellSize * 0.4;
-    graphics.lineStyle(1, 0xffffff, 0.7);
 
-    for (let row = 0; row < this.rows; row++) {
-      for (let col = 0; col < this.cols; col++) {
-        const cell = this.cells[row * this.cols + col];
-
-        if (cell?.blocked) {
-          graphics.beginFill(0xffffff, 0.8);
-          graphics.drawRect(col * this.cellSize, row * this.cellSize, this.cellSize, this.cellSize);
-          graphics.endFill();
-          continue;
-        }
-
-        const vector = this.vectorField[row][col];
-        const mag = Math.hypot(vector.x, vector.y);
-        if (mag < 0.01) continue;
-
-        const centerX = col * this.cellSize + this.cellSize / 2;
-        const centerY = row * this.cellSize + this.cellSize / 2;
-
-        const normX = vector.x / mag;
-        const normY = vector.y / mag;
-
-        const endX = centerX + normX * arrowLength;
-        const endY = centerY + normY * arrowLength;
-
-        graphics.moveTo(centerX, centerY);
-        graphics.lineTo(endX, endY);
-
-        const headLength = arrowLength * 0.3;
-        const angle = Math.atan2(normY, normX);
-
-        graphics.lineTo(
-          endX - headLength * Math.cos(angle - Math.PI / 6),
-          endY - headLength * Math.sin(angle - Math.PI / 6)
-        );
-
-        graphics.moveTo(endX, endY);
-
-        graphics.lineTo(
-          endX - headLength * Math.cos(angle + Math.PI / 6),
-          endY - headLength * Math.sin(angle + Math.PI / 6)
-        );
-      }
-    }
-
-    graphics.stroke({ width: 1, color: 0xffd900 });
-  }*/
 
   // === Pathfinding ===
   // --- Dijkstra --- original
-  calcularCaminoDesdeHastaViejo(origen, destino) {
-    const total = this.cells.length;
-    const dist = new Array(total).fill(Infinity);
-    const prev = new Array(total).fill(null);
-    const visited = new Array(total).fill(false);
-    const queue = [];
+  calcularCaminoDesdeHasta(origen, destino) {
+    const totalCeldas = this.cells.length;
+    const gScore = new Array(totalCeldas).fill(Infinity);
+    const fScore = new Array(totalCeldas).fill(Infinity);
+    const anterior = new Array(totalCeldas).fill(null);
+    const visitados = new Set();
+    const abiertos = [];
 
     const origenIdx = this.getCellIndex(origen.col, origen.row);
     const destinoIdx = this.getCellIndex(destino.col, destino.row);
 
-    dist[origenIdx] = 0;
-    queue.push([origenIdx, 0]);
+    gScore[origenIdx] = 0;
+    fScore[origenIdx] = this.calcularHeuristica(origen, destino);
+    abiertos.push([origenIdx, fScore[origenIdx]]);
 
-    while (queue.length > 0) {
-      queue.sort((a, b) => a[1] - b[1]);
-      const [currentIdx] = queue.shift();
-      if (visited[currentIdx]) continue;
-      visited[currentIdx] = true;
+    while (abiertos.length > 0) {
+      // Ordenar por menor fScore
+      abiertos.sort((a, b) => a[1] - b[1]);
+      const [actualIdx] = abiertos.shift();
 
-      if (currentIdx === destinoIdx) break;
+      if (actualIdx === destinoIdx) break;
+      if (visitados.has(actualIdx)) continue;
+      visitados.add(actualIdx);
 
-      const current = this.cells[currentIdx];
-      if (current.blocked) continue;
+      const actual = this.cells[actualIdx];
+      if (actual.blocked) continue;
 
-      const neighbors = current.getNeighbors();
-      for (const neighbor of neighbors) {
-        const neighborIdx = this.getCellIndex(neighbor.col, neighbor.row);
-        if (neighbor.blocked || visited[neighborIdx]) continue;
+      for (const vecino of actual.getNeighbors()) {
+        const vecinoIdx = this.getCellIndex(vecino.col, vecino.row);
+        if (vecino.blocked || visitados.has(vecinoIdx)) continue;
 
-        const dx = neighbor.centerX - current.centerX;
-        const dy = neighbor.centerY - current.centerY;
-        const cost = Math.hypot(dx, dy);
-        const alt = dist[currentIdx] + cost;
+        const dx = vecino.centerX - actual.centerX;
+        const dy = vecino.centerY - actual.centerY;
+        const costo = Math.hypot(dx, dy);
+        const tentativeG = gScore[actualIdx] + costo;
 
-        if (alt < dist[neighborIdx]) {
-          dist[neighborIdx] = alt;
-          prev[neighborIdx] = currentIdx;
-          queue.push([neighborIdx, alt]);
+        if (tentativeG < gScore[vecinoIdx]) {
+          anterior[vecinoIdx] = actualIdx;
+          gScore[vecinoIdx] = tentativeG;
+          fScore[vecinoIdx] = tentativeG + this.calcularHeuristica(vecino, destino);
+
+          abiertos.push([vecinoIdx, fScore[vecinoIdx]]);
         }
       }
     }
 
+    // Reconstrucción del camino
     const path = [];
-    let current = destinoIdx;
-    while (current !== null && current !== origenIdx) {
-      path.unshift(this.cells[current]);
-      current = prev[current];
+    let idx = destinoIdx;
+    while (idx !== null && idx !== origenIdx) {
+      path.unshift(this.cells[idx]);
+      idx = anterior[idx];
     }
     return path;
   }
+
 
   // --- A* --- nuevo
   calcularCaminoDesdeHasta(origen, destino) {
@@ -312,12 +269,12 @@ class Grid {
   return this.reconstruirCamino(anterior, origenIdx, destinoIdx);
   }
 
-  calcularHeuristica(a, b) {
-  // Distancia euclidiana como heurística
-  const dx = b.centerX - a.centerX;
-  const dy = b.centerY - a.centerY;
-  return Math.hypot(dx, dy);
-  }
+calcularHeuristica(a, b) {
+  const dx = Math.abs(a.col - b.col);
+  const dy = Math.abs(a.row - b.row);
+  return Math.hypot(dx, dy); // Euclidiana, podés usar dx + dy si preferís Manhattan
+}
+
 
   distanciaEntre(a, b) {
   const dx = b.centerX - a.centerX;

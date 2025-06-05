@@ -506,7 +506,7 @@
     }
   },
   "animations": {
-  "idle1": ["casaHumana/02.png"]
+  "casaHumana": ["casaHumana/02.png"]
 },
   "meta": {
     "app": "http://free-tex-packer.com",

@@ -3,33 +3,37 @@ class Personaje {
     this.app = app;
     this.juego = juego;
     this.i = i;
-
+    this.iD= Math.random()*5;
     this.x = x;
     this.y = y;
-    
     this.vida = 5;
     this.velocidad = 1;
     this.listo = false;
-
     this.estadoActual = 'idle';
     this.animaciones = {};
     this.camino = [];
-    //
     this.sonidos = [];
     this.listoSonidos = false;
     this.crearContainer();
-    //this.crearTextoVida();
     this.atacando = false;
     this.objetivoAtaque = null;
-    //this.destinoFijado = null; // { x, y }
-
     this.distanciaMinima = 20;
-
     this.cargarSonidosAleatorios().then(() => {
       this.listoSonidos = true;
       console.log("Sonidos cargados correctamente");
     });
 
+  }
+
+
+
+  atributos(){
+    return (
+      "ID: " + this.velocidad + "\n" +
+      "VIDA: " + this.vida + "\n" +
+      "Vel: " + this.velocidad + "\n"+
+      "Estado: " + this.estadoActual
+    );
   }
 
 
@@ -95,10 +99,43 @@ class Personaje {
       const enemigos = typeof this.enemigos === 'function'
         ? this.enemigos()
         : this.enemigos;
-
       this.lucharContra(enemigos);
     }
   }
+
+  render(){
+    this.actualizarBarraDeVida();
+  }
+
+  actualizarBarraDeVida(){
+    if(!this.healthBar) return ;
+    this.healthBar.clear();
+
+    const maxWidth = 20;
+    const heigth = 6;
+    const currentWidth = Math(0 , this.vida * maxWidth);
+    this.healthBar.x = -maxWidth/2 ;
+    this.healthBar.y = -40 ;
+
+    this.healthBar.beginFill(0x000000 , 0.8);
+    this.healthBar.drawRect(0,0,maxWidth,heigth);
+    this.healthBar.endFill();
+
+    let healthColor;
+    if(this.vida > 0){
+      healthColor = 0x00ff00;
+    }else if(this.vida >= 0.4){
+      healthColor = 0Xffff00;
+    }else{
+      healthColor =0xff0000;
+    }
+
+    if (currentWidth > 0){
+      this.healthBar.beginFill(healthColor);
+      this.healthBar.drawRect(0,0,currentWidth,heigth);
+      this.healthBar.endFill();
+    }
+  };
 
   // === Movimiento ===
   actualizarMovimiento() {

@@ -4,6 +4,7 @@ class SoldadoRojo extends Personaje {
     this.velocidad = 1.75;
     this.cargarSpriteAnimado();
     this.sonidos = [];
+    this.vida=100
     this.listoSonidos = false;
     this.cargarSonidosAleatorios().then(() => {
     this.listoSonidos = true;
@@ -11,7 +12,17 @@ class SoldadoRojo extends Personaje {
     });
   }
 
-    async cargarSonidosAleatorios() {
+
+  atributos(){
+    return (
+      "ID: " + this.iD + "\n" +
+      "VIDA: " + this.vida + "\n" +
+      "Vel: " + this.velocidad + "\n"+
+      "Estado: " + this.estadoActual
+    );
+  }
+
+  async cargarSonidosAleatorios() {
     this.sonidos = [];
     const rutas = [
       'assets/sonidoOrcoRojo/aplastarlos sin piedad.mp3',
@@ -46,9 +57,12 @@ class SoldadoRojo extends Personaje {
     }
   }
 
+  deseleccionar() {
+    this.sprite.tint = 0xFFFFFF; // Color original (sin tinte)
+  }
+
   async cargarSpriteAnimado() {
     const json = await PIXI.Assets.load('assets/textureSoldadoRojo/textureSoldadoRojo.json');
-
     this.animaciones = {
         abajoMov: json.animations["abajoMov"],
         arribaMov: json.animations["arribaMov"],

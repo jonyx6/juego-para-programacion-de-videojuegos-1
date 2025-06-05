@@ -2,6 +2,7 @@ class MinaDeOro extends ObjetosEscenario {
     constructor(x,y,juego){
         super(x,y,juego)
         this.cantOro = 12.500 ;
+        this.estadoActual = 'activa';
     }
 
     async cargarSpritesAnimados() {
@@ -20,5 +21,18 @@ class MinaDeOro extends ObjetosEscenario {
         this.ancho = this.sprite.width;
         this.alto = this.sprite.height;
     }
+    
+    atributos(){
+        return (
+        "Estado: " + this.estadoActual + "\n" +
+        "cantOro: " + this.cantOro + "\n" 
+        );
+    }
 
+    setSeleccionado(estado) {
+    if (this.sprite) {
+      this.sprite.tint = estado ? 0xff0000 : 0xFFFFFF;
+      if (estado) this.emitirSonidoAleatorio();
+    }
+  }
 }

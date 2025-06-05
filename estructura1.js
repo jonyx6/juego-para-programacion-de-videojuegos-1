@@ -1,7 +1,8 @@
 class Gendarmeria extends ObjetosEscenario{
     constructor(x, y, juego){
         super(x, y, juego)
-        
+        this.vida = 100
+        this.estadoActual = 'activa';
     };
 
     async cargarSpritesAnimados() {
@@ -15,9 +16,19 @@ class Gendarmeria extends ObjetosEscenario{
         this.sprite.y = 0;
         this.sprite.play();
         this.listo = true;
+        this.sprite.zIndex=100;
         this.container.addChild(this.sprite)
         this.ancho = this.sprite.width;
         this.alto = this.sprite.height;
+    }
+
+    atributos(){
+        return (
+        "Estado: "  + this.estadoActual + "\n" +
+        "Vida : "   + this.vida + "\n" 
+       
+
+        );
     }
 
 }

@@ -42,6 +42,7 @@ class Juego {
     // Iniciar la app de PIXI y luego cargar el juego
     this.app.init({ width: this.ancho, height: this.alto }).then(() => {
       this.inicializarJuego();
+      this.iniciarMusica();
     });
   }
 
@@ -54,6 +55,8 @@ class Juego {
     });
   }
 
+
+
   // Método principal que inicia toda la lógica del juego
   inicializarJuego() {
     document.body.appendChild(this.app.canvas);
@@ -61,8 +64,9 @@ class Juego {
     this.ponerFondo();// mas al fondo. es importante el orden--
     this.crearContainerPrincipal();
     this.instanciarComponentes();
-    //inicializar musica del juego
-    this.iniciarMusica();
+    
+    
+    this.crearUi();
     
     //paredes de grid
     //const generador = new GeneradorParedesAleatorias(this.grid);
@@ -83,6 +87,10 @@ class Juego {
 
   }
 
+  crearUi(){
+    this.ui= new UI(this)
+  }
+
   iniciarMusica(){
     const musicaFondo = new Howl({
     src: ['Elwynn Forest - Music & Ambience - World of Warcraft.mp3'],
@@ -91,6 +99,8 @@ class Juego {
     });
     musicaFondo.play();
   }
+
+  
 
   // Crea el contenedor principal donde se agregan todos los elementos del juego
   crearContainerPrincipal() {
@@ -104,8 +114,7 @@ class Juego {
   // Instancia los módulos necesarios para el juego (grilla, mouse, campo vectorial)
   instanciarComponentes() {
     this.grid = new Grid(this,32);
-    
-    this.mouseManager = new MouseManager(this);
+    this.cursor =  new MouseManager(this,this.app)
   }
 
   // Carga y agrega el fondo del mapa
@@ -120,18 +129,16 @@ class Juego {
 
   // Crea los personajes iniciales del juego
   crearEntidades() {
-    this.crearTrabajadoresRojos(1);
-    this.crearCaballerosAzules(1);
-    //this.crearCaballerosRojos(5);
-    this.cargarArbolesEnCeldasBloqueadas();
-    // MINAS DE ORO
-    this.crearMinaDeOro(1 , 500, 200);
-    this.crearMinaDeOro(1 , 1600, 800);
-    this.casaHumana(1 , 1500,700)
     
+    this.crearMinaDeOro(1 , 400, 200);
+    this.crearMinaDeOro(1 , 1600, 700);
+    this.casaHumana(1 , 1500,700)
+    this.cargarCasaOrca(1)
     this.crearSoldadosAzules(6)
     this.crearSoldadosRojos(6)
-    this.cargarCasaOrca(1)
+    this.crearTrabajadoresRojos(1);
+    this.crearCaballerosAzules(1);
+    this.cargarArbolesEnCeldasBloqueadas();
     this.app.stage.sortableChildren = true;
     this.containerPrincipal.sortableChildren = true;
     
@@ -144,20 +151,16 @@ class Juego {
     this.caballerosRojos.forEach(p => p.cambiarOrdenEnZ());
     this.caballerosRojos.forEach(p => p.cargarSonidosAleatorios());
     this.objetosDeEscenario.forEach(o => o.cambiarOrdenEnZ());
-    
-    
-    
-
-
     this.time = time;
     this.contadorDeFrame++;
 
     // Actualizar todas las entidades (personajes)
     for (const entidad of this.entidades) {
       entidad.update(time);
+      entidad.render();
 
-    this.debugGraphics.clear();
-    this.grid.render(this.debugGraphics);
+      this.debugGraphics.clear();
+      this.grid.render(this.debugGraphics);
 
     }
 
@@ -222,7 +225,7 @@ class Juego {
       if (
         celda.blocked &&               // La celda está bloqueada
         celda.y < 700 &&              // No queremos árboles con Y >= 700
-        celda.entities.length === 0   // No hay ya una entidad ocupando la celda
+        celda.entities.length ==0  // No hay ya una entidad ocupando la celda
       ) {
         const arbol = new Arbol(celda.centerX, celda.y + celda.height, this);
 
@@ -290,11 +293,7 @@ class Juego {
     await Promise.all(promesas);
   };
 
-  async cargarCursor() {
-    this.cursor = new Puntero(this.app, this);
-    this.cursor.crearContainer();
-    await this.cursor.cargarSpritesAnimados(); // Asegurás que cargue bien antes de seguir
-  }
+
 
   crearSoldadosRojos(cantidad) {
     for (let i = 0; i < cantidad; i++) {
@@ -408,7 +407,7 @@ class Juego {
 
 
   async casaHumana(cantidad) {
-        if (!this.grid) {
+    if (!this.grid) {
       console.error("Grid no inicializada al llamar a cargarCasaOrca");
       return;
     }
@@ -416,7 +415,7 @@ class Juego {
     const promesas = [];
 
     for (let i = 0; i < cantidad; i++) {
-      const casa = new Gendarmeria(0, 0, this); // coordenadas temporales
+      const casa = new GendarmeriaHumana(0, 0, this); // coordenadas temporales
 
       promesas.push(
         casa.cargarSpritesAnimados().then(() => {
