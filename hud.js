@@ -14,15 +14,15 @@ class UI{
         this.textoEnPantalla.y = 5;
         this.textoEnPantalla.text ="hola jony como estas?"
         this.textoEnPantalla.zIndex=100
-        this.container.addChild(this.textoEnPantalla);
+        this.containerHud.addChild(this.textoEnPantalla);
     };
 
     crearContainer() {
-    this.container = new PIXI.Container();
-    this.container.name = "interfaz";
-    this.container.y= juego.alto *0.9
-    this.juego.containerPrincipal.addChild(this.container);
-    this.container.zIndex =200
+    this.containerHud = new PIXI.Container();
+    this.containerHud.name = "interfaz";
+    this.containerHud.y= juego.alto *0.9
+    this.juego.containerPrincipal.addChild(this.containerHud);
+    this.containerHud.zIndex =200
     }
 
     async agregarImagen(){
@@ -31,15 +31,21 @@ class UI{
         interfazSprite.anchor.set(0);
         interfazSprite.x = 0;
         interfazSprite.y = 0;
-        this.container.addChild(interfazSprite);
+        this.containerHud.addChild(interfazSprite);
     }
 
     mostrarAtributosDe_(variosPersonajes){
         this.textoEnPantalla.text =variosPersonajes;
     }   
-    
 
+    subir(){
+        this.containerHud.y = juego.alto * 0.85;
+    }
 
-    
+    bajar(){
+        this.containerHud.y = juego.alto *2;
+        console.log("hud abajo")
+    }
+
 
 }

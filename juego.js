@@ -163,7 +163,8 @@ class Juego {
       this.grid.render(this.debugGraphics);
 
     }
-
+    this.cursor.eventosDelHud()
+    
     // Mover la cámara si el mouse está en los bordes
     this.moverCamara();
   }
@@ -426,6 +427,7 @@ class Juego {
 
           this.containerPrincipal.addChild(casa.container);
           this.objetosDeEscenario.push(casa);
+          
 
           // Ajustar posición tomando en cuenta anclaje (0.5, 1)
           const xAjustado = casa.container.x - casa.ancho / 2;

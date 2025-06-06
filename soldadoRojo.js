@@ -2,6 +2,8 @@ class SoldadoRojo extends Personaje {
   constructor(x, y, app, i, juego) {
     super(x, y, app, i, juego);
     this.velocidad = 1.75;
+    this.defensa = 7;
+    this.ataque = 13;
     this.cargarSpriteAnimado();
     this.sonidos = [];
     this.vida=100
@@ -15,8 +17,8 @@ class SoldadoRojo extends Personaje {
 
   atributos(){
     return (
-      "ID: " + this.iD + "\n" +
-      "VIDA: " + this.vida + "\n" +
+      "ID: " + this.iD  + "VIDA: " + this.vida + "\n" +
+      "def:"+ this.defensa + "ata:" +this.ataque +"\n"+
       "Vel: " + this.velocidad + "\n"+
       "Estado: " + this.estadoActual
     );

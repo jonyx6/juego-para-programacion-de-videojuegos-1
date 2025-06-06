@@ -4,6 +4,12 @@ class Arbol extends ObjetosEscenario{
         this.cantMadera=500;
     };
 
+    atributos(){
+        return (
+        "cantMadera: " + this.cantMadera 
+        );
+    }
+
     async cargarSpritesAnimados() {
         let json = await PIXI.Assets.load('assets/arbol/texture.json');
         this.animaciones['idle'] = json.animations["idle"];

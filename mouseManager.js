@@ -339,20 +339,22 @@ class MouseManager {
       case 'entity':
         this.juego.selectedEntities = [entity];
         this.personajesSeleccionados = [entity];
-        this._callMethod(entity, 'setSeleccionado', true);
+        this._callMethod(entity, 'seleccionar', true);
         break;
 
       case 'personaje':
+        this.juego.selectedEntities = [entity];
         this.personajesSeleccionados = [entity];
         this.juego.selectedEntities = [entity];
-        this._callMethod(entity, 'setSeleccionado');
+        this._callMethod(entity, 'seleccionar');
         //this._callMethod(entity, 'emitirSonidoAleatorio');
         break;
 
       case 'objeto':
+        this.juego.selectedEntities = [entity];
         this.objetosSeleccionados = [entity];
         this.juego.objetosSeleccionados = [entity];
-        this._callMethod(entity, 'setSeleccionado');
+        this._callMethod(entity, 'seleccionar');
         break;
     }
   }
@@ -657,7 +659,7 @@ class MouseManager {
   _clearSelectionBox() {
     if (this.juego.selectionBox) {
       this.juego.selectionBox.clear();
-      this.juego.selectedEntities.deseleccionar();
+      //this.juego.selectedEntities.deseleccionar();
     }
   }
 

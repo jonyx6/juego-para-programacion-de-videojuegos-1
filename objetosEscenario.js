@@ -62,11 +62,11 @@ class ObjetosEscenario {
     }
 
     setSeleccionado(estado) {
-    if (this.sprite) {
-      this.sprite.tint = estado ? 0xff0000 : 0xFFFFFF;
-      if (estado) this.emitirSonidoAleatorio();
+      if (this.sprite) {
+        this.sprite.tint = estado ? 0xff0000 : 0xFFFFFF;
+        if (estado) this.emitirSonidoAleatorio();
+      }
     }
-  }
     
     deseleccionar() {
         this.sprite.tint = 0xFFFFFF; // Color original (sin tinte)

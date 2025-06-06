@@ -25,9 +25,7 @@ class Gendarmeria extends ObjetosEscenario{
     atributos(){
         return (
         "Estado: "  + this.estadoActual + "\n" +
-        "Vida : "   + this.vida + "\n" 
-       
-
+        "Vida : "   + this.vida + "\n"  
         );
     }
 
