@@ -4,6 +4,7 @@ class SoldadoRojo extends Personaje {
     this.velocidad = 1.75;
     this.defensa = 7;
     this.ataque = 13;
+    this.dirImagen ="assets/hud/soldadoRojo.jpg"
     this.cargarSpriteAnimado();
     this.sonidos = [];
     this.vida=100

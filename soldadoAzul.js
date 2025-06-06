@@ -4,6 +4,7 @@ class SoldadoAzul extends Personaje {
     this.velocidad = 1.75;
     this.sonidos = [];
     this.listoSonidos = false;
+    this.dirImagen ="assets/hud/soldadoAzul2.jpg"
     this.cargarSpriteAnimado();
     this.cargarSonidosAleatorios().then(() => {
       this.listoSonidos = true;

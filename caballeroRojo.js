@@ -208,6 +208,7 @@ class CaballeroRojo extends Personaje {
   constructor(x, y, app, i, juego) {
     super(x, y, app, i, juego);
     this.cargarSpriteAnimado();
+    this.dirImagen ="assets/hud/caballeroazul.jpg"
     this.vida = 10;
     this.velocidad = 3;
   }

@@ -1,8 +1,8 @@
 class Juego {
   constructor() {
     // Dimensiones del canvas
-    this.ancho = 1920;
-    this.alto = 1080;
+    this.ancho =1920;
+    this.alto =1080;
 
     // App principal de PIXI
     this.app = new PIXI.Application({
@@ -42,7 +42,7 @@ class Juego {
     // Iniciar la app de PIXI y luego cargar el juego
     this.app.init({ width: this.ancho, height: this.alto }).then(() => {
       this.inicializarJuego();
-      this.iniciarMusica();
+      
     });
   }
 

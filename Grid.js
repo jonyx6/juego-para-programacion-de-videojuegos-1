@@ -114,6 +114,7 @@ class Grid {
             // Saltar esta celda, no dibujar nada si está bloqueada y Y >= 700
             continue;
           }
+          // dibuja el cuadro
           /*graphics.beginFill(0xffffff, 0.8);
           graphics.drawRect(col * this.cellSize, yPixel, this.cellSize, this.cellSize);
           graphics.endFill();*/

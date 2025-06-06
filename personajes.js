@@ -7,6 +7,7 @@ class Personaje {
     this.x = x;
     this.y = y;
     this.vida = 5;
+    this.dirImagen = "bg.jpg"
     this.velocidad = 1;
     this.listo = false;
     this.estadoActual = 'idle';
@@ -24,8 +25,6 @@ class Personaje {
     });
 
   }
-
-
 
   atributos(){
     return (
@@ -224,7 +223,8 @@ class Personaje {
   seleccionar() {
         // Podés mostrar un borde, sombra, o simplemente marcarlo como seleccionado
         console.log("objeto seleccionado");
-        this.sprite.tint = 0x00ff00; // Lo tiñe de verde al seleccionarlo
+        this.sprite.tint = 0x00ff00;
+        this.emitirSonidoAleatorio() // Lo tiñe de verde al seleccionarlo
   }
 
   setSeleccionado(estado) {

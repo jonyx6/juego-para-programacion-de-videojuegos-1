@@ -37,18 +37,22 @@ class MouseManager {
     this.juego.containerPrincipal.addChild(this.container);
   }
 
-  eventosDelHud(){
-    this.app.canvas.onmousedown =(event)=>{
+  eventosDelHud() {
+    this.app.canvas.onmousedown = (event) => {
       console.log(event);
       const entity = this.juego.selectedEntities;
-    if (entity && entity.length > 0) {
+
+      if (entity && entity.length > 0) {
         entity.forEach(entity => {
-            const Información = entity.atributos()
-            this.juego.ui.mostrarAtributosDe_(Información);
-          });
-        }
+          const informacion = entity.atributos();
+          const imagen = entity.dirImagen; 
+          this.juego.ui.mostrarAtributosDe_(informacion);
+          this.juego.ui.agregarImagenDe_(imagen);
+        });
       }
+    }
   }
+
 
   /**
    * Valida que el objeto juego tenga las propiedades mínimas requeridas
