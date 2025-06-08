@@ -13,11 +13,11 @@ class MouseManager {
   static SELECTION_LINE_WIDTH = 2;
   
 
-  constructor(juego,app) {
+  constructor(juego,app, contenedor) {//08/06/2025
     this._validateGameObject(juego);
     this.juego = juego;
     this.app =app;
-  
+    this.contenedor = contenedor;//08/06/2025
     
     // Estado de selección
     this.personajesSeleccionados = [];
@@ -29,6 +29,7 @@ class MouseManager {
     this.puntoInicioSeleccion = null;
   
     this._initializeComponents();
+    this._initZoomControl(); //08/06/2025  zoom camera
   }
 
 
@@ -107,45 +108,13 @@ class MouseManager {
    * Convierte coordenadas de evento a coordenadas locales del canvas
    * Soluciona problemas de desplazamiento cuando el canvas no está en (0,0)
    */
+    //08/06/2025------------------------------------------------------------------------------
   _getLocalCoordinates(evento) {
-    // Si el evento ya tiene coordenadas locales correctas, usarlas
-    if (evento.global) {
-      return evento.global;
-    }
-
-    // Obtener el canvas de PIXI
-    const canvas = this.juego.app.view;
-    if (!canvas) {
-      console.warn('No se pudo obtener el canvas de PIXI');
-      return { x: 0, y: 0 };
-    }
-
-    // Obtener las coordenadas del evento nativo
-    const nativeEvent = evento.data?.originalEvent || evento;
-    let clientX = nativeEvent.clientX;
-    let clientY = nativeEvent.clientY;
-
-    // Si no hay coordenadas del cliente, usar pageX/pageY
-    if (clientX === undefined) {
-      clientX = nativeEvent.pageX;
-      clientY = nativeEvent.pageY;
-    }
-
-    // Obtener el rectángulo del canvas
-    const rect = canvas.getBoundingClientRect();
-    
-    // Calcular coordenadas locales considerando:
-    // - Posición del canvas en la página
-    // - Scroll de la página
-    // - Escalado del canvas
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
-    
-    const localX = (clientX - rect.left) * scaleX;
-    const localY = (clientY - rect.top) * scaleY;
-
-    return { x: localX, y: localY };
+    const global = this.app.renderer.events.pointer.global;
+    const local = this.contenedor.toLocal(global);
+    return { x: local.x, y: local.y };
   }
+//--------------------------------------------------------------------------------------
 
   /**
    * Inicializa el seguimiento del mouse
@@ -253,9 +222,7 @@ class MouseManager {
     const entity = this._findEntityAtPosition(position);
     if (entity) {
       this._selectSingleEntity(entity);
-      
     }
-    
   }
 
   /**
@@ -708,6 +675,35 @@ class MouseManager {
       console.error('Error destruyendo MouseManager:', error);
     }
   }
+    //08/06/2025 para zoom de mouse-----------------------------------------
+  _initZoomControl() {
+    const container = this.juego.containerPrincipal;
+    const minZoom = 1;//0.5 lo que se puede alejar
+    const maxZoom = 2;//2 lo que se acerca
+
+    window.addEventListener('wheel', (e) => {
+      const zoomAmount = -e.deltaY * 0.0004;//0.001
+
+      const scaleBefore = container.scale.x;
+      let newScale = scaleBefore + zoomAmount;
+      newScale = Math.max(minZoom, Math.min(maxZoom, newScale));
+
+      const rect = this.app.view.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      const worldX = (mouseX - container.x) / scaleBefore;
+      const worldY = (mouseY - container.y) / scaleBefore;
+
+      container.scale.x = container.scale.y = newScale;
+
+      container.x = mouseX - worldX * newScale;
+      container.y = mouseY - worldY * newScale;
+
+      this.juego.limitarCamara(); // Llamar para que no se salga del mapa
+    });
+  }
+  //--------------------------------------------------------------------------------------
 }
 
 // Mantener compatibilidad global

@@ -235,13 +235,14 @@ class Personaje {
     this.container.zIndex = this.y + 100;
   }
 
+  //08/06/2025 nueva limitacion de mapas --------------------------------------
   limitarAlMapa() {
-    const maxX = this.juego.ancho * 2;
-    const maxY = this.juego.alto * 2;
+    const maxX = this.juego.limiteAncho;
+    const maxY = this.juego.limiteAlto;
 
     this.x = Math.max(0, Math.min(this.x, maxX));
     this.y = Math.max(0, Math.min(this.y, maxY));
-  }
+  }//----------------------------------------------------
 
   /**
    * Busca un enemigo cercano dentro del array y ataca si lo encuentra.

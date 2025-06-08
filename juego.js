@@ -58,11 +58,14 @@ class Juego {
 
 
   // Método principal que inicia toda la lógica del juego
-  inicializarJuego() {
+  async inicializarJuego() {
     document.body.appendChild(this.app.canvas);
     window.__PIXI_APP__ = this.app;
-    this.ponerFondo();// mas al fondo. es importante el orden--
+
     this.crearContainerPrincipal();
+    await this.ponerFondo1(); // fondo alto
+    //await this.ponerFondo2(); //fondo ancho
+    //this.ponerFondo3();
     this.instanciarComponentes();
     
     
@@ -111,12 +114,13 @@ class Juego {
 
   // Instancia los módulos necesarios para el juego (grilla, mouse, campo vectorial)
   instanciarComponentes() {
-    this.grid = new Grid(this,32);
-    this.cursor =  new MouseManager(this,this.app)
+    //this.grid = new Grid(this,32);
+    //this.cursor =  new MouseManager(this,this.app)
+    this.cursor =  new MouseManager(this,this.app, this.containerPrincipal)//08/06/2025
   }
 
   // Carga y agrega el fondo del mapa
-  async ponerFondo() {
+  async ponerFondoJonyViejo() {
     const textura = await PIXI.Assets.load("bg.png");
     this.fondo = new PIXI.Sprite(textura);
     this.fondo.width = this.ancho;
@@ -124,6 +128,45 @@ class Juego {
     this.fondo.zIndex = -1;
     this.app.stage.addChild(this.fondo);
   }
+  //08/06/2025 nuevos fondos prueba---------------------------------------
+  async ponerFondo1() {
+    const textura = await PIXI.Assets.load("map_1980-2160.png");
+    this.fondo = new PIXI.Sprite(textura);
+    this.fondo.width = 1920;
+    this.fondo.height = 2160;
+    this.fondo.zIndex = -1;
+    this.containerPrincipal.addChild(this.fondo);
+
+    this.limiteAncho = this.fondo.width;
+    this.limiteAlto = this.fondo.height;
+
+    // ✅ Crear el grid según tamaño del fondo
+    const tamCelda = 32;
+    const cols = Math.ceil(this.fondo.width / tamCelda);
+    const rows = Math.ceil(this.fondo.height / tamCelda);
+
+    this.grid = new Grid(this, cols, rows, tamCelda);
+  }
+
+  async ponerFondo2() {
+    const textura = await PIXI.Assets.load("map_3840-1084.png");
+    this.fondo = new PIXI.Sprite(textura);
+    this.fondo.width = 3840;
+    this.fondo.height = 1084;
+    this.fondo.zIndex = -1;
+    this.containerPrincipal.addChild(this.fondo);
+
+    this.limiteAncho = this.fondo.width;
+    this.limiteAlto = this.fondo.height;
+
+    // ✅ Crear el grid según tamaño del fondo
+    const tamCelda = 32;
+    const cols = Math.ceil(this.fondo.width / tamCelda);
+    const rows = Math.ceil(this.fondo.height / tamCelda);
+
+    this.grid = new Grid(this, cols, rows, tamCelda);
+  }
+//----------------------------------------------------------------------
 
   // Crea los personajes iniciales del juego
   crearEntidades() {
@@ -152,10 +195,6 @@ class Juego {
     this.caballerosRojos.forEach(p => p.cargarSonidosAleatorios());
     this.objetosDeEscenario.forEach(o => o.cambiarOrdenEnZ());
     
-
-
-    
-
     this.time = time;
     this.contadorDeFrame++;
 
@@ -268,13 +307,16 @@ class Juego {
   }
 
   // Evita que la cámara se salga del mapa
+//08/06/2025 zoom camara------------------------------------------------------------------------
   limitarCamara() {
-    const minX = -this.fondo.width + this.ancho;
-    const minY = -this.fondo.height + this.alto;
+    const escala = this.containerPrincipal.scale.x;
+    const minX = -this.fondo.width * escala + this.ancho;
+    const minY = -this.fondo.height * escala + this.alto;
 
     this.containerPrincipal.x = Math.min(0, Math.max(minX, this.containerPrincipal.x));
     this.containerPrincipal.y = Math.min(0, Math.max(minY, this.containerPrincipal.y));
   }
+//------------------------------------------------------------------------------------------------
 
   async cargarCasaOrca(cantidad) {
     if (!this.grid) {

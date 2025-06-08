@@ -1,11 +1,11 @@
 // v2
 class Grid {
-  constructor(juego, cellSize = 64) {
+  constructor(juego, cols, rows, cellSize) {
     this.juego = juego;
     this.cellSize = cellSize;
 
-    this.cols = Math.ceil(juego.ancho / cellSize);
-    this.rows = Math.ceil(juego.alto / cellSize);
+    this.cols = cols;
+    this.rows = rows;
 
     this.cells = this.crearCeldas();
     this.vectorField = this.crearCampoVectorial();//----------no lo usa A*
