@@ -1,3 +1,5 @@
+
+
 class UI {
     constructor(juego) {
         this.juego = juego;
@@ -24,7 +26,7 @@ class UI {
     crearContainer() {
         this.containerHud = new PIXI.Container();
         this.containerHud.name = "interfaz";
-        this.containerHud.y = this.juego.alto * 0.9;
+        this.containerHud.y = this.juego.alto * 2;
         this.juego.containerPrincipal.addChild(this.containerHud);
         this.containerHud.zIndex = 200;
     }
@@ -76,11 +78,16 @@ class UI {
     mostrarAtributosDe_(variosPersonajes) {
         console.log("Mostrando atributos:", variosPersonajes);
         this.textoEnPantalla.text = variosPersonajes;
+        this.subir();
+
+        setTimeout(this.bajar.bind(this), 8000)
     }
 
     subir() {
         this.containerHud.y = this.juego.alto * 0.9;
         console.log("hud subio");
+
+
     }
 
     bajar() {

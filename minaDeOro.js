@@ -2,6 +2,7 @@ class MinaDeOro extends ObjetosEscenario {
     constructor(x,y,juego){
         super(x,y,juego)
         this.cantOro = 12.500 ;
+        this.dirImagen ="assets/hud/mina.jpg"
         this.estadoActual = 'activa';
     }
 

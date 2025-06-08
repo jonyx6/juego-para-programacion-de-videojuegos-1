@@ -2,6 +2,7 @@ class Arbol extends ObjetosEscenario{
     constructor(x, y, juego){
         super(x, y, juego)
         this.cantMadera=500;
+        this.dirImagen ="assets/hud/arbol.jpg"
     };
 
     atributos(){

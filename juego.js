@@ -151,6 +151,11 @@ class Juego {
     this.caballerosRojos.forEach(p => p.cambiarOrdenEnZ());
     this.caballerosRojos.forEach(p => p.cargarSonidosAleatorios());
     this.objetosDeEscenario.forEach(o => o.cambiarOrdenEnZ());
+    
+
+
+    
+
     this.time = time;
     this.contadorDeFrame++;
 

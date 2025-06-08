@@ -2,6 +2,7 @@ class Gendarmeria extends ObjetosEscenario{
     constructor(x, y, juego){
         super(x, y, juego)
         this.vida = 100
+        this.dirImagen ="assets/hud/casaOrca.jpg"
         this.estadoActual = 'activa';
     };
 

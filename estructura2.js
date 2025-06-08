@@ -3,6 +3,7 @@ class GendarmeriaHumana extends ObjetosEscenario{
         super(x, y, juego)
         this.vida = 100
         this.estadoActual = 'activa';
+        this.dirImagen ="assets/hud/casaHumana.jpg"
         
     };
 
