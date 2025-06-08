@@ -162,6 +162,7 @@ class Grid {
 
   // === Pathfinding ===
   // --- Dijkstra --- original
+  /*
   calcularCaminoDesdeHasta(origen, destino) {
     const totalCeldas = this.cells.length;
     const gScore = new Array(totalCeldas).fill(Infinity);
@@ -217,7 +218,7 @@ class Grid {
     }
     return path;
   }
-
+  */
 
   // --- A* --- nuevo
   calcularCaminoDesdeHasta(origen, destino) {
@@ -270,12 +271,11 @@ class Grid {
   return this.reconstruirCamino(anterior, origenIdx, destinoIdx);
   }
 
-calcularHeuristica(a, b) {
+  calcularHeuristica(a, b) {
   const dx = Math.abs(a.col - b.col);
   const dy = Math.abs(a.row - b.row);
   return Math.hypot(dx, dy); // Euclidiana, podés usar dx + dy si preferís Manhattan
-}
-
+  }
 
   distanciaEntre(a, b) {
   const dx = b.centerX - a.centerX;
@@ -302,8 +302,6 @@ calcularHeuristica(a, b) {
       this.cells[index].blocked = true;
     }
   }
-
-
 
  //////////////////////
   getCeldasOcupadasPorSprite(x, y, width, height) {

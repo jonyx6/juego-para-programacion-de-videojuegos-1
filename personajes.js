@@ -35,7 +35,6 @@ class Personaje {
     );
   }
 
-
   async cargarSonidosAleatorios() {
     this.sonidos = [];
     const rutas = [
@@ -51,7 +50,6 @@ class Personaje {
     }
   }
 
-
   emitirSonidoAleatorio() {
     if (!this.listoSonidos) {
       console.warn("Sonidos no están listos aún");
@@ -64,7 +62,6 @@ class Personaje {
     const randomIndex = Math.floor(Math.random() * this.sonidos.length);
     this.sonidos[randomIndex].play();
   }
-
 
   // === Inicialización ===
   crearContainer() {
@@ -184,7 +181,6 @@ class Personaje {
     }
   }
 
-
   // === Apariencia ===
   actualizarSprite() {
     if (this.sprite) {
@@ -301,6 +297,7 @@ class Personaje {
       this.sprite.onComplete = null;
     };
   }
+
   reproducirAnimacionDeAtaque_v2(nombreAnimacion, enemigo) {
     const animacion = this.animaciones[nombreAnimacion];
 
@@ -507,6 +504,7 @@ class Personaje {
       this._cambiarEstadoIdleDisponible();
     }
   }
+
 /**
  * Si no se pudo determinar la dirección, elegir la primera animación idle disponible.
  */
@@ -526,7 +524,5 @@ class Personaje {
     // Si no hay ninguna idle disponible, no hace nada
     console.warn(`[${this.constructor.name}] No hay animaciones idle disponibles.`);
   }
-
-
 
 }

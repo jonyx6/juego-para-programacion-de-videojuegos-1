@@ -1233,13 +1233,13 @@
     ],
 
 
-    "ladoAtk": [
+    "deLadoAtk": [
       "e_Knight/27.png",
       "e_Knight/32.png",
       "e_Knight/37.png",
       "e_Knight/42.png"
     ],
-    "ladoMov": [
+    "deLadoMov": [
       "e_Knight/02.png",
       "e_Knight/07.png",
       "e_Knight/12.png",
@@ -1283,8 +1283,21 @@
     "digArribaMuerte": [
       "e_Knight/46.png"
     ],
-    "idle": [
+
+    "idleArri": [
+      "e_Knight/00.png"
+    ],
+    "idleDiaArri": [
+      "e_Knight/01.png"
+    ],
+    "idleLado": [
+      "e_Knight/02.png"
+    ],
+    "idleDiaAbaj": [
       "e_Knight/03.png"
+    ],
+    "idleAbaj": [
+      "e_Knight/04.png"
     ]
 
   },

@@ -7,7 +7,7 @@ class SoldadoRojo extends Personaje {
     this.dirImagen ="assets/hud/soldadoRojo.jpg"
     this.cargarSpriteAnimado();
     this.sonidos = [];
-    this.vida=100
+    //this.vida=100
     this.listoSonidos = false;
     this.cargarSonidosAleatorios().then(() => {
     this.listoSonidos = true;
@@ -102,6 +102,7 @@ class SoldadoRojo extends Personaje {
 
     this.listo = true;
   }
+
   obtenerAnimacionDeAtaque(dx, dy) {
     const umbral = 0.1;
 

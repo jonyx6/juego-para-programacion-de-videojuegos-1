@@ -1,220 +1,25 @@
-//---------------------------------------------------------------------------------------------------------------con parametros de vel y dir
-/*
 class CaballeroRojo extends Personaje{
-    constructor(x, y, app, i, juego) {
-        super(x, y, app, i, juego);
-
-        this.velocidad = 3;
-        
-        this.listo = false;
-
-        this.teclas = {}; // ← Nuevo: para controlar múltiples teclas a la vez
-        
-        this.animaciones = {};
-        
-        this.estadoActual = 'idle'; // estado al instanciar, va cambiando despues
-
-        this.cargarSpriteAnimado();
-        this.setupKeyboardControls();
-        //textos
-        this.velocidadTexto = new PIXI.Text('', {//guarda en velocidadTexto el pixitext vacio y agrega estilos
-            fontSize: 16,
-            fill: '#ffffff',
-        });
-        this.velocidadTexto.anchor.set(0, 1); // ??
-        this.app.stage.addChild(this.velocidadTexto);//agrega el texto a la pantalla
-
-        //
-        this.atacando = false;
-    }
-
-    async cargarSpriteAnimado() {
-        let json = await PIXI.Assets.load('assets/e_Knight/texture.json');
-
-        // Guardar animaciones en el conjunto "animaciones"
-        this.animaciones['abajoMov'] = json.animations["abajoMov"];
-        this.animaciones['arribaMov'] = json.animations["arribaMov"];
-        this.animaciones['ladoMov'] = json.animations["ladoMov"];
-        this.animaciones['digAbajoMov'] = json.animations["digAbajoMov"];
-        this.animaciones['digArribaMov'] = json.animations["digArribaMov"];
-
-        this.animaciones['abajoAtk'] = json.animations["abajoAtk"];
-        this.animaciones['arribaAtk'] = json.animations["arribaAtk"];
-        this.animaciones['ladoAtk'] = json.animations["ladoAtk"];
-        this.animaciones['digAbajoAtk'] = json.animations["digAbajoAtk"];
-        this.animaciones['digArribaAtk'] = json.animations["digArribaAtk"];
-        
-        this.animaciones['idle'] = json.animations["idle"];
-
-
-        this.sprite = new PIXI.AnimatedSprite(this.animaciones['idle']);// asigna como estado inicial a idle
-        this.sprite.anchor.set(0.5, 1);//sentra el sprite
-        this.sprite.animationSpeed = 0.125;//velocidad de animacion
-        this.sprite.loop = true;
-        this.sprite.play();//ejecutar al instanciar
-        
-        if (this.container) {
-            this.container.addChild(this.sprite);
-        } else {
-            console.error("El contenedor no existe");
-            this.app.stage.addChild(this.sprite); // Fallback
-        }
-
-        this.sprite.x = this.x;//asigna la posicion x e y del sprite en el canvas
-        this.sprite.y = this.y;
-
-        this.listo = true;
-
-        //this.sprite.zIndex = 10; // Asegurar que esté por encima del fondo
-        //this.container.sortableChildren = true; // Habilitar ordenamiento por zIndex
-    }
-
-    cambiarEstado(nuevoEstado) {
-        if (this.estadoActual === nuevoEstado || !this.animaciones[nuevoEstado]) return;//si el estado el mismo, sale de la funcion
-
-        this.estadoActual = nuevoEstado;
-        this.sprite.textures = this.animaciones[nuevoEstado];
-        this.sprite.play();
-    }
-
-    setupKeyboardControls() {
-        window.addEventListener('keydown', (event) => {
-            this.teclas[event.key.toLowerCase()] = true;
-        });
-
-        window.addEventListener('keyup', (event) => {
-            this.teclas[event.key.toLowerCase()] = false;
-        });
-    }
-
-    update(time) {
-        super.update()
-        if (!this.listo) return;//si no esta cargada la animacion, sale
-
-        let vx = 0;
-        let vy = 0;
-
-        if (this.teclas['w']) vy -= 1;
-        if (this.teclas['s']) vy += 1;
-        if (this.teclas['a']) vx -= 1;
-        if (this.teclas['d']) vx += 1;
-
-        // Normalizar velocidad diagonal
-        if (vx !== 0 && vy !== 0) {
-            vx *= Math.SQRT1_2; // ≈ 0.707
-            vy *= Math.SQRT1_2;
-        }
-        // asigna al x e y la nueva velocidad
-        this.x += vx * this.velocidad;
-        this.y += vy * this.velocidad;
-
-        //this.cuandoLlegaAlMArgenAparecePorElOtroLado();//hace que apareca por el otro lado
-        this.manejarDireccionDelSprite(vx);//voltea al personaje al cambiar de direccion
-
-        // Cambiar animación según dirección
-        if (vx === 0 && vy === 0 && !this.atacando) {
-            this.cambiarEstado('idle');
-        } else if (vx !== 0 && vy === 0) {
-            this.cambiarEstado('ladoMov');
-        } else if (vx === 0 && vy > 0) {
-            this.cambiarEstado('abajoMov');
-        } else if (vx === 0 && vy < 0) {
-            this.cambiarEstado('arribaMov');
-        } else if (vx > 0 && vy > 0 || vx < 0 && vy > 0) {
-            this.cambiarEstado('digAbajoMov');
-        } else if (vx > 0 && vy < 0 || vx < 0 && vy < 0) {
-            this.cambiarEstado('digArribaMov');
-        }
-        // asigna al sprite la nueva osicion
-        this.sprite.x = this.x;
-        this.sprite.y = this.y;
-
-        // Calcular la magnitud de la velocidad
-        const magnitudVelocidad = Math.sqrt(vx * vx + vy * vy) * this.velocidad;
-
-        // Calcular dirección en grados
-        let direccion = Math.atan2(vy, vx); // Radianes
-        let direccionGrados = direccion * (180 / Math.PI); // A grados
-
-        // Mostrar texto
-        this.velocidadTexto.text = `Velocidad: ${magnitudVelocidad.toFixed(2)}\nDirección: ${direccionGrados.toFixed(1)}°\nVida: ${this.vida}`;
-
-        // Re-posicionar texto en esquina inferior izquierda
-        this.velocidadTexto.x = 10;
-        this.velocidadTexto.y = this.app.screen.height - 10;
-
-        this.verificarColisionConChaboncitos();
-
-    }
-
-
-    manejarDireccionDelSprite(vx) {
-        if (vx > 0) {
-            this.sprite.scale.x = 1;
-        } else if (vx < 0) {
-            this.sprite.scale.x = -1;
-        }
-    }
-
-    verificarColisionConChaboncitos() {
-        if (this.atacando) return;
-    
-        for (let chaboncito of this.juego.caballerosRojos) {
-            const dx = chaboncito.x - this.x;
-            const dy = chaboncito.y - this.y;
-            const distancia = Math.hypot(dx, dy);
-    
-            if (distancia < 60) {
-                this.atacando = true;
-    
-                const angulo = Math.atan2(dy, dx) * (180 / Math.PI);
-    
-                if (angulo >= -30 && angulo <= 30) {
-                    this.cambiarEstado('ladoAtk');
-                } else if (angulo >= 150 || angulo <= -150) {
-                    this.cambiarEstado('ladoAtk');
-                } else if (angulo > 30 && angulo < 60) {
-                    this.cambiarEstado('digAbajoAtk');
-                } else if (angulo < -30 && angulo > -60) {
-                    this.cambiarEstado('digArribaAtk');
-                } else if (angulo >= 60 && angulo <= 120) {
-                    this.cambiarEstado('abajoAtk');
-                } else if (angulo <= -60 && angulo >= -120) {
-                    this.cambiarEstado('arribaAtk');
-                }
-    
-                this.sprite.loop = false;
-                this.sprite.gotoAndPlay(0);
-                
-                // 🛠️ Aplicar daño
-                //recibirDamage(chaboncito);
-                hacerDamageA(chaboncito)
-    
-                this.sprite.onComplete = () => {
-                    setTimeout(() => {
-                        this.cambiarEstado('idle');
-                        this.sprite.loop = true;
-                        this.atacando = false;
-                    }, 300); // Delay de 0.5 segundos después del ataque
-                };
-    
-                break;
-            }
-        }
-    }
-}*/
-
-class CaballeroRojo extends Personaje {
   constructor(x, y, app, i, juego) {
+    
     super(x, y, app, i, juego);
     this.cargarSpriteAnimado();
     this.dirImagen ="assets/hud/caballeroazul.jpg"
     this.vida = 10;
     this.velocidad = 3;
+
+    //variables configurables
+    this.puntoDeAtaque = { x: 1500, y: 500 }; // lugar donde se dirigen luego de reunirse
+    this.radioPatrulla = 192; // parámetro ajustable
+    this.enEspera = false; //maquina de estados
+    this.estado = 'patrullando'; //maquina de estados
+    this.radioDeAgrupacion = 192;// radio en el cual se van a agrupar
+    this.tiempoEspera = 2000 + Math.random() * 2000; //varia entre 2 a 4 segundos
+    this.rangoDeVista = 128;
+    //this.posicionInicial = { x, y };
+    //this.tiempoProximaPatrulla = 0;
   }
 
   async cargarSpriteAnimado() {
-    //const json = await PIXI.Assets.load('assets/knight/textureKnight.json');
     let json = await PIXI.Assets.load('assets/e_Knight/texture.json');
 
     this.animaciones = {
@@ -232,12 +37,15 @@ class CaballeroRojo extends Personaje {
 
       digAbajoMuerte: json.animations["digAbajoMuerte"],
       digArribaMuerte: json.animations["digArribaMuerte"],
-      idle: json.animations["idle"],
-
-
+      
+      idleArri: json.animations["idleArri"],
+      idleDiaArri: json.animations["idleDiaArri"],
+      idleLado: json.animations["idleLado"],
+      idleDiaAbaj: json.animations["idleDiaAbaj"],
+      idleAbaj: json.animations["idleAbaj"],
     };
 
-    this.sprite = new PIXI.AnimatedSprite(this.animaciones['idle']);
+    this.sprite = new PIXI.AnimatedSprite(this.animaciones['idleAbaj']);
     this.sprite.anchor.set(0.5, 0.5);
     this.sprite.animationSpeed = 0.1;
     this.sprite.loop = true;
@@ -249,6 +57,7 @@ class CaballeroRojo extends Personaje {
 
     this.listo = true;
   }
+
   obtenerAnimacionDeAtaque(dx, dy) {
     const umbral = 0.1;
 
@@ -261,4 +70,79 @@ class CaballeroRojo extends Personaje {
     return 'ladoAtk';
   }
 
+  irA() {}//blanquea los metodos para que no use los del mouse
+  irA_v2() {}
+
+  irAInterno(destX, destY) {//es el nuevo irA()
+    const origen = this.juego.grid.getCellAt(this.x, this.y);
+    const destino = this.juego.grid.getCellAt(destX, destY);
+    if (origen && destino) {
+      this.camino = this.juego.grid.calcularCaminoDesdeHasta(origen, destino);
+    }
+  }
+
+  PatrullarLugar(radio) { // se mueve de forma aleatoria cada un tiempo en un determinado radio
+    if (this.estado !== 'patrullando' || this.camino.length > 0 || this.enEspera) return;
+    
+    const origenCelda = this.juego.grid.getCellAt(this.x, this.y);
+    if (!origenCelda) return;
+
+    const celdasValidas = this.juego.grid.cells.filter(celda => {
+      if (celda.blocked) return false;
+      const dx = celda.centerX - origenCelda.centerX;
+      const dy = celda.centerY - origenCelda.centerY;
+      return Math.hypot(dx, dy) <= radio;
+    });
+
+    if (celdasValidas.length > 0) {
+      const aleatoria = celdasValidas[Math.floor(Math.random() * celdasValidas.length)];
+      this.irAInterno(aleatoria.centerX, aleatoria.centerY);
+
+      this.enEspera = true;
+      this.cambiarEstadoIdlePorDireccion();
+
+      setTimeout(() => {
+        this.enEspera = false;
+      }, this.tiempoEspera);
+    }
+  }
+
+  AgruparseParaAtaque() {// cuando detecta que esta cerca de un alidado, se juntan y se dirijen a un destino
+    if (this.estado !== 'patrullando') return;
+    const aliados = this.juego.caballerosRojos?.filter(
+      aliado => aliado !== this && Math.hypot(this.x - aliado.x, this.y - aliado.y) < this.radioDeAgrupacion
+    ) || [];
+    if (aliados.length >= 1) {
+      this.estado = 'agrupando';
+      this.irAInterno(this.puntoDeAtaque.x, this.puntoDeAtaque.y);
+    }
+  }
+
+  detectarYAtacarEnemigos(rango) {// si detecta que hay un enemigo cerca, va a atacarlo
+    if (!this.enemigos) return;
+    const enemigos = typeof this.enemigos === 'function' ? this.enemigos() : this.enemigos;
+    for (const enemigo of enemigos) {
+      if (!enemigo || enemigo.vida <= 0) continue;
+      const dist = Math.hypot(this.x - enemigo.x, this.y - enemigo.y);
+      if (dist <= rango) {
+        this.estado = 'atacando';
+        this.irAInterno(enemigo.x, enemigo.y);
+        return;
+      }
+    }
+    if (this.estado === 'atacando' && this.camino.length === 0 && !this.atacando) {
+      this.estado = 'agrupando';
+    }
+  }
+
+  update(time) {
+    super.update(time);
+    this.detectarYAtacarEnemigos(this.rangoDeVista);
+    if (this.estado === 'patrullando') {
+      this.PatrullarLugar(this.radioPatrulla);
+      this.AgruparseParaAtaque();
+    } else if (this.estado === 'agrupando') {
+      this.irAInterno(this.puntoDeAtaque.x, this.puntoDeAtaque.y);
+    }
+  }
 }

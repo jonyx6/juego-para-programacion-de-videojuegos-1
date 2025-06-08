@@ -95,6 +95,7 @@ class SoldadoAzul extends Personaje {
 
     this.listo = true;
   }
+  
   obtenerAnimacionDeAtaque(dx, dy) {
     const umbral = 0.1;
 
