@@ -1,0 +1,683 @@
+{
+  "frames": {
+    "peonpicando/peon1 picando.png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 239,
+        "h": 244
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 1,
+        "w": 239,
+        "h": 244
+      },
+      "sourceSize": {
+        "w": 255,
+        "h": 247
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/22.png": {
+      "frame": {
+        "x": 0,
+        "y": 244,
+        "w": 33,
+        "h": 49
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 18,
+        "y": 0,
+        "w": 33,
+        "h": 49
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/17.png": {
+      "frame": {
+        "x": 0,
+        "y": 293,
+        "w": 31,
+        "h": 49
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 20,
+        "y": 0,
+        "w": 31,
+        "h": 49
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/16.png": {
+      "frame": {
+        "x": 0,
+        "y": 342,
+        "w": 26,
+        "h": 49
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 20,
+        "y": 0,
+        "w": 26,
+        "h": 49
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/19.png": {
+      "frame": {
+        "x": 0,
+        "y": 391,
+        "w": 23,
+        "h": 49
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 8,
+        "y": 0,
+        "w": 23,
+        "h": 49
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/15.png": {
+      "frame": {
+        "x": 0,
+        "y": 440,
+        "w": 20,
+        "h": 49
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 19,
+        "y": 0,
+        "w": 20,
+        "h": 49
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/20.png": {
+      "frame": {
+        "x": 0,
+        "y": 489,
+        "w": 20,
+        "h": 49
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 19,
+        "y": 0,
+        "w": 20,
+        "h": 49
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/21.png": {
+      "frame": {
+        "x": 0,
+        "y": 538,
+        "w": 23,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 20,
+        "y": 0,
+        "w": 23,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/24.png": {
+      "frame": {
+        "x": 20,
+        "y": 440,
+        "w": 23,
+        "h": 48
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 8,
+        "y": 0,
+        "w": 23,
+        "h": 48
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/12.png": {
+      "frame": {
+        "x": 23,
+        "y": 391,
+        "w": 21,
+        "h": 45
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 20,
+        "y": 4,
+        "w": 21,
+        "h": 45
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/18.png": {
+      "frame": {
+        "x": 26,
+        "y": 342,
+        "w": 44,
+        "h": 27
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 19,
+        "w": 44,
+        "h": 27
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/09.png": {
+      "frame": {
+        "x": 31,
+        "y": 293,
+        "w": 26,
+        "h": 44
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 9,
+        "y": 3,
+        "w": 26,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/11.png": {
+      "frame": {
+        "x": 33,
+        "y": 244,
+        "w": 30,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 11,
+        "y": 6,
+        "w": 30,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/23.png": {
+      "frame": {
+        "x": 20,
+        "y": 488,
+        "w": 43,
+        "h": 30
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 14,
+        "w": 43,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/08.png": {
+      "frame": {
+        "x": 43,
+        "y": 436,
+        "w": 22,
+        "h": 43
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 11,
+        "y": 1,
+        "w": 22,
+        "h": 43
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/02.png": {
+      "frame": {
+        "x": 44,
+        "y": 386,
+        "w": 21,
+        "h": 42
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 17,
+        "y": 5,
+        "w": 21,
+        "h": 42
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/03.png": {
+      "frame": {
+        "x": 53,
+        "y": 337,
+        "w": 29,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 11,
+        "y": 1,
+        "w": 29,
+        "h": 41
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/13.png": {
+      "frame": {
+        "x": 57,
+        "y": 287,
+        "w": 35,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 11,
+        "y": 7,
+        "w": 35,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/07.png": {
+      "frame": {
+        "x": 65,
+        "y": 244,
+        "w": 35,
+        "h": 37
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 2,
+        "y": 12,
+        "w": 35,
+        "h": 37
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/06.png": {
+      "frame": {
+        "x": 100,
+        "y": 244,
+        "w": 36,
+        "h": 35
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 2,
+        "y": 13,
+        "w": 36,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/01.png": {
+      "frame": {
+        "x": 135,
+        "y": 244,
+        "w": 31,
+        "h": 35
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 8,
+        "y": 11,
+        "w": 31,
+        "h": 35
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/04.png": {
+      "frame": {
+        "x": 166,
+        "y": 244,
+        "w": 32,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 9,
+        "y": 12,
+        "w": 32,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/00.png": {
+      "frame": {
+        "x": 198,
+        "y": 244,
+        "w": 33,
+        "h": 31
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 16,
+        "w": 33,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/10.png": {
+      "frame": {
+        "x": 229,
+        "y": 244,
+        "w": 31,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 8,
+        "y": 17,
+        "w": 31,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/14.png": {
+      "frame": {
+        "x": 260,
+        "y": 244,
+        "w": 28,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 9,
+        "y": 17,
+        "w": 28,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonpicando/05.png": {
+      "frame": {
+        "x": 239,
+        "y": 0,
+        "w": 27,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 12,
+        "y": 19,
+        "w": 27,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 49
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "animations": {
+  "picando_up":[
+    "peonpicando/00.png",
+    "peonpicando/05.png",
+    "peonpicando/10.png",
+    "peonpicando/00.png",
+    "peonpicando/15.png",
+    "peonpicando/20.png"
+  ],
+  "picando_down":[
+    "peonpicando/04.png",
+    "peonpicando/09.png",
+    "peonpicando/14.png",
+    "peonpicando/04.png",
+    "peonpicando/19.png",
+    "peonpicando/24.png"
+
+  ],
+  "picando_right_up":[
+    "peonpicando/01.png",
+    "peonpicando/06.png",
+    "peonpicando/11.png",
+    "peonpicando/01.png",
+    "peonpicando/16.png",
+    "peonpicando/21.png"
+  ],
+  "picando_right":[
+    "peonpicando/02.png",
+    "peonpicando/07.png",
+    "peonpicando/12.png",
+    "peonpicando/02.png",
+    "peonpicando/17.png",
+    "peonpicando/22.png"
+  ],
+    "picando_right_down":[
+    "peonpicando/03.png",
+    "peonpicando/08.png",
+    "peonpicando/13.png",
+    "peonpicando/03.png",
+    "peonpicando/18.png",
+    "peonpicando/23.png"
+  ]
+
+},
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "texture.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 288,
+      "h": 586
+    },
+    "scale": 1
+  }
+}

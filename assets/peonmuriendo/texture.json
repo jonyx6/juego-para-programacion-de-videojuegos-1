@@ -1,0 +1,291 @@
+{
+  "frames": {
+    "peonmuriendo/peon1 muriendo.png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 225,
+        "h": 74
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 13,
+        "y": 2,
+        "w": 225,
+        "h": 74
+      },
+      "sourceSize": {
+        "w": 255,
+        "h": 83
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonmuriendo/06.png": {
+      "frame": {
+        "x": 225,
+        "y": 0,
+        "w": 50,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 41
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 41
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonmuriendo/02.png": {
+      "frame": {
+        "x": 275,
+        "y": 0,
+        "w": 29,
+        "h": 36
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 18,
+        "y": 4,
+        "w": 29,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 41
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonmuriendo/05.png": {
+      "frame": {
+        "x": 311,
+        "y": 0,
+        "w": 34,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 13,
+        "y": 3,
+        "w": 34,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 41
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonmuriendo/04.png": {
+      "frame": {
+        "x": 275,
+        "y": 29,
+        "w": 34,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 6,
+        "w": 34,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 41
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonmuriendo/00.png": {
+      "frame": {
+        "x": 225,
+        "y": 41,
+        "w": 28,
+        "h": 33
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 15,
+        "y": 3,
+        "w": 28,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 41
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonmuriendo/03.png": {
+      "frame": {
+        "x": 345,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 13,
+        "y": 3,
+        "w": 32,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 41
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonmuriendo/01.png": {
+      "frame": {
+        "x": 377,
+        "y": 0,
+        "w": 30,
+        "h": 29
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 19,
+        "y": 2,
+        "w": 30,
+        "h": 29
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 41
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonmuriendo/07.png": {
+      "frame": {
+        "x": 225,
+        "y": 0,
+        "w": 50,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 41
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 41
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonmuriendo/08.png": {
+      "frame": {
+        "x": 225,
+        "y": 0,
+        "w": 50,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 41
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 41
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonmuriendo/09.png": {
+      "frame": {
+        "x": 225,
+        "y": 0,
+        "w": 50,
+        "h": 41
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 41
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 41
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "animations":{
+    "muerte1":[
+      "peonmuriendo/00.png",
+      "peonmuriendo/02.png",
+      "peonmuriendo/04.png"
+    ],
+      "muerte2":[
+      "peonmuriendo/01.png",
+      "peonmuriendo/03.png",
+      "peonmuriendo/05.png"
+    ]
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "texture.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 407,
+      "h": 74
+    },
+    "scale": 1
+  }
+}

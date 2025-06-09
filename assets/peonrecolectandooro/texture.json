@@ -1,0 +1,683 @@
+{
+  "frames": {
+    "peonrecolectandooro/peon1 recoleccion oro.png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 174,
+        "h": 204
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 174,
+        "h": 204
+      },
+      "sourceSize": {
+        "w": 174,
+        "h": 204
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/04.png": {
+      "frame": {
+        "x": 0,
+        "y": 204,
+        "w": 29,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 0,
+        "w": 29,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/00.png": {
+      "frame": {
+        "x": 0,
+        "y": 244,
+        "w": 28,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 28,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/24.png": {
+      "frame": {
+        "x": 0,
+        "y": 284,
+        "w": 28,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 0,
+        "w": 28,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/21.png": {
+      "frame": {
+        "x": 0,
+        "y": 324,
+        "w": 24,
+        "h": 40
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 0,
+        "w": 24,
+        "h": 40
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/14.png": {
+      "frame": {
+        "x": 0,
+        "y": 364,
+        "w": 29,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 0,
+        "w": 29,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/19.png": {
+      "frame": {
+        "x": 24,
+        "y": 324,
+        "w": 28,
+        "h": 38
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 2,
+        "w": 28,
+        "h": 38
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/09.png": {
+      "frame": {
+        "x": 28,
+        "y": 244,
+        "w": 29,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 0,
+        "w": 29,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/10.png": {
+      "frame": {
+        "x": 29,
+        "y": 204,
+        "w": 28,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 1,
+        "y": 1,
+        "w": 28,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/15.png": {
+      "frame": {
+        "x": 28,
+        "y": 280,
+        "w": 27,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 2,
+        "w": 27,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/16.png": {
+      "frame": {
+        "x": 0,
+        "y": 402,
+        "w": 24,
+        "h": 36
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 4,
+        "w": 24,
+        "h": 36
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/05.png": {
+      "frame": {
+        "x": 0,
+        "y": 438,
+        "w": 27,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 1,
+        "y": 0,
+        "w": 27,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/20.png": {
+      "frame": {
+        "x": 24,
+        "y": 402,
+        "w": 27,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 6,
+        "w": 27,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/01.png": {
+      "frame": {
+        "x": 29,
+        "y": 362,
+        "w": 26,
+        "h": 34
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 0,
+        "w": 26,
+        "h": 34
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/08.png": {
+      "frame": {
+        "x": 52,
+        "y": 316,
+        "w": 31,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 2,
+        "y": 1,
+        "w": 31,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/11.png": {
+      "frame": {
+        "x": 55,
+        "y": 280,
+        "w": 29,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 1,
+        "y": 2,
+        "w": 29,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/12.png": {
+      "frame": {
+        "x": 57,
+        "y": 204,
+        "w": 27,
+        "h": 33
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 4,
+        "w": 27,
+        "h": 33
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/13.png": {
+      "frame": {
+        "x": 57,
+        "y": 237,
+        "w": 31,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 3,
+        "y": 5,
+        "w": 31,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/02.png": {
+      "frame": {
+        "x": 84,
+        "y": 204,
+        "w": 27,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 3,
+        "y": 2,
+        "w": 27,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/17.png": {
+      "frame": {
+        "x": 111,
+        "y": 204,
+        "w": 26,
+        "h": 32
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 5,
+        "w": 26,
+        "h": 32
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/18.png": {
+      "frame": {
+        "x": 0,
+        "y": 472,
+        "w": 31,
+        "h": 30
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 3,
+        "y": 5,
+        "w": 31,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/06.png": {
+      "frame": {
+        "x": 27,
+        "y": 436,
+        "w": 29,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 1,
+        "y": 0,
+        "w": 29,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/07.png": {
+      "frame": {
+        "x": 51,
+        "y": 396,
+        "w": 28,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 3,
+        "y": 1,
+        "w": 28,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/22.png": {
+      "frame": {
+        "x": 56,
+        "y": 349,
+        "w": 27,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 3,
+        "y": 9,
+        "w": 27,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/03.png": {
+      "frame": {
+        "x": 0,
+        "y": 503,
+        "w": 30,
+        "h": 28
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 1,
+        "y": 2,
+        "w": 30,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "peonrecolectandooro/23.png": {
+      "frame": {
+        "x": 0,
+        "y": 533,
+        "w": 30,
+        "h": 27
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 3,
+        "y": 10,
+        "w": 30,
+        "h": 27
+      },
+      "sourceSize": {
+        "w": 34,
+        "h": 40
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+      "animations": {
+  "recolectandoOro_up":[
+    "peonrecolectandooro/00.png",
+    "peonrecolectandooro/05.png",
+    "peonrecolectandooro/10.png",
+    "peonrecolectandooro/00.png",
+    "peonrecolectandooro/15.png",
+    "peonrecolectandooro/20.png"
+  ],
+  "recolectandoOro_down":[
+    "peonrecolectandooro/04.png",
+    "peonrecolectandooro/09.png",
+    "peonrecolectandooro/14.png",
+    "peonrecolectandooro/04.png",
+    "peonrecolectandooro/19.png",
+    "peonrecolectandooro/24.png"
+
+  ],
+  "recolectandoOro_right_up":[
+    "peonrecolectandooro/01.png",
+    "peonrecolectandooro/06.png",
+    "peonrecolectandooro/11.png",
+    "peonrecolectandooro/01.png",
+    "peonrecolectandooro/16.png",
+    "peonrecolectandooro/21.png"
+  ],
+  "recolectandoOro_right":[
+    "peonrecolectandooro/02.png",
+    "peonrecolectandooro/07.png",
+    "peonrecolectandooro/12.png",
+    "peonrecolectandooro/02.png",
+    "peonrecolectandooro/17.png",
+    "peonrecolectandooro/22.png"
+  ],
+    "recolectandoOro_right_down":[
+    "peonrecolectandooro/03.png",
+    "peonrecolectandooro/08.png",
+    "peonrecolectandooro/13.png",
+    "peonrecolectandooro/03.png",
+    "peonrecolectandooro/18.png",
+    "peonrecolectandooro/23.png"
+  ]
+
+},
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "texture.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 174,
+      "h": 563
+    },
+    "scale": 1
+  }
+}

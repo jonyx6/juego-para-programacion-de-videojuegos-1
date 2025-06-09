@@ -171,7 +171,7 @@ class Juego {
     //--personajes--
     //this.crearSoldadosAzules(1)
     //this.crearSoldadosRojos(1)
-    //this.crearTrabajadoresRojos(1);
+    this.crearTrabajadoresRojos(1);
     this.crearCaballerosAzules(1);
     this.crearCaballerosRojos(2);
     
@@ -222,7 +222,7 @@ class Juego {
         ...this.soldadosRojos,
         ...this.trabajadoresRojos
       ];
-      await soldado.cargarSonidosAleatorios()
+      await caballero.cargarSonidosAleatorios()
       this.caballerosAzules.push(caballero);
     }
   }
@@ -284,11 +284,11 @@ class Juego {
   }
 
   // Crea una instancia de personaje genérico y lo agrega al array de entidades
-  async crearEntidad(ClaseEntidad, i) {
+  crearEntidad(ClaseEntidad, i) {
     const x = Math.random() * 500;
     const y = Math.random() * 500;
     const entidad = new ClaseEntidad(x, y, this.app, i, this);
-    await entidad.cargarSonidosAleatorios()
+   
     this.entidades.push(entidad);
     return entidad;
   }
