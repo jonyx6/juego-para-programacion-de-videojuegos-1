@@ -16,6 +16,9 @@ class UI {
         this.textoEnPantalla.text = "hola jony como estas?";
         this.textoEnPantalla.zIndex = 100;
         this.containerHud.addChild(this.textoEnPantalla);
+        this.laInterfazEstaAbajo = true;
+        this.ultimoTextoMostrado = "";
+        this.ultimaRutaImagen = "";
 
         this.agregarImagen();
         this.agregarImagen2();
@@ -78,19 +81,22 @@ class UI {
     mostrarAtributosDe_(variosPersonajes) {
         console.log("Mostrando atributos:", variosPersonajes);
         this.textoEnPantalla.text = variosPersonajes;
+       if(this.laInterfazEstaAbajo){
         this.subir();
-
-        setTimeout(this.bajar.bind(this), 8000)
+        }
+        
     }
 
     subir() {
+        this.laInterfazEstaAbajo =false
         this.containerHud.y = this.juego.alto * 0.9;
         console.log("hud subio");
-
+        setTimeout(this.bajar.bind(this), 8000)
 
     }
 
     bajar() {
+        this.laInterfazEstaAbajo =true
         this.containerHud.y = this.juego.alto * 2;
         console.log("hud abajo");
     }

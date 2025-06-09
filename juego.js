@@ -27,7 +27,7 @@ class Juego {
     this.soldadosRojos = []; 
     this.objetosDeEscenario =[];
     this.enemigos = [];
-
+   
 
     // Datos de selección con mouse
     this.selectedEntities = [];
@@ -36,7 +36,7 @@ class Juego {
 
     // Iniciar escucha de movimiento del mouse
     this.escucharMovimientoMouse();
-    this.iniciarMusica();
+    
     
 
     // Iniciar la app de PIXI y luego cargar el juego
@@ -63,44 +63,42 @@ class Juego {
     window.__PIXI_APP__ = this.app;
 
     this.crearContainerPrincipal();
-    await this.ponerFondo1(); // fondo alto
-    //await this.ponerFondo2(); //fondo ancho
-    //this.ponerFondo3();
+    await this.ponerFondo1();
     this.instanciarComponentes();
-    
-    
     this.crearUi();
-    
-    //paredes de grid
-    this.generadorParedes = new GeneradorParedesAleatorias(this.grid);//v3 que no funciona
-    this.generadorParedes.generarParedesAleatorias(0.05); 
+
+    this.generadorParedes = new GeneradorParedesAleatorias(this.grid);
+    this.generadorParedes.generarParedesAleatorias(0.05);
 
     this.crearEntidades();
 
-    // Iniciar el ciclo de juego (game loop)
     this.app.ticker.add(() => this.gameLoop());
 
-    // Prevenir menú contextual con clic derecho
     this.app.view.addEventListener('contextmenu', (e) => e.preventDefault());
     this.debugGraphics = new PIXI.Graphics();
     this.debugGraphics.zIndex = 10;
     this.containerPrincipal.addChild(this.debugGraphics);
 
+    
+
+    this.iniciarMusica();
+ 
   }
+
 
   crearUi(){
     this.ui= new UI(this)
   }
 
-  iniciarMusica(){
-    const musicaFondo = new Howl({
-    src: ['Elwynn Forest - Music & Ambience - World of Warcraft.mp3'],
-    loop: true,
-    volume: 0.5 // de 0.0 a 1.0
+  iniciarMusica() {
+    this.musicaFondo = new Howl({
+      src: ['assets/musicaInicial/Elwynn Forest - Music & Ambience - World of Warcraft.mp3'], 
+      loop: true,
+      volume: 0.5,
+      html5: true 
     });
-    musicaFondo.play();
+    this.musicaFondo.play();
   }
-
   
 
   // Crea el contenedor principal donde se agregan todos los elementos del juego
@@ -192,7 +190,7 @@ class Juego {
     this.containerPrincipal.children.sort((a, b) => a.y - b.y);
     this.caballerosAzules.forEach(p => p.cambiarOrdenEnZ());
     this.caballerosRojos.forEach(p => p.cambiarOrdenEnZ());
-    this.caballerosRojos.forEach(p => p.cargarSonidosAleatorios());
+    
     this.objetosDeEscenario.forEach(o => o.cambiarOrdenEnZ());
     
     this.time = time;
@@ -216,7 +214,7 @@ class Juego {
   // === Métodos para crear personajes ===----------------------------------------------------------------------------------------------
 
   // Crea caballeros azules
-  crearCaballerosAzules(cantidad) {
+  async crearCaballerosAzules(cantidad) {
     for (let i = 0; i < cantidad; i++) {
       const caballero = this.crearEntidad(CaballeroAzul, i);
       caballero.enemigos = () => [
@@ -224,11 +222,12 @@ class Juego {
         ...this.soldadosRojos,
         ...this.trabajadoresRojos
       ];
+      await soldado.cargarSonidosAleatorios()
       this.caballerosAzules.push(caballero);
     }
   }
 
-  crearSoldadosAzules(cantidad) {
+  async crearSoldadosAzules(cantidad) {
     for (let i = 0; i < cantidad; i++) {
       //const soldado = new SoldadoAzul(Math.random() * 500, Math.random() * 500, this.app, i, this);
       const soldado = this.crearEntidad(SoldadoAzul, i);
@@ -237,12 +236,13 @@ class Juego {
         ...this.soldadosRojos,
         ...this.trabajadoresRojos
       ];
+      await soldado.cargarSonidosAleatorios()
       this.caballerosAzules.push(soldado);
     }
   }
 
   // Crea caballeros rojos
-  crearCaballerosRojos(cantidad) {
+ async crearCaballerosRojos(cantidad) {
     for (let i = 0; i < cantidad; i++) {
       const caballero = this.crearEntidad(CaballeroRojo, i);
       caballero.enemigos = () => [
@@ -250,11 +250,12 @@ class Juego {
         ...this.soldadosAzules
         //...this.trabajadoresAzules
       ];
+      await caballero.cargarSonidosAleatorios()
       this.caballerosRojos.push(caballero);
     }
   }
 
-  crearSoldadosRojos(cantidad) {
+  async crearSoldadosRojos(cantidad) {
     for (let i = 0; i < cantidad; i++) {
       const soldado = this.crearEntidad(SoldadoRojo, i);
       soldado.enemigos = () => [
@@ -262,6 +263,7 @@ class Juego {
         ...this.soldadosAzules
         //...this.trabajadoresAzules
       ];
+      await soldado.cargarSonidosAleatorios()
       this.soldadosRojos.push(soldado);
     }
   }
@@ -282,10 +284,11 @@ class Juego {
   }
 
   // Crea una instancia de personaje genérico y lo agrega al array de entidades
-  crearEntidad(ClaseEntidad, i) {
+  async crearEntidad(ClaseEntidad, i) {
     const x = Math.random() * 500;
     const y = Math.random() * 500;
     const entidad = new ClaseEntidad(x, y, this.app, i, this);
+    await entidad.cargarSonidosAleatorios()
     this.entidades.push(entidad);
     return entidad;
   }
