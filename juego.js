@@ -27,6 +27,7 @@ class Juego {
     this.soldadosRojos = []; 
     this.objetosDeEscenario =[];
     this.enemigos = [];
+    this.iniciarMusica();
    
 
     // Datos de selección con mouse
@@ -81,7 +82,7 @@ class Juego {
 
     
 
-    this.iniciarMusica();
+    ;
  
   }
 
@@ -92,7 +93,7 @@ class Juego {
 
   iniciarMusica() {
     this.musicaFondo = new Howl({
-      src: ['assets/musicaInicial/Elwynn Forest - Music & Ambience - World of Warcraft.mp3'], 
+      src: ['Elwynn Forest - Music & Ambience - World of Warcraft.mp3'], 
       loop: true,
       volume: 0.5,
       html5: true 
@@ -169,8 +170,8 @@ class Juego {
   // Crea los personajes iniciales del juego
   crearEntidades() {
     //--personajes--
-    //this.crearSoldadosAzules(1)
-    //this.crearSoldadosRojos(1)
+    this.crearSoldadosAzules(1)
+    this.crearSoldadosRojos(1)
     this.crearTrabajadoresRojos(1);
     this.crearCaballerosAzules(1);
     this.crearCaballerosRojos(2);
@@ -285,8 +286,8 @@ class Juego {
 
   // Crea una instancia de personaje genérico y lo agrega al array de entidades
   crearEntidad(ClaseEntidad, i) {
-    const x = Math.random() * 500;
-    const y = Math.random() * 500;
+    const x = Math.random() * 600;
+    const y = Math.random() * 600;
     const entidad = new ClaseEntidad(x, y, this.app, i, this);
    
     this.entidades.push(entidad);

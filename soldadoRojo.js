@@ -16,12 +16,13 @@ class SoldadoRojo extends Personaje {
   }
 
 
+
   atributos(){
     return (
-      "ID: " + this.iD  + "VIDA: " + this.vida + "\n" +
-      "def:"+ this.defensa + "ata:" +this.ataque +"\n"+
-      "Vel: " + this.velocidad + "\n"+
-      "Estado: " + this.estadoActual
+      "Id: " + this.iD + "          " + "Vida: " + this.vida + "\n" +
+      "Def: "+ this.defensa + "       " + "Ata: " +this.ataque +"\n"+
+      "Vel: " + this.velocidad + "        "+ "Estado: " + this.estado
+      
     );
   }
 

@@ -3,13 +3,15 @@ class Personaje {
     this.app = app;
     this.juego = juego;
     this.i = i;
-    this.iD= Math.random()*5;
+    this.iD= Math.floor(Math.random()*5);
     this.x = x;
     this.y = y;
-    this.vida = 5;
-    this.dirImagen = "bg.jpg"
+    this.vida = 100;
+    this.dirImagen ="assets/hud/obreroOrco.jpg"
     this.velocidad = 1;
     this.listo = false;
+    this.defensa=1;
+    this.ataque = 3;
     this.estadoActual = 'idle';
     this.animaciones = {};
     this.camino = [];
@@ -28,10 +30,10 @@ class Personaje {
 
   atributos(){
     return (
-      "ID: " + this.velocidad + "\n" +
-      "VIDA: " + this.vida + "\n" +
-      "Vel: " + this.velocidad + "\n"+
-      "Estado: " + this.estadoActual
+      "Id: " + this.iD + "             " + "Vida: " + this.vida + "\n" +
+      "Def: "+ this.defensa + "            " + "Ata: " +this.ataque +"\n"+
+      "Vel: " + this.velocidad + "        "+ "Estado: " + this.estadoActual
+      
     );
   }
 

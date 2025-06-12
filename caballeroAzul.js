@@ -3,9 +3,20 @@ class CaballeroAzul extends Personaje{
     super(x, y, app, i, juego);
     this.cargarSpriteAnimado();
     this.dirImagen ="assets/hud/caballeroazul.jpg"
-    this.vida = 10;
+    this.vida = 100;
     this.velocidad = 3;
+    this.defensa=6;
+    this.ataque = 17;
+  }
 
+
+  atributos(){
+    return (
+      "Id: " + this.iD + "          " + "Vida: " + this.vida + "\n" +
+      "Def: "+ this.defensa + "       " + "Ata: " +this.ataque +"\n"+
+      "Vel: " + this.velocidad + "        "+ "Estado: " + this.estado
+      
+    );
   }
 
   async cargarSpriteAnimado() {

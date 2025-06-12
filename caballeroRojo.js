@@ -4,9 +4,10 @@ class CaballeroRojo extends Personaje{
     super(x, y, app, i, juego);
     this.cargarSpriteAnimado();
     this.dirImagen ="assets/hud/jineteRojo.jpg"
-    this.vida = 10;
+    this.vida = 100;
     this.velocidad = 3;
-
+    this.defensa = 5;
+    this.ataque = 20
     //variables configurables
     this.puntoDeAtaque = { x: 1500, y: 500 }; // lugar donde se dirigen luego de reunirse
     this.radioPatrulla = 192; // parámetro ajustable
@@ -17,6 +18,15 @@ class CaballeroRojo extends Personaje{
     this.rangoDeVista = 128;
     //this.posicionInicial = { x, y };
     //this.tiempoProximaPatrulla = 0;
+  }
+
+  atributos(){
+    return (
+      "Id: " + this.iD + "          " + "Vida: " + this.vida + "\n" +
+      "Def: "+ this.defensa + "       " + "Ata: " +this.ataque +"\n"+
+      "Vel: " + this.velocidad + "        "+ "Estado: " + this.estado
+      
+    );
   }
 
   async cargarSpriteAnimado() {

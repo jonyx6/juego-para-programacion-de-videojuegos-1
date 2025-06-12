@@ -3,6 +3,9 @@ class SoldadoAzul extends Personaje {
     super(x, y, app, i, juego);
     this.velocidad = 1.75;
     this.sonidos = [];
+    this.vida=100;
+    this.ataque=11;
+    this.defensa=9;
     this.listoSonidos = false;
     this.dirImagen ="assets/hud/soldadoAzul2.jpg"
     this.cargarSpriteAnimado();
@@ -14,10 +17,10 @@ class SoldadoAzul extends Personaje {
 
   atributos(){
     return (
-      "ID: " + this.iD + "\n" +
-      "VIDA: " + this.vida + "\n" +
-      "Vel: " + this.velocidad + "\n"+
-      "Estado: " + this.estadoActual
+      "Id: " + this.iD + "          " + "Vida: " + this.vida + "\n" +
+      "Def: "+ this.defensa + "       " + "Ata: " +this.ataque +"\n"+
+      "Vel: " + this.velocidad + "        "+ "Estado: " + this.estado
+      
     );
   }
 
@@ -27,7 +30,7 @@ class SoldadoAzul extends Personaje {
       'assets/sonidoSoldadosAzules/a sus ordenes capitan.mp3',
       'assets/sonidoSoldadosAzules/ahhhh.mp3',
       'assets/sonidoSoldadosAzules/allá la.mp3',
-      'assets/sonidoSoldadosAzules/viva la libertad carajo.mp3'
+      //'assets/sonidoSoldadosAzules/viva la libertad carajo.mp3'
     ];
 
     for (const ruta of rutas) {
