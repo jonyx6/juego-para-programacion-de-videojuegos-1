@@ -332,7 +332,24 @@ class Grid {
       }
     }
   }
+  
+//11/06/2025-----------
+  getVecinos(celda) {
+    const vecinos = [];
+    const dirs = [
+      [-1, 0], [1, 0], // izquierda, derecha
+      [0, -1], [0, 1], // arriba, abajo
+    ];
 
+    for (const [dx, dy] of dirs) {
+      const col = celda.col + dx;
+      const row = celda.row + dy;
 
+      const vecino = this.getCell(col, row);
+      if (vecino) vecinos.push(vecino);
+    }
+
+    return vecinos;
+  }
 }
 

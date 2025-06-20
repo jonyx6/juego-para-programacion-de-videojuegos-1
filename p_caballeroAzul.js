@@ -1,21 +1,19 @@
-class CaballeroAzul extends Personaje{
+class CaballeroAzul extends Aliados {
   constructor(x, y, app, i, juego) {
     super(x, y, app, i, juego);
     this.cargarSpriteAnimado();
-    this.dirImagen ="assets/hud/caballeroazul.jpg"
-    this.vida = 100;
+    this.dirImagen = "assets/hud/caballeroazul.jpg";
+    this.vida = 10;
     this.velocidad = 3;
-    this.defensa=6;
+    this.defensa = 6;
     this.ataque = 17;
   }
-
 
   atributos(){
     return (
       "Id: " + this.iD + "          " + "Vida: " + this.vida + "\n" +
       "Def: "+ this.defensa + "       " + "Ata: " +this.ataque +"\n"+
       "Vel: " + this.velocidad + "        "+ "Estado: " + this.estado
-      
     );
   }
 
@@ -43,7 +41,6 @@ class CaballeroAzul extends Personaje{
       idleLado: json.animations["idleLado"],
       idleDiaAbaj: json.animations["idleDiaAbaj"],
       idleAbaj: json.animations["idleAbaj"],
-
     };
 
     this.sprite = new PIXI.AnimatedSprite(this.animaciones['idleAbaj']);
@@ -58,16 +55,4 @@ class CaballeroAzul extends Personaje{
 
     this.listo = true;
   }
-  obtenerAnimacionDeAtaque(dx, dy) {
-    const umbral = 0.1;
-
-    if (Math.abs(dx) < umbral && dy > 0) return 'abajoAtk';
-    if (Math.abs(dx) < umbral && dy < 0) return 'arribaAtk';
-    if (Math.abs(dy) < umbral && dx !== 0) return 'ladoAtk';
-    if (dx !== 0 && dy > 0) return 'digAbajoAtk';
-    if (dx !== 0 && dy < 0) return 'digArribaAtk';
-
-    return 'ladoAtk';
-  }
-
 }

@@ -21,11 +21,16 @@ class Juego {
     // Arreglos de personajes
     this.entidades = [];              // Todos los personajes
     this.caballerosAzules = [];       // Solo los caballeros azules
-    this.soldadosAzules = [];       
+    this.soldadosAzules = [];
+
+    this.entidadesEnemigas = [];
     this.caballerosRojos = [];        // Solo los caballeros rojos
     this.trabajadoresRojos = [];      // Solo los trabajadores
     this.soldadosRojos = []; 
+
     this.objetosDeEscenario =[];
+    this.objetosDeEscenarioAzules =[];//10/06/2025------------
+    this.objetosDeEscenarioRojos =[];//19/06/2025----------
     this.enemigos = [];
     this.iniciarMusica();
    
@@ -56,22 +61,33 @@ class Juego {
     });
   }
 
-
-
   // Método principal que inicia toda la lógica del juego
   async inicializarJuego() {
     document.body.appendChild(this.app.canvas);
     window.__PIXI_APP__ = this.app;
 
     this.crearContainerPrincipal();
-    await this.ponerFondo1();
+    //await this.ponerFondoJonyViejo(); 
+    await this.ponerFondo1(); // fondo alto
+    //await this.ponerFondo2(); //fondo ancho
+    //this.ponerFondo3();
     this.instanciarComponentes();
     this.crearUi();
 
-    this.generadorParedes = new GeneradorParedesAleatorias(this.grid);
-    this.generadorParedes.generarParedesAleatorias(0.05);
+    //paredes de grid
+    this.generadorParedes = new GeneradorParedesAleatorias(this.grid);//v3 que no funciona
+    this.generadorParedes.generarParedesAleatorias(0.06);
 
-    this.crearEntidades();
+    //this.crearEntidades();
+    await this.crearEntidades();
+    this.crearEstructura(GendarmeriaHumana, 5, 5);//Columna / fila
+    this.crearEstructura(CentralAzul, 5, 15);
+    this.crearEstructura(GendarmeriaHumana, 5, 25);
+    this.crearEstructura(MinaDeOro, 10, 15);//10/06/2025
+
+    this.crearEstructuraEnemiga(Gendarmeria, 50, 5);
+    this.crearEstructuraEnemiga(CentralRoja, 50, 15);
+    this.crearEstructuraEnemiga(Gendarmeria, 50, 25);
 
     this.app.ticker.add(() => this.gameLoop());
 
@@ -79,13 +95,7 @@ class Juego {
     this.debugGraphics = new PIXI.Graphics();
     this.debugGraphics.zIndex = 10;
     this.containerPrincipal.addChild(this.debugGraphics);
-
-    
-
-    ;
- 
   }
-
 
   crearUi(){
     this.ui= new UI(this)
@@ -101,7 +111,6 @@ class Juego {
     this.musicaFondo.play();
   }
   
-
   // Crea el contenedor principal donde se agregan todos los elementos del juego
   crearContainerPrincipal() {
     this.containerPrincipal = new PIXI.Container();
@@ -113,23 +122,21 @@ class Juego {
 
   // Instancia los módulos necesarios para el juego (grilla, mouse, campo vectorial)
   instanciarComponentes() {
-    //this.grid = new Grid(this,32);
-    //this.cursor =  new MouseManager(this,this.app)
     this.cursor =  new MouseManager(this,this.app, this.containerPrincipal)//08/06/2025
   }
 
   // Carga y agrega el fondo del mapa
   async ponerFondoJonyViejo() {
-    const textura = await PIXI.Assets.load("bg.png");
+    const textura = await PIXI.Assets.load("assets/mapas/bg.png");
     this.fondo = new PIXI.Sprite(textura);
     this.fondo.width = this.ancho;
     this.fondo.height = this.alto;
     this.fondo.zIndex = -1;
     this.app.stage.addChild(this.fondo);
   }
-  //08/06/2025 nuevos fondos prueba---------------------------------------
+
   async ponerFondo1() {
-    const textura = await PIXI.Assets.load("map_1980-2160.png");
+    const textura = await PIXI.Assets.load("assets/mapas/map_1980-2160.png");
     this.fondo = new PIXI.Sprite(textura);
     this.fondo.width = 1920;
     this.fondo.height = 2160;
@@ -148,7 +155,7 @@ class Juego {
   }
 
   async ponerFondo2() {
-    const textura = await PIXI.Assets.load("map_3840-1084.png");
+    const textura = await PIXI.Assets.load("assets/mapas/map_3840-1084.png");
     this.fondo = new PIXI.Sprite(textura);
     this.fondo.width = 3840;
     this.fondo.height = 1084;
@@ -165,23 +172,21 @@ class Juego {
 
     this.grid = new Grid(this, cols, rows, tamCelda);
   }
-//----------------------------------------------------------------------
 
   // Crea los personajes iniciales del juego
-  crearEntidades() {
-    //--personajes--
-    this.crearSoldadosAzules(1)
-    this.crearSoldadosRojos(1)
-    this.crearTrabajadoresRojos(1);
-    this.crearCaballerosAzules(1);
-    this.crearCaballerosRojos(2);
+  async crearEntidades() {
+    //--- personajes ---
+    //-AZULES
+    this.crearSoldadosAzules(10)
+    this.crearCaballerosAzules(10);
+
+    //-ROJOS
+    this.crearSoldadosRojos(10)
+    //this.crearTrabajadoresRojos(2);
+    this.crearCaballerosRojos(10);
     
-    //--Objetos--
-    this.crearMinaDeOro(1 , 400, 200);
-    this.crearMinaDeOro(1 , 1600, 700);
-    this.casaHumana(1 , 1500,700)
-    this.cargarCasaOrca(1)
-    this.cargarArbolesEnCeldasBloqueadas();
+    //-OBJETOS-
+    await Arbol.cargarEnCeldasBloqueadas(this);
     this.app.stage.sortableChildren = true;
     this.containerPrincipal.sortableChildren = true;
   }
@@ -212,7 +217,7 @@ class Juego {
     this.moverCamara();
   }
 
-  // === Métodos para crear personajes ===----------------------------------------------------------------------------------------------
+  // === Métodos para crear PERSONAJES ===----------------------------------------------------------------------------------------------
 
   // Crea caballeros azules
   async crearCaballerosAzules(cantidad) {
@@ -221,13 +226,13 @@ class Juego {
       caballero.enemigos = () => [
         ...this.caballerosRojos,
         ...this.soldadosRojos,
-        ...this.trabajadoresRojos
+        ...this.trabajadoresRojos,
+        ...this.objetosDeEscenarioRojos//19/06/2025 --la lista esta completa esta completa--
       ];
       await caballero.cargarSonidosAleatorios()
       this.caballerosAzules.push(caballero);
     }
   }
-
   async crearSoldadosAzules(cantidad) {
     for (let i = 0; i < cantidad; i++) {
       //const soldado = new SoldadoAzul(Math.random() * 500, Math.random() * 500, this.app, i, this);
@@ -235,65 +240,78 @@ class Juego {
       soldado.enemigos = () => [
         ...this.caballerosRojos,
         ...this.soldadosRojos,
-        ...this.trabajadoresRojos
+        ...this.trabajadoresRojos,
+        ...this.objetosDeEscenarioRojos
       ];
       await soldado.cargarSonidosAleatorios()
       this.caballerosAzules.push(soldado);
     }
   }
-
   // Crea caballeros rojos
- async crearCaballerosRojos(cantidad) {
+  async crearCaballerosRojos(cantidad) {
     for (let i = 0; i < cantidad; i++) {
-      const caballero = this.crearEntidad(CaballeroRojo, i);
+      const caballero = this.crearEntidadRoja(CaballeroRojo, i);
       caballero.enemigos = () => [
         ...this.caballerosAzules,
-        ...this.soldadosAzules
+        ...this.soldadosAzules,
+        ...this.objetosDeEscenarioAzules//10/06/2025----
         //...this.trabajadoresAzules
       ];
       await caballero.cargarSonidosAleatorios()
       this.caballerosRojos.push(caballero);
+      this.entidadesEnemigas.push(caballero);
     }
   }
-
   async crearSoldadosRojos(cantidad) {
     for (let i = 0; i < cantidad; i++) {
-      const soldado = this.crearEntidad(SoldadoRojo, i);
+      const soldado = this.crearEntidadRoja(SoldadoRojo, i);
       soldado.enemigos = () => [
         ...this.caballerosAzules,
-        ...this.soldadosAzules
+        ...this.soldadosAzules,
+        ...this.objetosDeEscenarioAzules
         //...this.trabajadoresAzules
       ];
       await soldado.cargarSonidosAleatorios()
       this.soldadosRojos.push(soldado);
+      this.entidadesEnemigas.push(soldado);
     }
   }
-
   // Crea trabajadores rojos
  async crearTrabajadoresRojos(cantidad) {
     for (let i = 0; i < cantidad; i++) {
       //const trabajador = new TrabajadorRojo(100, 100, this.app, i,this)
-      const trabajador = this.crearEntidad(TrabajadorRojo, i);
+      const trabajador = this.crearEntidadRoja(TrabajadorRojo, i);
       trabajador.enemigos = () => [
         ...this.caballerosAzules,
-        ...this.soldadosAzules
+        ...this.soldadosAzules,
+        ...this.objetosDeEscenarioAzules
         //...this.trabajadoresAzules
       ]; 
       await trabajador.cargarSonidosAleatorios(); // Esperar a que cargue sonidos
       this.trabajadoresRojos.push(trabajador);
     }
   }
-
   // Crea una instancia de personaje genérico y lo agrega al array de entidades
   crearEntidad(ClaseEntidad, i) {
     const x = Math.random() * 600;
-    const y = Math.random() * 600;
+    const y = Math.random() * 1000;
     const entidad = new ClaseEntidad(x, y, this.app, i, this);
    
     this.entidades.push(entidad);
     return entidad;
   }
 
+  crearEntidadRoja(ClaseEntidad, i) {
+  // Generar posiciones en el lado derecho de la pantalla
+  const x = Math.random() * 600 + (this.limiteAncho - 600); // Lado derecho
+  const y = Math.random() * 1000;
+  const entidad = new ClaseEntidad(x, y, this.app, i, this);
+ 
+  this.entidades.push(entidad);
+  return entidad;
+}
+
+  // === Métodos De CAMARA ===-------------------------------------------------------------------------------------------------------
   // Mueve la cámara si el mouse está cerca de los bordes
   moverCamara() {
     if (!this.fondo) return;
@@ -309,9 +327,7 @@ class Juego {
 
     this.limitarCamara();
   }
-
   // Evita que la cámara se salga del mapa
-//08/06/2025 zoom camara------------------------------------------------------------------------
   limitarCamara() {
     const escala = this.containerPrincipal.scale.x;
     const minX = -this.fondo.width * escala + this.ancho;
@@ -320,167 +336,19 @@ class Juego {
     this.containerPrincipal.x = Math.min(0, Math.max(minX, this.containerPrincipal.x));
     this.containerPrincipal.y = Math.min(0, Math.max(minY, this.containerPrincipal.y));
   }
-//------------------------------------------------------------------------------------------------
 
-  async cargarCasaOrca(cantidad) {
-    if (!this.grid) {
-      console.error("Grid no inicializada al llamar a cargarCasaOrca");
-      return;
-    }
-
-    const promesas = [];
-
-    for (let i = 0; i < cantidad; i++) {
-      const casa = new Gendarmeria(0, 0, this); // coordenadas temporales
-
-      promesas.push(
-        casa.cargarSpritesAnimados().then(() => {
-          // ASIGNAR posición diferente para cada casa, ejemplo en grilla simple:
-          const separacion = 100; // separación entre casas
-          casa.container.x = 200 + i * separacion;
-          casa.container.y = 200; // fijo en Y o podes variar también
-
-          this.containerPrincipal.addChild(casa.container);
-          this.objetosDeEscenario.push(casa);
-          
-
-          // Ajustar posición tomando en cuenta anclaje (0.5, 1)
-          const xAjustado = casa.container.x - casa.ancho / 2;
-          const yAjustado = casa.container.y - casa.alto;
-
-          const celdas = this.grid.getCeldasOcupadasPorSprite(
-            xAjustado,
-            yAjustado,
-            casa.ancho,
-            casa.alto
-          );
-
-          for (const celda of celdas) {
-            celda.blocked = true;
-            this.grid.bloquearCelda(celda.col, celda.row);
-            celda.addEntity(casa)
-          }
-        })
-      );
-    }
-
-    await Promise.all(promesas);
+// === Métodos para crear ESTRUCTURAS ===----------------------------------------------------------------------------------------------
+  async crearEstructura(EstructuraClase, col, row) {
+    const estructura = new EstructuraClase(this, col, row);
+    await estructura.inicializar();
+    this.objetosDeEscenario.push(estructura);
+    this.objetosDeEscenarioAzules.push(estructura);
   }
-
-  async casaHumana(cantidad) {
-    if (!this.grid) {
-      console.error("Grid no inicializada al llamar a cargarCasaOrca");
-      return;
-    }
-
-    const promesas = [];
-
-    for (let i = 0; i < cantidad; i++) {
-      const casa = new GendarmeriaHumana(0, 0, this); // coordenadas temporales
-
-      promesas.push(
-        casa.cargarSpritesAnimados().then(() => {
-          // ASIGNAR posición diferente para cada casa, ejemplo en grilla simple:
-          const separacion = 100; // separación entre casas
-          casa.container.x = 1800 + i * separacion;
-          casa.container.y = 700; // fijo en Y o podes variar también
-
-          this.containerPrincipal.addChild(casa.container);
-          this.objetosDeEscenario.push(casa);
-          
-
-          // Ajustar posición tomando en cuenta anclaje (0.5, 1)
-          const xAjustado = casa.container.x - casa.ancho / 2;
-          const yAjustado = casa.container.y - casa.alto;
-
-          const celdas = this.grid.getCeldasOcupadasPorSprite(
-            xAjustado,
-            yAjustado,
-            casa.ancho,
-            casa.alto
-          );
-
-          for (const celda of celdas) {
-            celda.blocked = true;
-            this.grid.bloquearCelda(celda.col, celda.row);
-            celda.addEntity(casa)
-          }
-        })
-      );
-    }
-
-    await Promise.all(promesas);
-
+  async crearEstructuraEnemiga(EstructuraClase, col, row) {
+    const estructura = new EstructuraClase(this, col, row);
+    await estructura.inicializar();
+    this.objetosDeEscenario.push(estructura);
+    this.objetosDeEscenarioRojos.push(estructura);
   }
-
-  //crea arboles con posiciones al azar
-  async cargarArbolesEnCeldasBloqueadas() {
-    const promesas = [];
-
-    for (const celda of this.grid.cells) {
-      if (
-        celda.blocked &&               // La celda está bloqueada
-        celda.y < 700 &&              // No queremos árboles con Y >= 700
-        celda.entities.length ==0  // No hay ya una entidad ocupando la celda
-      ) {
-        const arbol = new Arbol(celda.centerX, celda.y + celda.height, this);
-
-        promesas.push(
-          arbol.cargarSpritesAnimados().then(() => {
-            celda.addEntity(arbol);                     // Registrar en la celda
-            this.containerPrincipal.addChild(arbol.container); // Agregar al escenario
-            this.objetosDeEscenario.push(arbol);        // Registrar en la lista general
-          })
-        );
-      }
-    }
-
-    await Promise.all(promesas);
-  }
-
-  async crearMinaDeOro(cantidad,unX,unY){
-
-    if (!this.grid) {
-      console.error("Grid no inicializada al llamar a cargarCasaOrca");
-      return;
-    }
-
-    const promesas = [];
-
-    for (let i = 0; i < cantidad; i++) {
-      const casa = new MinaDeOro(0, 0, this); // coordenadas temporales
-
-      promesas.push(
-        casa.cargarSpritesAnimados().then(() => {
-          // ASIGNAR posición diferente para cada casa, ejemplo en grilla simple:
-          const separacion = 100; // separación entre casas
-          casa.container.x = unX + i * 100 * separacion;
-          casa.container.y = unY ; // fijo en Y o podes variar también
-
-          this.containerPrincipal.addChild(casa.container);
-          this.objetosDeEscenario.push(casa);
-
-          // Ajustar posición tomando en cuenta anclaje (0.5, 1)
-          const xAjustado = casa.container.x - casa.ancho / 2;
-          const yAjustado = casa.container.y - casa.alto;
-
-          const celdas = this.grid.getCeldasOcupadasPorSprite(
-            xAjustado,
-            yAjustado,
-            casa.ancho,
-            casa.alto
-          );
-
-          for (const celda of celdas) {
-            celda.blocked = true;
-            this.grid.bloquearCelda(celda.col, celda.row);
-            celda.addEntity(casa)
-          }
-        })
-      );
-    }
-
-    await Promise.all(promesas);
-  };
 
 }

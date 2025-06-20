@@ -1,13 +1,16 @@
-class SoldadoRojo extends Personaje {
+class SoldadoRojo extends Enemigos {
   constructor(x, y, app, i, juego) {
     super(x, y, app, i, juego);
-    this.velocidad = 1.75;
+    this.cargarSpriteAnimado();
+    this.dirImagen ="assets/hud/soldadoRojo.jpg";
+    this.vida = 5;
+    this.velocidad = 2;
+    this.puntoDeAtaque = { x: 1500, y: 500 }; // Puede usarse en el futuro para estrategias
+    
     this.defensa = 7;
     this.ataque = 13;
-    this.dirImagen ="assets/hud/soldadoRojo.jpg"
-    this.cargarSpriteAnimado();
+
     this.sonidos = [];
-    //this.vida=100
     this.listoSonidos = false;
     this.cargarSonidosAleatorios().then(() => {
     this.listoSonidos = true;
@@ -15,54 +18,12 @@ class SoldadoRojo extends Personaje {
     });
   }
 
-
-
   atributos(){
     return (
       "Id: " + this.iD + "          " + "Vida: " + this.vida + "\n" +
       "Def: "+ this.defensa + "       " + "Ata: " +this.ataque +"\n"+
       "Vel: " + this.velocidad + "        "+ "Estado: " + this.estado
-      
     );
-  }
-
-  async cargarSonidosAleatorios() {
-    this.sonidos = [];
-    const rutas = [
-      'assets/sonidoOrcoRojo/aplastarlos sin piedad.mp3',
-      'assets/sonidoOrcoRojo/Furia de orco desatada.mp3',
-      'assets/sonidoOrcoRojo/Grrrr... os voy a destruir.mp3',
-      'assets/sonidoOrcoRojo/por la orda.mp3'
-    ];
-
-    for (const ruta of rutas) {
-      const sound = new Howl({ src: [ruta] ,volume: 3 });
-      this.sonidos.push(sound);
-    }
-  }
-
-  emitirSonidoAleatorio() {
-    if (!this.listoSonidos) {
-      console.warn("Sonidos no están listos aún");
-      return;
-    }
-    if (!this.sonidos || this.sonidos.length === 0) {
-      console.warn("No hay sonidos cargados");
-      return;
-    }
-    const randomIndex = Math.floor(Math.random() * this.sonidos.length);
-    this.sonidos[randomIndex].play();
-  }
-
-  setSeleccionado(estado) {
-    if (this.sprite) {
-      this.sprite.tint = estado ? 0xff0000 : 0xFFFFFF;
-      if (estado) this.emitirSonidoAleatorio();
-    }
-  }
-
-  deseleccionar() {
-    this.sprite.tint = 0xFFFFFF; // Color original (sin tinte)
   }
 
   async cargarSpriteAnimado() {
@@ -103,17 +64,47 @@ class SoldadoRojo extends Personaje {
 
     this.listo = true;
   }
+  // Desactivar control manual del mouse
+  irA() {}//blanquea los metodos para que no use los del mouse
+  irA_v2() {}
 
-  obtenerAnimacionDeAtaque(dx, dy) {
-    const umbral = 0.1;
+  //sonidos
+  async cargarSonidosAleatorios() {
+    this.sonidos = [];
+    const rutas = [
+      'assets/sonidoOrcoRojo/aplastarlos sin piedad.mp3',
+      'assets/sonidoOrcoRojo/Furia de orco desatada.mp3',
+      'assets/sonidoOrcoRojo/Grrrr... os voy a destruir.mp3',
+      'assets/sonidoOrcoRojo/por la orda.mp3'
+    ];
 
-    if (Math.abs(dx) < umbral && dy > 0) return 'abajoAtk';
-    if (Math.abs(dx) < umbral && dy < 0) return 'arribaAtk';
-    if (Math.abs(dy) < umbral && dx !== 0) return 'ladoAtk';
-    if (dx !== 0 && dy > 0) return 'digAbajoAtk';
-    if (dx !== 0 && dy < 0) return 'digArribaAtk';
-
-    return 'ladoAtk';
+    for (const ruta of rutas) {
+      const sound = new Howl({ src: [ruta] ,volume: 3 });
+      this.sonidos.push(sound);
+    }
   }
+  emitirSonidoAleatorio() {
+    if (!this.listoSonidos) {
+      console.warn("Sonidos no están listos aún");
+      return;
+    }
+    if (!this.sonidos || this.sonidos.length === 0) {
+      console.warn("No hay sonidos cargados");
+      return;
+    }
+    const randomIndex = Math.floor(Math.random() * this.sonidos.length);
+    this.sonidos[randomIndex].play();
+  }
+  setSeleccionado(estado) {
+    if (this.sprite) {
+      this.sprite.tint = estado ? 0xff0000 : 0xFFFFFF;
+      if (estado) this.emitirSonidoAleatorio();
+    }
+  }
+  deseleccionar() {
+    this.sprite.tint = 0xFFFFFF; // Color original (sin tinte)
+  }
+
+
 
 }

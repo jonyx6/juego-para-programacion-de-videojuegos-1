@@ -1,8 +1,8 @@
+//v3 con practicas 2-----------------------------------------------
 /**
  * MouseManager - Gestiona la selección y control de entidades en un juego 2D
  * Combina funcionalidades de selección individual, múltiple y movimiento en formación
  */
-
 class MouseManager {
   // Constantes de configuración
   static DRAG_THRESHOLD = 5;
@@ -11,21 +11,49 @@ class MouseManager {
   static SELECTION_COLOR = 0x00ff00;
   static SELECTION_ALPHA = 0.1;
   static SELECTION_LINE_WIDTH = 2;
+  
 
-  constructor(juego) {
+  constructor(juego,app, contenedor) {//08/06/2025
     this._validateGameObject(juego);
     this.juego = juego;
+    this.app =app;
+    this.contenedor = contenedor;//08/06/2025
     
     // Estado de selección
     this.personajesSeleccionados = [];
     this.objetosSeleccionados = [];
     
+    
     // Estado de arrastre
     this.iniciandoSeleccion = false;
     this.puntoInicioSeleccion = null;
-    
+  
     this._initializeComponents();
+    this._initZoomControl(); //08/06/2025  zoom camera
   }
+
+
+  crearContainer() {
+    this.container = new PIXI.Container();
+    this.juego.containerPrincipal.addChild(this.container);
+  }
+
+  eventosDelHud() {
+    this.app.canvas.onmousedown = (event) => {
+      console.log(event);
+      const entity = this.juego.selectedEntities;
+
+      if (entity && entity.length > 0) {
+        entity.forEach(entity => {
+          const informacion = entity.atributos();
+          const imagen = entity.dirImagen; 
+          this.juego.ui.mostrarAtributosDe_(informacion);
+          this.juego.ui.agregarImagenDe_(imagen);
+        });
+      }
+    }
+  }
+
 
   /**
    * Valida que el objeto juego tenga las propiedades mínimas requeridas
@@ -47,6 +75,7 @@ class MouseManager {
       this._initSelectionBox();
       this._initEventListeners();
       this._initMouseTracking();
+      this.eventosDelHud();
     } catch (error) {
       console.error('Error inicializando MouseManager:', error);
       throw error;
@@ -56,10 +85,17 @@ class MouseManager {
   /**
    * Inicializa el rectángulo de selección
    */
-  _initSelectionBox() {
+  _initSelectionBoxV1() {
     if (!this.juego.selectionBox) {
       this.juego.selectionBox = new PIXI.Graphics();
       this.juego.app.stage.addChild(this.juego.selectionBox);
+    }
+  }
+
+  _initSelectionBox() {
+    if (!this.juego.selectionBox) {
+      this.juego.selectionBox = new PIXI.Graphics();
+      this.juego.containerPrincipal.addChild(this.juego.selectionBox); // ← Cambiar aquí
     }
   }
 
@@ -73,6 +109,16 @@ class MouseManager {
     this.juego.app.stage.on('pointerdown', this._handlePointerDown.bind(this));
     this.juego.app.stage.on('pointermove', this._handlePointerMove.bind(this));
     this.juego.app.stage.on('pointerup', this._handlePointerUp.bind(this));
+  }
+
+  /**
+   * Convierte coordenadas de evento a coordenadas locales del canvas
+   * Soluciona problemas de desplazamiento cuando el canvas no está en (0,0)
+   */
+  _getLocalCoordinates(evento) {
+    const global = this.app.renderer.events.pointer.global;
+    const local = this.contenedor.toLocal(global);
+    return { x: local.x, y: local.y };
   }
 
   /**
@@ -158,7 +204,7 @@ class MouseManager {
       evento.data.originalEvent.preventDefault();
     }
     
-    const position = evento.global;
+    const position = this._getLocalCoordinates(evento);
     this._executeMovementCommands(position);
   }
 
@@ -166,19 +212,16 @@ class MouseManager {
    * Actualiza la posición del mouse
    */
   _updateMousePosition(evento) {
-    if (evento.global) {
-      this.juego.mouse.x = evento.global.x;
-      this.juego.mouse.y = evento.global.y;
-    }
+    const localCoords = this._getLocalCoordinates(evento);
+    this.juego.mouse.x = localCoords.x;
+    this.juego.mouse.y = localCoords.y;
   }
 
   /**
    * Detecta clic en entidad individual
    */
   _detectEntityClick(evento) {
-    if (!evento.global) return;
-
-    const position = evento.global;
+    const position = this._getLocalCoordinates(evento);
     this._clearAllSelections();
 
     const entity = this._findEntityAtPosition(position);
@@ -272,19 +315,26 @@ class MouseManager {
       case 'entity':
         this.juego.selectedEntities = [entity];
         this.personajesSeleccionados = [entity];
-        this._callMethod(entity, 'setSeleccionado', true);
+        this._callMethod(entity, 'seleccionar', true);
         break;
+
       case 'personaje':
+        this.juego.selectedEntities = [entity];
         this.personajesSeleccionados = [entity];
         this.juego.selectedEntities = [entity];
         this._callMethod(entity, 'seleccionar');
+        //this._callMethod(entity, 'emitirSonidoAleatorio');
         break;
+
       case 'objeto':
+        this.juego.selectedEntities = [entity];
         this.objetosSeleccionados = [entity];
+        this.juego.objetosSeleccionados = [entity];
         this._callMethod(entity, 'seleccionar');
         break;
     }
   }
+
 
   /**
    * Limpia todas las selecciones
@@ -311,8 +361,8 @@ class MouseManager {
    * Limpia selección de personajes
    */
   _clearPersonajesSelection() {
-    if (Array.isArray(this.personajesSeleccionados)) {
-      this.personajesSeleccionados.forEach(personaje => {
+    if (Array.isArray(this.juego.selectedEntities)) {
+      this.juego.selectedEntities.forEach(personaje => {
         this._callMethod(personaje, 'deseleccionar');
       });
     }
@@ -408,13 +458,13 @@ class MouseManager {
    * Inicia proceso de selección múltiple
    */
   _startSelection(evento) {
-    if (!evento.global) return;
+    const localCoords = this._getLocalCoordinates(evento);
 
     this.iniciandoSeleccion = true;
-    this.puntoInicioSeleccion = evento.global.clone();
+    this.puntoInicioSeleccion = { x: localCoords.x, y: localCoords.y };
     
     // Compatibilidad con código original
-    this.juego.selectionStart = { x: evento.global.x, y: evento.global.y };
+    this.juego.selectionStart = { x: localCoords.x, y: localCoords.y };
     this.juego.isSelecting = true;
 
     if (this.juego.selectionBox) {
@@ -426,11 +476,12 @@ class MouseManager {
    * Actualiza rectángulo de selección durante arrastre
    */
   _updateSelectionRectangle(evento) {
-    if (!this.iniciandoSeleccion || !this.juego.isSelecting || !evento.global) {
+    if (!this.iniciandoSeleccion || !this.juego.isSelecting) {
       return;
     }
 
-    const bounds = this._calculateSelectionBounds(this.puntoInicioSeleccion, evento.global);
+    const currentCoords = this._getLocalCoordinates(evento);
+    const bounds = this._calculateSelectionBounds(this.puntoInicioSeleccion, currentCoords);
     this._drawSelectionRectangle(bounds);
   }
 
@@ -470,12 +521,13 @@ class MouseManager {
    * Finaliza proceso de selección
    */
   _finalizeSelection(evento) {
-    if (!this.iniciandoSeleccion || !evento.global) return;
+    if (!this.iniciandoSeleccion) return;
 
     this._resetSelectionState();
 
-    if (this._isDragGesture(this.puntoInicioSeleccion, evento.global)) {
-      this._performMultipleSelection(this.puntoInicioSeleccion, evento.global);
+    const currentCoords = this._getLocalCoordinates(evento);
+    if (this._isDragGesture(this.puntoInicioSeleccion, currentCoords)) {
+      this._performMultipleSelection(this.puntoInicioSeleccion, currentCoords);
     }
 
     this._clearSelectionBox();
@@ -583,6 +635,7 @@ class MouseManager {
   _clearSelectionBox() {
     if (this.juego.selectionBox) {
       this.juego.selectionBox.clear();
+      //this.juego.selectedEntities.deseleccionar();
     }
   }
 
@@ -627,8 +680,36 @@ class MouseManager {
       console.error('Error destruyendo MouseManager:', error);
     }
   }
+    //08/06/2025 para zoom de mouse-----------------------------------------
+  _initZoomControl() {
+    const container = this.juego.containerPrincipal;
+    const minZoom = 1;//0.5 lo que se puede alejar
+    const maxZoom = 3;//2 lo que se acerca
+
+    window.addEventListener('wheel', (e) => {
+      const zoomAmount = -e.deltaY * 0.0004;//0.001
+
+      const scaleBefore = container.scale.x;
+      let newScale = scaleBefore + zoomAmount;
+      newScale = Math.max(minZoom, Math.min(maxZoom, newScale));
+
+      const rect = this.app.view.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      const worldX = (mouseX - container.x) / scaleBefore;
+      const worldY = (mouseY - container.y) / scaleBefore;
+
+      container.scale.x = container.scale.y = newScale;
+
+      container.x = mouseX - worldX * newScale;
+      container.y = mouseY - worldY * newScale;
+
+      this.juego.limitarCamara(); // Llamar para que no se salga del mapa
+    });
+  }
+  //--------------------------------------------------------------------------------------
 }
 
 // Mantener compatibilidad global
 window.MouseManager = MouseManager;
-

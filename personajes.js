@@ -6,7 +6,7 @@ class Personaje {
     this.iD= Math.floor(Math.random()*5);
     this.x = x;
     this.y = y;
-    this.vida = 100;
+    this.vida = 10;
     this.dirImagen ="assets/hud/obreroOrco.jpg"
     this.velocidad = 1;
     this.listo = false;
@@ -168,14 +168,6 @@ class Personaje {
   irA(destX, destY) {
     const origen = this.juego.grid.getCellAt(this.x, this.y);
     const destino = this.juego.grid.getCellAt(destX, destY);
-    if (origen && destino) {
-      this.camino = this.juego.grid.calcularCaminoDesdeHasta(origen, destino);
-    }
-  }
-
-  irA_v2(destX, destY) {
-    const origen = this.juego.grid.getCellAt(this.x, this.y);
-    const destino = this.juego.grid.getCellAt(destX, destY);
 
     if (origen && destino) {
       this.destinoFijado = { x: destX, y: destY }; // ← Guardamos destino
@@ -253,7 +245,7 @@ class Personaje {
   lucharContra(enemigos) {
     if (this.atacando || enemigos.length === 0) return;
 
-    const RANGO_ATAQUE = 40;
+    const RANGO_ATAQUE = 96;
 
     for (const enemigo of enemigos) {
       if (!enemigo || enemigo.vida <= 0) continue;

@@ -1,14 +1,16 @@
-class SoldadoAzul extends Personaje {
+class SoldadoAzul extends Aliados {
   constructor(x, y, app, i, juego) {
     super(x, y, app, i, juego);
-    this.velocidad = 1.75;
-    this.sonidos = [];
-    this.vida=100;
-    this.ataque=11;
-    this.defensa=9;
-    this.listoSonidos = false;
-    this.dirImagen ="assets/hud/soldadoAzul2.jpg"
     this.cargarSpriteAnimado();
+    this.dirImagen = "assets/hud/soldadoAzul2.jpg"
+    this.vida = 5;
+    this.velocidad = 2;
+    this.defensa = 9;
+    this.ataque = 11;
+    
+    this.sonidos = [];
+    this.listoSonidos = false;
+    
     this.cargarSonidosAleatorios().then(() => {
       this.listoSonidos = true;
       console.log("Sonidos cargados correctamente");
@@ -22,41 +24,6 @@ class SoldadoAzul extends Personaje {
       "Vel: " + this.velocidad + "        "+ "Estado: " + this.estado
       
     );
-  }
-
-  async cargarSonidosAleatorios() {
-    this.sonidos = [];
-    const rutas = [
-      'assets/sonidoSoldadosAzules/a sus ordenes capitan.mp3',
-      'assets/sonidoSoldadosAzules/ahhhh.mp3',
-      'assets/sonidoSoldadosAzules/allá la.mp3',
-      //'assets/sonidoSoldadosAzules/viva la libertad carajo.mp3'
-    ];
-
-    for (const ruta of rutas) {
-      const sound = new Howl({ src: [ruta] ,volume: 3 });
-      this.sonidos.push(sound);
-    }
-  }
-
-  emitirSonidoAleatorio() {
-    if (!this.listoSonidos) {
-      console.warn("Sonidos no están listos aún");
-      return;
-    }
-    if (!this.sonidos || this.sonidos.length === 0) {
-      console.warn("No hay sonidos cargados");
-      return;
-    }
-    const randomIndex = Math.floor(Math.random() * this.sonidos.length);
-    this.sonidos[randomIndex].play();
-  }
-
-  setSeleccionado(estado) {
-    if (this.sprite) {
-      this.sprite.tint = estado ? 0xff0000 : 0xFFFFFF;
-      if (estado) this.emitirSonidoAleatorio();
-    }
   }
 
   async cargarSpriteAnimado() {
@@ -98,17 +65,39 @@ class SoldadoAzul extends Personaje {
 
     this.listo = true;
   }
-  
-  obtenerAnimacionDeAtaque(dx, dy) {
-    const umbral = 0.1;
 
-    if (Math.abs(dx) < umbral && dy > 0) return 'abajoAtk';
-    if (Math.abs(dx) < umbral && dy < 0) return 'arribaAtk';
-    if (Math.abs(dy) < umbral && dx !== 0) return 'ladoAtk';
-    if (dx !== 0 && dy > 0) return 'digAbajoAtk';
-    if (dx !== 0 && dy < 0) return 'digArribaAtk';
+  async cargarSonidosAleatorios() {
+    this.sonidos = [];
+    const rutas = [
+      'assets/sonidoSoldadosAzules/a sus ordenes capitan.mp3',
+      'assets/sonidoSoldadosAzules/ahhhh.mp3',
+      'assets/sonidoSoldadosAzules/allá la.mp3',
+      //'assets/sonidoSoldadosAzules/viva la libertad carajo.mp3'
+    ];
 
-    return 'ladoAtk';
+    for (const ruta of rutas) {
+      const sound = new Howl({ src: [ruta] ,volume: 3 });
+      this.sonidos.push(sound);
+    }
   }
 
+  emitirSonidoAleatorio() {
+    if (!this.listoSonidos) {
+      console.warn("Sonidos no están listos aún");
+      return;
+    }
+    if (!this.sonidos || this.sonidos.length === 0) {
+      console.warn("No hay sonidos cargados");
+      return;
+    }
+    const randomIndex = Math.floor(Math.random() * this.sonidos.length);
+    this.sonidos[randomIndex].play();
+  }
+
+  setSeleccionado(estado) {
+    if (this.sprite) {
+      this.sprite.tint = estado ? 0xff0000 : 0xFFFFFF;
+      if (estado) this.emitirSonidoAleatorio();
+    }
+  }
 }
