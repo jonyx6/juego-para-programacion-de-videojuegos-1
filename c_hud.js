@@ -30,7 +30,8 @@ class UI {
         this.containerHud = new PIXI.Container();
         this.containerHud.name = "interfaz";
         this.containerHud.y = this.juego.alto * 2;
-        this.juego.containerPrincipal.addChild(this.containerHud);
+        //this.juego.containerPrincipal.addChild(this.containerHud);
+        this.juego.app.stage.addChild(this.containerHud);
         this.containerHud.zIndex = 200;
     }
 
