@@ -43,14 +43,14 @@ class Personaje {
   async cargarSonidosAleatorios() {
     this.sonidos = [];
     const rutas = [
-      'assets/sonidoObrero/me vas a hacer negrear no.mp3',
-      'assets/sonidoObrero/que negrero.mp3',
+      //'assets/sonidoObrero/me vas a hacer negrear no.mp3',
+      //'assets/sonidoObrero/que negrero.mp3',
       'assets/sonidoObrero/que queres.mp3',
       'assets/sonidoObrero/vamo a chambear.mp3'
     ];
 
     for (const ruta of rutas) {
-      const sound = new Howl({ src: [ruta] ,volume: 5 });
+      const sound = new Howl({ src: [ruta] ,volume: 1 });
       this.sonidos.push(sound);
     }
   }

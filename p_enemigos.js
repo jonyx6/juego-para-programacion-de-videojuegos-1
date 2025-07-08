@@ -13,7 +13,7 @@ class Enemigos extends Personaje {
     this.rangoAtaqueEstructura = 192;
 
     this.objetivoActual = null;
-    this.cantidadParaAgruparse = 4;
+    this.cantidadParaAgruparse = 5;
   }
   
   update(time) {// Y modificar el switch en update() para manejar el estado 'agrupando'

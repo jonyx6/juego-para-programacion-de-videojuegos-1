@@ -85,7 +85,7 @@ class ObjetosEscenario {//10/06/2025---------
     this.registrarseEnGrid();
   }
 
-  colocarEnCelda(col, row) {
+  colocarEnCeldaV1(col, row) {
     const cellSize = this.juego.grid.cellSize;
 
     const x = (col + 1) * cellSize;
@@ -94,6 +94,12 @@ class ObjetosEscenario {//10/06/2025---------
     this.container.x = x;
     this.container.y = y;
   }
+  colocarEnCelda(col, row) {
+    const celda = this.juego.grid.getCell(col, row);
+    this.container.x = celda.centerX;
+    this.container.y = celda.centerY;
+  }
+
 
   registrarseEnGrid() {
     const xSuperiorIzq = this.container.x - this.ancho / 2;

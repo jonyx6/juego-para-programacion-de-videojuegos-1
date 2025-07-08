@@ -4,7 +4,7 @@ class SoldadoAzul extends Aliados {
     this.cargarSpriteAnimado();
     this.dirImagen = "assets/hud/soldadoAzul2.jpg"
     this.vida = 5;
-    this.velocidad = 2;
+    this.velocidad = 1.75;
     this.defensa = 9;
     this.ataque = 11;
     
@@ -70,13 +70,13 @@ class SoldadoAzul extends Aliados {
     this.sonidos = [];
     const rutas = [
       'assets/sonidoSoldadosAzules/a sus ordenes capitan.mp3',
-      'assets/sonidoSoldadosAzules/ahhhh.mp3',
-      'assets/sonidoSoldadosAzules/allá la.mp3',
+      'assets/sonidoSoldadosAzules/ahhhh.mp3'
+      //'assets/sonidoSoldadosAzules/allá la.mp3',
       //'assets/sonidoSoldadosAzules/viva la libertad carajo.mp3'
     ];
 
     for (const ruta of rutas) {
-      const sound = new Howl({ src: [ruta] ,volume: 3 });
+      const sound = new Howl({ src: [ruta] ,volume: 1 });
       this.sonidos.push(sound);
     }
   }

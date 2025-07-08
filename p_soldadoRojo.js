@@ -4,7 +4,7 @@ class SoldadoRojo extends Enemigos {
     this.cargarSpriteAnimado();
     this.dirImagen ="assets/hud/soldadoRojo.jpg";
     this.vida = 5;
-    this.velocidad = 2;
+    this.velocidad = 1.75;
     this.puntoDeAtaque = { x: 1500, y: 500 }; // Puede usarse en el futuro para estrategias
     
     this.defensa = 7;
@@ -72,14 +72,14 @@ class SoldadoRojo extends Enemigos {
   async cargarSonidosAleatorios() {
     this.sonidos = [];
     const rutas = [
-      'assets/sonidoOrcoRojo/aplastarlos sin piedad.mp3',
-      'assets/sonidoOrcoRojo/Furia de orco desatada.mp3',
-      'assets/sonidoOrcoRojo/Grrrr... os voy a destruir.mp3',
+      //'assets/sonidoOrcoRojo/aplastarlos sin piedad.mp3',
+      //'assets/sonidoOrcoRojo/Furia de orco desatada.mp3',
+      //'assets/sonidoOrcoRojo/Grrrr... os voy a destruir.mp3',
       'assets/sonidoOrcoRojo/por la orda.mp3'
     ];
 
     for (const ruta of rutas) {
-      const sound = new Howl({ src: [ruta] ,volume: 3 });
+      const sound = new Howl({ src: [ruta] ,volume: 1 });
       this.sonidos.push(sound);
     }
   }

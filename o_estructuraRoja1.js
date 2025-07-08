@@ -1,8 +1,8 @@
 class CentralRoja extends ObjetosEscenario{
   constructor(juego, col, row) {
     super(juego, col, row);
-    this._vida = 20;//11/06/2025--
-    this.vidaMaxima = 20;
+    this._vida = 500;//11/06/2025--
+    this.vidaMaxima = 500;
     this.estadoActual = 'activa';
     this.dirImagen ="assets/hud/casaOrca.jpg"
     this.dirImagen2 = "assets/Estructuras/EdificioRojo_1.png"; // Asegurate que exista
@@ -79,9 +79,9 @@ class CentralRoja extends ObjetosEscenario{
   }
   sumarRecurso() {//07/07/2025
     this.contadorRecursos++;
-    if (this.contadorRecursos >= 20) {
+    if (this.contadorRecursos >= 10) {
       this.juego.crearTrabajadorCercaDe(this); // llamamos a Juego para crear el trabajador
-      this.contadorRecursos -= 20;
+      this.contadorRecursos -= 10;
     }
   }
     

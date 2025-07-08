@@ -1,8 +1,8 @@
 class Gendarmeria extends ObjetosEscenario{
   constructor(juego, col, row) {
     super(juego, col, row);
-    this._vida = 20;//11/06/2025--
-    this.vidaMaxima = 20;
+    this._vida = 400;//11/06/2025--
+    this.vidaMaxima = 400;
     this.estadoActual = 'activa';
     this.dirImagen ="assets/hud/casaOrca.jpg"
     this.dirImagen2 = "assets/Estructuras/EdificioRojo_2.png"; // Asegurate que exista

@@ -1,7 +1,7 @@
 class TrabajadorAzul extends Personaje {
   constructor(x, y, app, i, juego) {
     super(x, y, app, i, juego);
-    this.velocidad = 1.75;
+    this.velocidad = 1.5;
     this.estadoActual = 'idle';
     this.dirImagen = "assets/trabajadorAzul/000.png";
 
@@ -147,12 +147,12 @@ class TrabajadorAzul extends Personaje {
       // Buscar piedra si no tengo una (NO cambiamos si ya hay una)
       if (!this.recursoAsignado /* || this.recursoAsignado.estadoActual === 'muerta' */) {
         this.recursoAsignado = this.encontrarRecursoMasCercano();
-        console.log("🪓 recurso encontrado:", this.recursoAsignado);
+        //console.log("🪓 recurso encontrado:", this.recursoAsignado);
         if (this.recursoAsignado) {
           //this.recursoAsignado.trabajadoresAsignados ??= [];
           //this.recursoAsignado.trabajadoresAsignados.push(this);
           this.recursoAsignado.asignarTrabajador(this);
-          console.log(`⚒️ Trabajador ${this.i} asignado a ${this.recursoAsignado.tipoRecurso} en (${this.recursoAsignado.x}, ${this.recursoAsignado.y})`);
+          //console.log(`⚒️ Trabajador ${this.i} asignado a ${this.recursoAsignado.tipoRecurso} en (${this.recursoAsignado.x}, ${this.recursoAsignado.y})`);
         }
       }
 
@@ -209,7 +209,7 @@ class TrabajadorAzul extends Personaje {
     await this.esperarALlegar();
 
     if (!this.recursoAsignadoEstaDisponible()) {
-      console.log(`❌ Trabajador ${this.i} llegó pero el recurso ya no existe`);
+      //console.log(`❌ Trabajador ${this.i} llegó pero el recurso ya no existe`);
       this.liberarAsignacionDeRecurso();
       return;
     }

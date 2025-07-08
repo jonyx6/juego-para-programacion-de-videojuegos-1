@@ -44,8 +44,6 @@ class Juego {
     // Iniciar escucha de movimiento del mouse
     this.escucharMovimientoMouse();
     
-    
-
     // Iniciar la app de PIXI y luego cargar el juego
     this.app.init({ width: this.ancho, height: this.alto }).then(() => {
       this.inicializarJuego();
@@ -71,24 +69,24 @@ class Juego {
     //await this.ponerFondoJonyViejo(); 
     await this.ponerFondo1(); // fondo alto
     //await this.ponerFondo2(); //fondo ancho
-    //this.ponerFondo3();
+    //await this.ponerFondo3();
     this.instanciarComponentes();
     this.crearUi();
 
     //paredes de grid
     this.generadorParedes = new GeneradorParedesAleatorias(this.grid);//v3 que no funciona
-    this.generadorParedes.generarParedesAleatorias(0.02);
+    this.generadorParedes.generarParedesAleatorias(0.04);
 
     //this.crearEntidades();
     await this.crearEntidades();
-    this.crearEstructura(GendarmeriaHumana, 5, 5);//Columna / fila
-    this.crearEstructura(CentralAzul, 5, 15);
-    this.crearEstructura(GendarmeriaHumana, 5, 25);
-    this.crearEstructura(MinaDeOro, 10, 15);//10/06/2025
+    this.crearEstructura(GendarmeriaHumana, 15, 5);//Columna / fila
+    this.crearEstructura(CentralAzul, 5, 5);
+    this.crearEstructura(GendarmeriaHumana, 5, 15);
+    this.crearEstructura(MinaDeOro, 15, 15);//10/06/2025
 
-    this.crearEstructuraEnemiga(Gendarmeria, 50, 5);
-    this.crearEstructuraEnemiga(CentralRoja, 50, 15);
-    this.crearEstructuraEnemiga(Gendarmeria, 50, 25);
+    this.crearEstructuraEnemiga(Gendarmeria, 55, 20);
+    this.crearEstructuraEnemiga(CentralRoja, 55, 30);
+    this.crearEstructuraEnemiga(Gendarmeria, 45, 30);
 
     this.app.ticker.add(() => this.gameLoop());
 
@@ -104,14 +102,27 @@ class Juego {
 
   iniciarMusica() {
     this.musicaFondo = new Howl({
-      src: ['Elwynn Forest - Music & Ambience - World of Warcraft.mp3'], 
+      src: ['assets/sonidos/Elwynn Forest - Music & Ambience - World of Warcraft.mp3'], // asegurate de que esta ruta esté bien
       loop: true,
-      volume: 0.5,
-      html5: true 
+      volume: 0.2,
+      html5: true, // o quitá esto si no necesitás streaming
+      onload: () => {
+        console.log("🎵 Música cargada");
+        
+        setTimeout(() => {
+          try {
+            this.musicaFondo.play();
+            console.log("▶️ Música iniciada automáticamente tras 5 segundos");
+          } catch (e) {
+            console.warn("🔒 El navegador bloqueó la reproducción automática");
+          }
+        }, 4000); // espera 5 segundos (5000 ms)
+      },
+      onloaderror: (id, err) => {
+        console.error("❌ Error al cargar la música:", err);
+      }
     });
-    this.musicaFondo.play();
-  }
-  
+  } 
   // Crea el contenedor principal donde se agregan todos los elementos del juego
   crearContainerPrincipal() {
     this.containerPrincipal = new PIXI.Container();
@@ -179,13 +190,13 @@ class Juego {
     //--- personajes ---
     //-AZULES
     this.crearTrabajadoresAzules(5)
-    this.crearSoldadosAzules(10)
-    this.crearCaballerosAzules(10);
+    this.crearSoldadosAzules(5)
+    this.crearCaballerosAzules(5);
 
     //-ROJOS
-    this.crearTrabajadoresRojos(5);
-    this.crearSoldadosRojos(10)
-    this.crearCaballerosRojos(10);
+    this.crearTrabajadoresRojos(10);
+    this.crearSoldadosRojos(5)
+    this.crearCaballerosRojos(5);
     
     //-OBJETOS-
     await Arbol.cargarEnCeldasBloqueadas(this);
@@ -285,18 +296,26 @@ class Juego {
   }
   // Crea una instancia de personaje genérico y lo agrega al array de entidades
   crearEntidad(ClaseEntidad, i) {
-    const x = Math.random() * 600;
-    const y = Math.random() * 1000;
+    const x = Math.random() * 800;
+    const y = Math.random() * 800;
     const entidad = new ClaseEntidad(x, y, this.app, i, this);
    
     this.entidades.push(entidad);
     return entidad;
   }
-
   crearEntidadRoja(ClaseEntidad, i) {
   // Generar posiciones en el lado derecho de la pantalla
     const x = Math.random() * 600 + (this.limiteAncho - 600); // Lado derecho
     const y = Math.random() * 1000;
+    const entidad = new ClaseEntidad(x, y, this.app, i, this);
+  
+    this.entidades.push(entidad);
+    return entidad;
+  }
+  crearEntidadRojaV2(ClaseEntidad, i) {
+  // Generar posiciones en el lado derecho de la pantalla
+    const x = Math.random() * 800 + (this.limiteAncho - 800); // Lado derecho
+    const y = Math.random() * 800 + (this.limiteAlto - 800);
     const entidad = new ClaseEntidad(x, y, this.app, i, this);
   
     this.entidades.push(entidad);
@@ -331,14 +350,14 @@ class Juego {
   }
   crearCaballeroAzulCercaDe(estructura) {//07/07/2025
 
-    console.log("Propiedades de la estructura:", Object.keys(estructura));
-    console.log("Estructura completa:", estructura);    
+    //console.log("Propiedades de la estructura:", Object.keys(estructura));
+    //console.log("Estructura completa:", estructura);    
 
     const x = (estructura.container?.x || estructura.x || 400);     
     const y = (estructura.container?.y || estructura.y || 300);  
     
-    console.log(`Creando caballero en: x=${x}, y=${y}`); // 👈 Agregar esto
-    console.log(`Estructura en: x=${estructura.centerX}, y=${estructura.centerY}`); // 👈 Y esto
+    //console.log(`Creando caballero en: x=${x}, y=${y}`); // 👈 Agregar esto
+    //console.log(`Estructura en: x=${estructura.centerX}, y=${estructura.centerY}`); // 👈 Y esto
 
     const i = Date.now(); // ID único
     //const trabajador = new TrabajadorRojo2(x, y, this.app, i, this);
@@ -349,7 +368,7 @@ class Juego {
     this.entidades.push(trabajador);
     this.caballerosAzules.push(trabajador);
 
-    console.log("👷 Caballero creado cerca de la central");
+    //console.log("👷 Caballero creado cerca de la central");
   }
   obtenerCeldaVecinaMasCercana(objeto) {
     const celdas = objeto.obtenerCeldasVecinasLibres();

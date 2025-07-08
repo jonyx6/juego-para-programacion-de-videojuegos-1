@@ -9,9 +9,9 @@ class Trabajador extends Personaje {
     async cargarSonidosAleatorios() {
       
         const rutas = [
-            'assets/sonidoObrero/me vas a hacer negrear no.mp3',
-            'assets/sonidoObrero/que negrero.mp3',
-            'assets/sonidoObrero/que queres.mp3',
+            //'assets/sonidoObrero/me vas a hacer negrear no.mp3',
+            //'assets/sonidoObrero/que negrero.mp3',
+            //'assets/sonidoObrero/que queres.mp3',
             'assets/sonidoObrero/vamo a chambear.mp3'
         ];
 
