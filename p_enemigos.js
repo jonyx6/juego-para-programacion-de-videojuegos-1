@@ -33,17 +33,27 @@ class Enemigos extends Personaje {
     }
   }
 
-  irAInterno(destX, destY) {//es el nuevo irA()
+  irAInterno(destX, destY) {//26/06/2025
+    if (
+      this.destinoFijado &&
+      Math.abs(this.destinoFijado.x - destX) < 4 &&
+      Math.abs(this.destinoFijado.y - destY) < 4
+    ) {
+      return; // ya tenía ese destino
+    }
+
     const origen = this.juego.grid.getCellAt(this.x, this.y);
     const destino = this.juego.grid.getCellAt(destX, destY);
     if (origen && destino) {
+      this.destinoFijado = { x: destX, y: destY };
       this.camino = this.juego.grid.calcularCaminoDesdeHasta(origen, destino);
     }
   }
 
+
   PatrullarLugar(radio) { // se mueve de forma aleatoria cada un tiempo en un determinado radio
     if (this.estado !== 'patrullando' || this.camino.length > 0 || this.enEspera) return;
-    console.log("PatrullarLugar");
+    //console.log("PatrullarLugar");
     const origenCelda = this.juego.grid.getCellAt(this.x, this.y);
     if (!origenCelda) return;
 
@@ -131,7 +141,7 @@ class Enemigos extends Personaje {
   
   detectarYAtacarEnemigos(rango) {// si detecta que hay un enemigo cerca, va a atacarlo
     if (!this.enemigos) return;
-    console.log("detectarYAtacarEnemigos");
+    //console.log("detectarYAtacarEnemigos");
     const enemigos = typeof this.enemigos === 'function' ? this.enemigos() : this.enemigos;
     for (const enemigo of enemigos) {
       if (!enemigo || enemigo.vida <= 0) continue;
@@ -199,7 +209,7 @@ class Enemigos extends Personaje {
   aplicarDanio() {
     if (!this.objetivoActual || this.objetivoActual.vida <= 0) return;
     
-    console.log("Atacando casa, vida actual:", this.objetivoActual.vida);
+    //console.log("Atacando casa, vida actual:", this.objetivoActual.vida);
     this.objetivoActual.vida -= 0.1; // daño por frame
     
     if (this.objetivoActual.vida <= 0) {
@@ -211,7 +221,7 @@ class Enemigos extends Personaje {
   
   buscarSiguienteObjetivo() {
     const objetivos = this.juego.objetosDeEscenarioAzules || [];
-    console.log("Buscando siguiente objetivo. Disponibles:", objetivos.length);
+    //console.log("Buscando siguiente objetivo. Disponibles:", objetivos.length);
     
     let menorDistancia = Infinity;
     let objetivoCercano = null;
@@ -241,7 +251,7 @@ class Enemigos extends Personaje {
       }
 
       if (mejorCelda) {
-        console.log("Nuevo objetivo encontrado:", objetivoCercano);
+        //console.log("Nuevo objetivo encontrado:", objetivoCercano);
         this.estado = 'atacandoEstructura';
         this.objetivoActual = objetivoCercano;
         this.irAInterno(mejorCelda.centerX, mejorCelda.centerY);
@@ -249,7 +259,7 @@ class Enemigos extends Personaje {
       }
     }
     
-    console.log("No hay más objetivos disponibles");
+    //console.log("No hay más objetivos disponibles");
     this.estado = 'patrullando';
     return false;
   }
@@ -260,7 +270,7 @@ class Enemigos extends Personaje {
     if (hayMasCasas) {
       this.buscarSiguienteObjetivo(); // método dedicado
     } else {
-      console.log("No quedan casas. Volviendo a patrullar.");
+      //console.log("No quedan casas. Volviendo a patrullar.");
       this.estado = 'patrullando';
     }
     

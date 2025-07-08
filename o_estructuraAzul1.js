@@ -8,6 +8,7 @@ class CentralAzul extends ObjetosEscenario {
     this.dirImagen2 = "assets/Estructuras/EdificioAzul_1.png"; // Asegurate que exista
     this.dirImagenDañada = "assets/Estructuras/EdificioAzul_1B.png"; // Sprite dañado
     this.spriteDañadoCargado = false;
+    this.contadorRecursos = 0;
   }
 
   async cargarSprite() {
@@ -74,6 +75,13 @@ class CentralAzul extends ObjetosEscenario {
     
     if (porcentajeVida <= 50 && !this.spriteDañadoCargado) {
       this.cambiarASpriteDañado();
+    }
+  }
+  sumarRecurso() {//07/07/2025
+    this.contadorRecursos++;
+    if (this.contadorRecursos >= 20) {
+      this.juego.crearCaballeroAzulCercaDe(this); // llamamos a Juego para crear el trabajador
+      this.contadorRecursos -= 20;
     }
   }
 }//---------------------------------------------------------------------------------------------------

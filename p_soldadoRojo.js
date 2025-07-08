@@ -14,7 +14,7 @@ class SoldadoRojo extends Enemigos {
     this.listoSonidos = false;
     this.cargarSonidosAleatorios().then(() => {
     this.listoSonidos = true;
-      console.log("Sonidos cargados correctamente");
+      //console.log("Sonidos cargados correctamente");
     });
   }
 

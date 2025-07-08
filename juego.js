@@ -22,6 +22,7 @@ class Juego {
     this.entidades = [];              // Todos los personajes
     this.caballerosAzules = [];       // Solo los caballeros azules
     this.soldadosAzules = [];
+    this.trabajadoresAzules = [];
 
     this.entidadesEnemigas = [];
     this.caballerosRojos = [];        // Solo los caballeros rojos
@@ -76,7 +77,7 @@ class Juego {
 
     //paredes de grid
     this.generadorParedes = new GeneradorParedesAleatorias(this.grid);//v3 que no funciona
-    this.generadorParedes.generarParedesAleatorias(0.06);
+    this.generadorParedes.generarParedesAleatorias(0.02);
 
     //this.crearEntidades();
     await this.crearEntidades();
@@ -177,12 +178,13 @@ class Juego {
   async crearEntidades() {
     //--- personajes ---
     //-AZULES
+    this.crearTrabajadoresAzules(5)
     this.crearSoldadosAzules(10)
     this.crearCaballerosAzules(10);
 
     //-ROJOS
+    this.crearTrabajadoresRojos(5);
     this.crearSoldadosRojos(10)
-    //this.crearTrabajadoresRojos(2);
     this.crearCaballerosRojos(10);
     
     //-OBJETOS-
@@ -202,14 +204,13 @@ class Juego {
     this.time = time;
     this.contadorDeFrame++;
 
+    this.debugGraphics.clear();
+    this.grid.render(this.debugGraphics);
+
     // Actualizar todas las entidades (personajes)
     for (const entidad of this.entidades) {
       entidad.update(time);
       entidad.render();
-
-      this.debugGraphics.clear();
-      this.grid.render(this.debugGraphics);
-
     }
     this.cursor.eventosDelHud()
     
@@ -223,12 +224,7 @@ class Juego {
   async crearCaballerosAzules(cantidad) {
     for (let i = 0; i < cantidad; i++) {
       const caballero = this.crearEntidad(CaballeroAzul, i);
-      caballero.enemigos = () => [
-        ...this.caballerosRojos,
-        ...this.soldadosRojos,
-        ...this.trabajadoresRojos,
-        ...this.objetosDeEscenarioRojos//19/06/2025 --la lista esta completa esta completa--
-      ];
+      caballero.enemigos = () => this.obtenerEnemigosRojos();
       await caballero.cargarSonidosAleatorios()
       this.caballerosAzules.push(caballero);
     }
@@ -237,26 +233,31 @@ class Juego {
     for (let i = 0; i < cantidad; i++) {
       //const soldado = new SoldadoAzul(Math.random() * 500, Math.random() * 500, this.app, i, this);
       const soldado = this.crearEntidad(SoldadoAzul, i);
-      soldado.enemigos = () => [
-        ...this.caballerosRojos,
-        ...this.soldadosRojos,
-        ...this.trabajadoresRojos,
-        ...this.objetosDeEscenarioRojos
-      ];
+      soldado.enemigos = () => this.obtenerEnemigosRojos();
       await soldado.cargarSonidosAleatorios()
       this.caballerosAzules.push(soldado);
     }
   }
+   async crearTrabajadoresAzules(cantidad) {
+      for (let i = 0; i < cantidad; i++) {
+        //const trabajador = new TrabajadorRojo(100, 100, this.app, i,this)
+        const trabajador = this.crearEntidad(TrabajadorAzul, i);
+        trabajador.enemigos = () => this.obtenerEnemigosRojos();
+    //      [
+    //    ...this.caballerosRojos,
+    //    ...this.soldadosRojos,
+    //    ...this.trabajadoresRojos,
+    //    ...this.objetosDeEscenarioRojos
+    //  ];
+        await trabajador.cargarSonidosAleatorios(); // Esperar a que cargue sonidos
+        this.trabajadoresAzules.push(trabajador);
+      }
+  } 
   // Crea caballeros rojos
   async crearCaballerosRojos(cantidad) {
     for (let i = 0; i < cantidad; i++) {
       const caballero = this.crearEntidadRoja(CaballeroRojo, i);
-      caballero.enemigos = () => [
-        ...this.caballerosAzules,
-        ...this.soldadosAzules,
-        ...this.objetosDeEscenarioAzules//10/06/2025----
-        //...this.trabajadoresAzules
-      ];
+      caballero.enemigos = () => this.obtenerEnemigosAzules();
       await caballero.cargarSonidosAleatorios()
       this.caballerosRojos.push(caballero);
       this.entidadesEnemigas.push(caballero);
@@ -265,12 +266,7 @@ class Juego {
   async crearSoldadosRojos(cantidad) {
     for (let i = 0; i < cantidad; i++) {
       const soldado = this.crearEntidadRoja(SoldadoRojo, i);
-      soldado.enemigos = () => [
-        ...this.caballerosAzules,
-        ...this.soldadosAzules,
-        ...this.objetosDeEscenarioAzules
-        //...this.trabajadoresAzules
-      ];
+      soldado.enemigos = () => this.obtenerEnemigosAzules();
       await soldado.cargarSonidosAleatorios()
       this.soldadosRojos.push(soldado);
       this.entidadesEnemigas.push(soldado);
@@ -280,15 +276,11 @@ class Juego {
  async crearTrabajadoresRojos(cantidad) {
     for (let i = 0; i < cantidad; i++) {
       //const trabajador = new TrabajadorRojo(100, 100, this.app, i,this)
-      const trabajador = this.crearEntidadRoja(TrabajadorRojo, i);
-      trabajador.enemigos = () => [
-        ...this.caballerosAzules,
-        ...this.soldadosAzules,
-        ...this.objetosDeEscenarioAzules
-        //...this.trabajadoresAzules
-      ]; 
+      const trabajador = this.crearEntidadRoja(TrabajadorRojo2, i);
+      trabajador.enemigos = () => this.obtenerEnemigosAzules(); 
       await trabajador.cargarSonidosAleatorios(); // Esperar a que cargue sonidos
       this.trabajadoresRojos.push(trabajador);
+      this.entidadesEnemigas.push(trabajador);
     }
   }
   // Crea una instancia de personaje genérico y lo agrega al array de entidades
@@ -303,13 +295,80 @@ class Juego {
 
   crearEntidadRoja(ClaseEntidad, i) {
   // Generar posiciones en el lado derecho de la pantalla
-  const x = Math.random() * 600 + (this.limiteAncho - 600); // Lado derecho
-  const y = Math.random() * 1000;
-  const entidad = new ClaseEntidad(x, y, this.app, i, this);
- 
-  this.entidades.push(entidad);
-  return entidad;
-}
+    const x = Math.random() * 600 + (this.limiteAncho - 600); // Lado derecho
+    const y = Math.random() * 1000;
+    const entidad = new ClaseEntidad(x, y, this.app, i, this);
+  
+    this.entidades.push(entidad);
+    return entidad;
+  }
+
+  crearTrabajadorCercaDe(estructura) {//07/07/2025
+
+    console.log("Propiedades de la estructura:", Object.keys(estructura));
+    console.log("Estructura completa:", estructura);    
+
+    const x = (estructura.container?.x || estructura.x || 400);     
+    const y = (estructura.container?.y || estructura.y || 300);  
+    
+    console.log(`Creando caballero en: x=${x}, y=${y}`); // 👈 Agregar esto
+    console.log(`Estructura en: x=${estructura.centerX}, y=${estructura.centerY}`); // 👈 Y esto
+
+    const i = Date.now(); // ID único
+    //const trabajador = new TrabajadorRojo2(x, y, this.app, i, this);
+    const trabajador = new CaballeroRojo(x, y, this.app, i, this);
+    // 👇 Asignar enemigos como en crearTrabajadoresRojos()
+    trabajador.enemigos = () => [
+      ...this.caballerosAzules,
+      ...this.soldadosAzules,
+      ...this.objetosDeEscenarioAzules
+    ];
+
+    this.entidades.push(trabajador);
+    this.caballerosRojos.push(trabajador);
+
+    console.log("👷 Caballero creado cerca de la central");
+  }
+  crearCaballeroAzulCercaDe(estructura) {//07/07/2025
+
+    console.log("Propiedades de la estructura:", Object.keys(estructura));
+    console.log("Estructura completa:", estructura);    
+
+    const x = (estructura.container?.x || estructura.x || 400);     
+    const y = (estructura.container?.y || estructura.y || 300);  
+    
+    console.log(`Creando caballero en: x=${x}, y=${y}`); // 👈 Agregar esto
+    console.log(`Estructura en: x=${estructura.centerX}, y=${estructura.centerY}`); // 👈 Y esto
+
+    const i = Date.now(); // ID único
+    //const trabajador = new TrabajadorRojo2(x, y, this.app, i, this);
+    const trabajador = new CaballeroAzul(x, y, this.app, i, this);
+    // 👇 Asignar enemigos como en crearTrabajadoresRojos()
+    trabajador.enemigos = () => this.obtenerEnemigosRojos();
+
+    this.entidades.push(trabajador);
+    this.caballerosAzules.push(trabajador);
+
+    console.log("👷 Caballero creado cerca de la central");
+  }
+  obtenerCeldaVecinaMasCercana(objeto) {
+    const celdas = objeto.obtenerCeldasVecinasLibres();
+    let mejorCelda = null;
+    let menorDist = Infinity;
+
+    for (const celda of celdas) {
+      const dx = celda.centerX - this.x;
+      const dy = celda.centerY - this.y;
+      const dist = dx * dx + dy * dy;
+
+      if (dist < menorDist) {
+        menorDist = dist;
+        mejorCelda = celda;
+      }
+    }
+
+    return mejorCelda;
+  }
 
   // === Métodos De CAMARA ===-------------------------------------------------------------------------------------------------------
   // Mueve la cámara si el mouse está cerca de los bordes
@@ -350,5 +409,21 @@ class Juego {
     this.objetosDeEscenario.push(estructura);
     this.objetosDeEscenarioRojos.push(estructura);
   }
+  obtenerEnemigosRojos() {//07/07/2025
+    return [
+      ...this.caballerosRojos,
+      ...this.soldadosRojos,
+      ...this.trabajadoresRojos,
+      ...this.objetosDeEscenarioRojos
+    ];
+  }
 
+  obtenerEnemigosAzules() {
+    return [
+      ...this.caballerosAzules,
+      ...this.soldadosAzules,
+      ...this.trabajadoresAzules,
+      ...this.objetosDeEscenarioAzules
+    ];
+  }
 }

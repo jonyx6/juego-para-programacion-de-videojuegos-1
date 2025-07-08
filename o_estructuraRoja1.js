@@ -8,6 +8,7 @@ class CentralRoja extends ObjetosEscenario{
     this.dirImagen2 = "assets/Estructuras/EdificioRojo_1.png"; // Asegurate que exista
     this.dirImagenDañada = "assets/Estructuras/EdificioRojo_1B.png"; // Sprite dañado
     this.spriteDañadoCargado = false;
+    this.contadorRecursos = 0;
   }
 
   async cargarSprite() {
@@ -76,6 +77,14 @@ class CentralRoja extends ObjetosEscenario{
       this.cambiarASpriteDañado();
     }
   }
+  sumarRecurso() {//07/07/2025
+    this.contadorRecursos++;
+    if (this.contadorRecursos >= 20) {
+      this.juego.crearTrabajadorCercaDe(this); // llamamos a Juego para crear el trabajador
+      this.contadorRecursos -= 20;
+    }
+  }
+    
 /*
   recibirDanio(cantidad) {
     this.vida -= cantidad;

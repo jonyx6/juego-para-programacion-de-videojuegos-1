@@ -1,11 +1,13 @@
-class Arbol extends ObjetosEscenario{
+class Arbol extends Recolectable{
   constructor(juego, col, row) {
     super(juego, col, row);
-    this.cantMadera=500;
+    this.cantMadera=20;
     this.dirImagen ="assets/hud/arbol.jpg"
 
     this.vida = 20;//11/06/2025--
     this.estadoActual = 'activa';
+    
+    this.tipoRecurso = 'madera'; // o 'madera', 'oro'
     this.dirImagen2 = "assets/arbol/00.png"; // Asegurate que exista
   }
 

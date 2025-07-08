@@ -1,4 +1,4 @@
-class Piedra extends ObjetosEscenario{
+class Piedra extends Recolectable{
   constructor(juego, col, row) {
     super(juego, col, row);
     this.cantMadera=500;
@@ -7,7 +7,9 @@ class Piedra extends ObjetosEscenario{
     this.vida = 20;//11/06/2025--
     this.estadoActual = 'activa';
 
-      // Array con los 3 sprites diferentes de piedra
+    this.tipoRecurso = 'piedra'; // o 'madera', 'oro'//06/07/2025
+
+    // Array con los 3 sprites diferentes de piedra
     const spritesPiedra = [
         "assets/piedra/rocaRecurso.png",
         "assets/piedra/rocaRecursoB.png",
@@ -51,5 +53,40 @@ class Piedra extends ObjetosEscenario{
       if (estado) this.emitirSonidoAleatorio();
     }
   }
- 
+  recibirDanio(cantidad) {
+    this.vida -= cantidad;
+
+    if (this.vida <= 0) {
+      this.destruir();
+    }
+  }
+  destruir() {
+    this.estadoActual = 'muerta';
+
+    // ✅ Liberar la celda del grid
+    //this.juego.grid.setBloqueado(this.col, this.row, false);
+    this.juego.grid.desbloquearCelda(this.col, this.row);
+
+    // ❌ Eliminar de la lista de objetos
+    const lista = this.juego.objetosDeEscenario;
+    const index = lista.indexOf(this);
+    if (index !== -1) {
+      lista.splice(index, 1);
+    }
+
+    // ❌ Destruir visualmente
+    this.container?.destroy();
+    this.sprite?.destroy();
+
+    // ❌ Liberar trabajadores asignados
+    if (this.trabajadoresAsignados) {
+      for (const trabajador of this.trabajadoresAsignados) {
+        if (trabajador?.liberarAsignacionDePiedra) {
+          trabajador.liberarAsignacionDePiedra();
+        }
+      }
+    }
+
+    console.log("🪨 Piedra destruida y celda liberada");
+  } 
 }

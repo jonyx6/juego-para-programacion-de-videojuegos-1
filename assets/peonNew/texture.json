@@ -638,15 +638,30 @@
     "peonNew/17.png",
     "peonNew/22.png"
   ],
-    "walk_right_down":[
+  "walk_right_down":[
     "peonNew/03.png",
     "peonNew/08.png",
     "peonNew/13.png",
     "peonNew/03.png",
     "peonNew/18.png",
     "peonNew/23.png"
+  ],
+  
+  "idleArri": [
+    "peonNew/00.png"
+  ],
+  "idleDiaArri": [
+    "peonNew/01.png"
+  ],
+  "idleLado": [
+    "peonNew/02.png"
+  ],
+  "idleDiaAbaj": [
+    "peonNew/03.png"
+  ],
+  "idleAbaj": [
+    "peonNew/04.png"
   ]
-
 },
 
   "meta": {

@@ -158,8 +158,6 @@ class Grid {
     graphics.stroke({ width: 1, color: 0xffd900 });
   }
 
-
-
   // === Pathfinding ===
   // --- Dijkstra --- original
   /*
@@ -302,7 +300,12 @@ class Grid {
       this.cells[index].blocked = true;
     }
   }
-
+  desbloquearCelda(col, row) {//06/07/2025
+    const index = this.getCellIndex(col, row);
+    if (index !== -1) {
+      this.cells[index].blocked = false;
+    }
+  }
  //////////////////////
   getCeldasOcupadasPorSprite(x, y, width, height) {
     const celdas = [];

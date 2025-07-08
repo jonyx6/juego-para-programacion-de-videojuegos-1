@@ -21,9 +21,12 @@ class Personaje {
     this.atacando = false;
     this.objetivoAtaque = null;
     this.distanciaMinima = 20;
+    
+    this.destinoFijado = null;//26/06/2025
+    
     this.cargarSonidosAleatorios().then(() => {
       this.listoSonidos = true;
-      console.log("Sonidos cargados correctamente");
+      //console.log("Sonidos cargados correctamente");
     });
 
   }
@@ -85,20 +88,41 @@ class Personaje {
     if (!this.listo) return;
 
     this.actualizarMovimiento();
-    //this.aplicarSeparacionBoids();//no funciona
     this.evitarSuperposicion();
     this.actualizarSprite();
-    //this.actualizarTextoVida();
     this.cambiarOrdenEnZ();
-    //this.limitarAlMapa();
 
-    // Si tiene enemigos definidos, luchar
-    if (this.enemigos) {
+    // ⚔️ Ejecutar combate solo si hay enemigos cerca y cada N frames
+    if (this.juego.contadorDeFrame % 10 === 0 && this.enemigosCerca()) {//26/06/2025
       const enemigos = typeof this.enemigos === 'function'
         ? this.enemigos()
         : this.enemigos;
+
       this.lucharContra(enemigos);
     }
+  }
+
+  enemigosCerca() {//26/06/2025
+    const enemigos = typeof this.enemigos === 'function'
+      ? this.enemigos()
+      : this.enemigos;
+
+    if (!enemigos || enemigos.length === 0) return false;
+
+    const rango = 64;
+    const rango2 = rango * rango;
+
+    for (const enemigo of enemigos) {
+      if (!enemigo || enemigo.vida <= 0) continue;
+
+      const dx = this.x - enemigo.x;
+      const dy = this.y - enemigo.y;
+      const dist2 = dx * dx + dy * dy;
+
+      if (dist2 < rango2) return true;
+    }
+
+    return false;
   }
 
   render(){
@@ -142,7 +166,6 @@ class Personaje {
       return;
     }
 
-    
     const objetivo = this.camino[0];
     const dx = objetivo.centerX - this.x;
     const dy = objetivo.centerY - this.y;
@@ -153,6 +176,10 @@ class Personaje {
       this.x = objetivo.centerX;
       this.y = objetivo.centerY;
       this.camino.shift();
+
+      if (this.camino.length === 0) {//26/06/2025
+        this.destinoFijado = null; // ← ESTA ES LA LÍNEA QUE TENÉS QUE AGREGAR
+      }
     } else {
       const dirX = dx / dist;
       const dirY = dy / dist;
@@ -165,12 +192,22 @@ class Personaje {
     }
   }
 
-  irA(destX, destY) {
+  irA(destX, destY) {//26/06/2025
+    // Si el destino actual es básicamente el mismo, no recalcular A*
+    if (
+      this.destinoFijado &&
+      Math.abs(this.destinoFijado.x - destX) < 4 &&
+      Math.abs(this.destinoFijado.y - destY) < 4
+    ) {
+      return; // El destino no cambió significativamente
+    }
+
+    // Recalcular solo si cambió el destino
     const origen = this.juego.grid.getCellAt(this.x, this.y);
     const destino = this.juego.grid.getCellAt(destX, destY);
 
     if (origen && destino) {
-      this.destinoFijado = { x: destX, y: destY }; // ← Guardamos destino
+      this.destinoFijado = { x: destX, y: destY };
       this.camino = this.juego.grid.calcularCaminoDesdeHasta(origen, destino);
     }
   }
@@ -279,6 +316,8 @@ class Personaje {
     this.sprite.loop = false;
     this.sprite.gotoAndPlay(0);
 
+    this.sprite.onComplete = null;//26/06
+
     this.sprite.onComplete = () => {
       if (enemigo?.vida > 0) {
         enemigo.recibirDanio(1);
@@ -290,7 +329,11 @@ class Personaje {
       this.sprite.loop = true;
       this.cambiarEstado('idle');
       this.sprite.onComplete = null;
-    };
+
+      if (this.destinoFijado && this.vida > 0) {//26/06/2025
+        this.irA(this.destinoFijado.x, this.destinoFijado.y);
+      }
+    }
   }
 
   reproducirAnimacionDeAtaque_v2(nombreAnimacion, enemigo) {
@@ -408,16 +451,32 @@ class Personaje {
    */
   evitarSuperposicion() {
     for (const otro of this.juego.entidades) {
-      if (otro === this) continue;
+      if (otro === this || otro.vida <= 0) continue;
 
       const dx = this.x - otro.x;
       const dy = this.y - otro.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      if (dist > 0 && dist < this.distanciaMinima) {
-        const fuerza = (this.distanciaMinima - dist) / dist * 0.5;
-        this.x += dx * fuerza;
-        this.y += dy * fuerza;
+      const radioColision = this.distanciaMinima;
+
+      if (dist > 0 && dist < radioColision) {
+        // Normal: vector que va desde "otro" hasta "este"
+        const nx = dx / dist;
+        const ny = dy / dist;
+
+        // Tangente (perpendicular a la normal): (−ny, nx)
+        const tx = -ny;
+        const ty = nx;
+
+        // Pequeño empujón en la dirección tangente
+        const fuerzaTangencial = 0.5; // cuanto más alto, más resbala
+        this.x += tx * fuerzaTangencial;
+        this.y += ty * fuerzaTangencial;
+
+        // Además empujón leve hacia afuera para que no se solapen
+        const fuerzaSeparacion = 0.2;
+        this.x += nx * fuerzaSeparacion;
+        this.y += ny * fuerzaSeparacion;
       }
     }
   }
