@@ -1,7 +1,7 @@
 class TrabajadorRojo2 extends Personaje {
   constructor(x, y, app, i, juego) {
     super(x, y, app, i, juego);
-    this.velocidad = 1.5;
+    this.velocidad = 1;
     this.estadoActual = 'idle';
     this.dirImagen = "assets/hud/obreroOrco.jpg";
 

@@ -189,14 +189,14 @@ class Juego {
   async crearEntidades() {
     //--- personajes ---
     //-AZULES
-    this.crearTrabajadoresAzules(5)
+    this.crearTrabajadoresAzules(10)
     this.crearSoldadosAzules(5)
     this.crearCaballerosAzules(5);
 
     //-ROJOS
-    this.crearTrabajadoresRojos(10);
-    this.crearSoldadosRojos(5)
-    this.crearCaballerosRojos(5);
+    this.crearTrabajadoresRojos(5);
+    this.crearSoldadosRojos(6)
+    this.crearCaballerosRojos(6);
     
     //-OBJETOS-
     await Arbol.cargarEnCeldasBloqueadas(this);

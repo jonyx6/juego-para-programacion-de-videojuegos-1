@@ -1,8 +1,8 @@
 class GendarmeriaHumana extends ObjetosEscenario {
   constructor(juego, col, row) {
     super(juego, col, row);
-    this._vida = 400;//11/06/2025--
-    this.vidaMaxima = 400;
+    this._vida = 100;//11/06/2025--
+    this.vidaMaxima = 100;
     this.estadoActual = 'activa';
     this.dirImagen ="assets/hud/casaHumana.jpg"
     this.dirImagen2 = "assets/Estructuras/EdificioAzul_2.png"; // Asegurate que exista

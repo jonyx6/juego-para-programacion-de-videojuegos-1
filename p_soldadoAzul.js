@@ -3,8 +3,8 @@ class SoldadoAzul extends Aliados {
     super(x, y, app, i, juego);
     this.cargarSpriteAnimado();
     this.dirImagen = "assets/hud/soldadoAzul2.jpg"
-    this.vida = 5;
-    this.velocidad = 1.75;
+    this.vida = 15;
+    this.velocidad = 1.5;
     this.defensa = 9;
     this.ataque = 11;
     

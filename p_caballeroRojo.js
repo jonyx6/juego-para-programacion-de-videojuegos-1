@@ -3,8 +3,8 @@ class CaballeroRojo extends Enemigos {
     super(x, y, app, i, juego);
     this.cargarSpriteAnimado();
     this.dirImagen = "assets/hud/jineteRojo.jpg";
-    this.vida = 5;
-    this.velocidad = 2;
+    this.vida = 10;
+    this.velocidad = 1.75;
     this.puntoDeAtaque = { x: 1500, y: 500 }; // Puede usarse en el futuro para estrategias
     
   }

@@ -4,7 +4,7 @@ class CaballeroAzul extends Aliados {
     this.cargarSpriteAnimado();
     this.dirImagen = "assets/hud/caballeroazul.jpg";
     this.vida = 10;
-    this.velocidad = 2;
+    this.velocidad = 1.75;
     this.defensa = 6;
     this.ataque = 17;
   }

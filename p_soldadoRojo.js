@@ -3,8 +3,8 @@ class SoldadoRojo extends Enemigos {
     super(x, y, app, i, juego);
     this.cargarSpriteAnimado();
     this.dirImagen ="assets/hud/soldadoRojo.jpg";
-    this.vida = 5;
-    this.velocidad = 1.75;
+    this.vida = 15;
+    this.velocidad = 1.5;
     this.puntoDeAtaque = { x: 1500, y: 500 }; // Puede usarse en el futuro para estrategias
     
     this.defensa = 7;

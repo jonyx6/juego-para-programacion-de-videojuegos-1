@@ -1,8 +1,8 @@
 class CentralAzul extends ObjetosEscenario {
   constructor(juego, col, row) {
     super(juego, col, row);
-    this._vida = 500;//11/06/2025--
-    this.vidaMaxima = 500;
+    this._vida = 250;//11/06/2025--
+    this.vidaMaxima = 250;
     this.estadoActual = 'activa';
     this.dirImagen ="assets/hud/casaHumana.jpg"
     this.dirImagen2 = "assets/Estructuras/EdificioAzul_1.png"; // Asegurate que exista

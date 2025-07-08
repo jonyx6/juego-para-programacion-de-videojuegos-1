@@ -1,5 +1,3 @@
-
-
 class UI {
     constructor(juego) {
         this.juego = juego;
@@ -42,6 +40,7 @@ class UI {
         interfazSprite.x = 260;
         interfazSprite.y = -180;
         interfazSprite.zIndex = 1;
+        interfazSprite.alpha = 0.3; 
         this.containerHud.addChild(interfazSprite);
     }
 
@@ -52,6 +51,7 @@ class UI {
         interfazSprite.x = 5;
         interfazSprite.y = -290;
         interfazSprite.zIndex = 1;
+        interfazSprite.alpha = 0.3; 
         this.containerHud.addChild(interfazSprite);
     }
 
@@ -69,6 +69,7 @@ class UI {
         sprite.y = -200;
         sprite.zIndex = 10;
         sprite.scale.set(0.17);
+        sprite.alpha = 0.5;
 
         // Eliminar la imagen anterior si existía
         if (this.fotoActual) {
@@ -92,7 +93,7 @@ class UI {
         this.laInterfazEstaAbajo =false
         this.containerHud.y = this.juego.alto * 0.9;
         console.log("hud subio");
-        setTimeout(this.bajar.bind(this), 8000)
+        setTimeout(this.bajar.bind(this), 3000)
 
     }
 
